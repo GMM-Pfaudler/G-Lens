@@ -1,0 +1,16 @@
+fastapi
+pydantic
+python-jose[cryptography]
+uvicorn[standard]
+camelot-py[cv]
+pandas
+python-multipart
+openpyxl           
+aiofiles
+PyPDF2
+PyMuPDF
+fuzzywuzzy
+python-Levenshtein
+langchain-community
+langchain-ollama
+chromadb

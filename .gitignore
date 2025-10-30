@@ -1,0 +1,37 @@
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+__pycache__/
+*.py[cod]
+
+glens-backend/data
+glens-backend/chroma_store
+glens-backend/output
+glens-backend/tmp
+glens-backend/glenv
+.env
+glens-frontend/dist
+glens-frontend/node_modules
+glens-frontend/.env
+.vscode
+
+# Logs
+glens-frontend/logs
+glens-frontend/*.log
+glens-frontend/npm-debug.log*
+glens-frontend/yarn-debug.log*
+glens-frontend/yarn-error.log*
+glens-frontend/pnpm-debug.log*
+glens-frontend/lerna-debug.log*
+
+glens-frontend/dist-ssr
+glens-frontend/*.local
+
