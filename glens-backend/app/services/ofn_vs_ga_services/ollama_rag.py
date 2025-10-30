@@ -12,7 +12,7 @@ from app.utils.ofn_vs_ga_utils.file_utils import sanitize_filename
 from app.utils.prompt import build_section_prompt,build_payload
 import aiohttp
 import asyncio
-from langchain.schema import Document
+from langchain_core.documents import Document
 from app.core.ws_manager import send_ws_message
 
 OLLAMA_BASE_URL = "http://192.168.157.82:11434"

@@ -1,11 +1,10 @@
-# app/utils/background_process.py
 import asyncio
 from pathlib import Path
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from app.core.ws_manager import send_ws_message
 from app.core.ga_extractor import GAPDFExtractor
 from app.models.db_models import GAFile
+from app.core.database import AsyncSessionLocal
 import json
 import os
 
@@ -24,7 +23,7 @@ def _remove_file(path: str):
     if os.path.exists(path):
         os.remove(path)
 
-async def run_extraction_in_background(file_path: str, job_id: str, db: AsyncSession):
+async def run_extraction_in_background(file_path: str, job_id: str):
     try:
         # WS: extraction started
         await send_ws_message(job_id, {"status": "started", "progress": 0})
@@ -38,31 +37,39 @@ async def run_extraction_in_background(file_path: str, job_id: str, db: AsyncSes
         save_path = OUTPUT_DIR / f"{sanitized_name}.json"
         await asyncio.to_thread(_save_json, save_path, result)
 
-        # Fetch GAFile fresh from DB
-        async with db.begin():
-            ga_record_result = await db.execute(select(GAFile).where(GAFile.job_id == job_id))
-            ga_record = ga_record_result.scalar_one_or_none()
-            if ga_record:
-                ga_record.file_path = str(save_path)
-                ga_record.status = "completed"
-            else:
-                print(f"[BackgroundTask] GAFile not found for job_id={job_id}")
+        # ✅ Create a NEW AsyncSession here instead of reusing one
+        async with AsyncSessionLocal() as db:
+            async with db.begin():
+                ga_record_result = await db.execute(
+                    select(GAFile).where(GAFile.job_id == job_id)
+                )
+                ga_record = ga_record_result.scalar_one_or_none()
+                if ga_record:
+                    ga_record.file_path = str(save_path)
+                    ga_record.status = "completed"
+                else:
+                    print(f"[BackgroundTask] GAFile not found for job_id={job_id}")
 
         # WS: extraction completed
-        await send_ws_message(job_id, {"status": "completed", "progress": 100, "result": result})
+        await send_ws_message(
+            job_id,
+            {"status": "completed", "progress": 100, "result": result},
+        )
 
     except Exception as e:
         print(f"[BackgroundTask] Exception occurred for job_id={job_id}: {e}")
 
-        # Fetch GAFile to update error status
-        async with db.begin():
-            ga_record_result = await db.execute(select(GAFile).where(GAFile.job_id == job_id))
-            ga_record = ga_record_result.scalar_one_or_none()
-            if ga_record:
-                ga_record.status = "error"
-                ga_record.error_msg = str(e)
+        # ✅ Same here — create a fresh session for error update
+        async with AsyncSessionLocal() as db:
+            async with db.begin():
+                ga_record_result = await db.execute(
+                    select(GAFile).where(GAFile.job_id == job_id)
+                )
+                ga_record = ga_record_result.scalar_one_or_none()
+                if ga_record:
+                    ga_record.status = "error"
+                    ga_record.error_msg = str(e)
 
-        # WS: send error
         await send_ws_message(job_id, {"status": "error", "message": str(e)})
 
     finally:

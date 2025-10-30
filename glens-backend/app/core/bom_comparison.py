@@ -63,7 +63,7 @@ def run_full_comparison(file_a_path: str, file_b_path: str, bom_level: str = Non
             display_rows.append(row)
 
         # Save JSON locally
-        save_dir = os.getenv("GL_FULL_BOM_SAVE_DIR", r"D:/GL_data/full_bom_comparison")
+        save_dir = os.getenv("GL_FULL_BOM_SAVE_DIR", r"D:/Glens_data/full_bom_comparison")
         os.makedirs(save_dir, exist_ok=True)
 
         file1_base = os.path.basename(file_a_path).rsplit('.', 1)[0]

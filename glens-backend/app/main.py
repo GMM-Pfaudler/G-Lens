@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import auth,ofn_router,ga_router,test_router
-from app.routers import ofn_ga_comparison,ga_ga_comparison,full_bom_router,model_vs_bom_comparison
+from app.routers import ofn_ga_comparison,ga_ga_comparison,full_bom_router,model_vs_bom_comparison,image_comparison_router
 
 app = FastAPI()
 
@@ -47,3 +47,5 @@ app.include_router(ga_ga_comparison.router, prefix="/api/comparison/ga-ga",tags=
 app.include_router(full_bom_router.router, prefix="/api/comparison", tags=["Full BOM Comparison"])
 
 app.include_router(model_vs_bom_comparison.router, prefix="/api/comparison", tags=["Full BOM Comparison"])
+
+app.include_router(image_comparison_router.router,prefix="/api/comparison", tags=["File/Image Comparison"])
