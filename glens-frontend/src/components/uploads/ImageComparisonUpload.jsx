@@ -1,49 +1,46 @@
-// src/components/uploads/FullBomUpload.jsx
 import React from "react";
-import { useFullBomComparison } from "../../context/FullBomComparisonContext";
+import { Button } from "@mui/material";
+import { Upload } from "lucide-react";
+import { useImageComparison } from "../../context/ImageComparisonContext";
 
-const FullBomUpload = () => {
-  const { fileA, setFileA, fileB, setFileB, bomLevel, setBomLevel } = useFullBomComparison();
+const ImageComparisonUpload = ({ onCompare }) => {
+  const { pdf1, setPdf1, pdf2, setPdf2 } = useImageComparison();
 
-  const handleFileAChange = (e) => {
+  const handleFile1Change = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setFileA(file);
-    }
+    setPdf1(file);
   };
 
-  const handleFileBChange = (e) => {
+  const handleFile2Change = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      setFileB(file);
-    }
+    setPdf2(file);
   };
 
-  const clearFileA = () => {
-    setFileA(null);
-    const fileInput = document.getElementById('file-a-input');
+  const clearFile1 = () => {
+    setPdf1(null);
+    const fileInput = document.getElementById('pdf1-file-input');
     if (fileInput) fileInput.value = '';
   };
 
-  const clearFileB = () => {
-    setFileB(null);
-    const fileInput = document.getElementById('file-b-input');
+  const clearFile2 = () => {
+    setPdf2(null);
+    const fileInput = document.getElementById('pdf2-file-input');
     if (fileInput) fileInput.value = '';
   };
 
   return (
     <div className="space-y-6">
       {/* File Upload Sections */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* File A Upload */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* GA Drawing 1 Upload */}
         <div className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-3">
             <label className="block text-sm font-medium text-gray-700">
-              File A <span className="text-red-500">*</span>
+              GA Drawing 1 (PDF) <span className="text-red-500">*</span>
             </label>
-            {fileA && (
+            {pdf1 && (
               <button
-                onClick={clearFileA}
+                onClick={clearFile1}
                 className="text-red-500 hover:text-red-700 hover:underline text-sm font-medium transition-all duration-200"
               >
                 Clear
@@ -53,15 +50,15 @@ const FullBomUpload = () => {
           
           <div className="flex items-center gap-3">
             <label
-              htmlFor="file-a-input"
+              htmlFor="pdf1-file-input"
               className="flex-1 cursor-pointer bg-gray-50 hover:bg-blue-50 border-2 border-dashed border-gray-300 hover:border-blue-400 
              rounded-lg p-4 text-center transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-md"
             >
               <input
-                id="file-a-input"
+                id="pdf1-file-input"
                 type="file"
-                accept=".xlsx,.xls"
-                onChange={handleFileAChange}
+                accept="application/pdf"
+                onChange={handleFile1Change}
                 className="hidden"
               />
               <div className="space-y-2">
@@ -70,9 +67,9 @@ const FullBomUpload = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
                 </div>
-                {fileA ? (
-                  <div className={`text-green-600 font-medium transition-all duration-300 ${fileA ? "animate-pulse" : ""}`}>
-                    ✓ {fileA.name}
+                {pdf1 ? (
+                  <div className={`text-green-600 font-medium transition-all duration-300 ${pdf1 ? "animate-pulse" : ""}`}>
+                    ✓ {pdf1.name}
                   </div>
                 ) : (
                   <div>
@@ -80,7 +77,7 @@ const FullBomUpload = () => {
                       Click to upload
                     </div>
                     <div className="text-xs text-gray-500">
-                      .xlsx or .xls files
+                      .pdf files
                     </div>
                   </div>
                 )}
@@ -89,16 +86,16 @@ const FullBomUpload = () => {
           </div>
         </div>
 
-        {/* File B Upload */}
+        {/* GA Drawing 2 Upload */}
         <div className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-3">
             <label className="block text-sm font-medium text-gray-700">
-              File B <span className="text-red-500">*</span>
+              GA Drawing 2 (PDF) <span className="text-red-500">*</span>
             </label>
-            {fileB && (
+            {pdf2 && (
               <button
-                onClick={clearFileB}
-                className="text-red-500 hover:text-red-700 hover:underline text-sm font-medium transition-all duration-200"
+                onClick={clearFile2}
+                className="text-red-500 hover:text-red-700 text-sm font-medium"
               >
                 Clear
               </button>
@@ -107,15 +104,15 @@ const FullBomUpload = () => {
           
           <div className="flex items-center gap-3">
             <label
-              htmlFor="file-b-input"
-              className="flex-1 cursor-pointer bg-gray-50 hover:bg-green-50 border-2 border-dashed border-gray-300 hover:border-green-400 
+              htmlFor="pdf2-file-input"
+              className="flex-1 cursor-pointer bg-gray-50 hover:bg-blue-50 border-2 border-dashed border-gray-300 hover:border-blue-400 
              rounded-lg p-4 text-center transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-md"
             >
               <input
-                id="file-b-input"
+                id="pdf2-file-input"
                 type="file"
-                accept=".xlsx,.xls"
-                onChange={handleFileBChange}
+                accept="application/pdf"
+                onChange={handleFile2Change}
                 className="hidden"
               />
               <div className="space-y-2">
@@ -124,9 +121,9 @@ const FullBomUpload = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
                 </div>
-                {fileB ? (
+                {pdf2 ? (
                   <div className="text-green-600 font-medium">
-                    ✓ {fileB.name}
+                    ✓ {pdf2.name}
                   </div>
                 ) : (
                   <div>
@@ -134,36 +131,12 @@ const FullBomUpload = () => {
                       Click to upload
                     </div>
                     <div className="text-xs text-gray-500">
-                      .xlsx or .xls files
+                      .pdf files
                     </div>
                   </div>
                 )}
               </div>
             </label>
-          </div>
-        </div>
-
-        {/* BOM Level Input */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="flex items-center justify-between mb-3">
-            <label className="block text-sm font-medium text-gray-700">
-              BOM Level
-            </label>
-          </div>
-          
-          <div className="flex items-center gap-3">
-            <div className="flex-1">
-              <input
-                type="text"
-                value={bomLevel}
-                onChange={(e) => setBomLevel(e.target.value)}
-                placeholder="e.g., 1, .2, ..3"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm transition-all duration-200 bg-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 hover:shadow-sm"
-              />
-              <div className="text-xs text-gray-500 mt-1">
-                Optional: Specify BOM level format
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -173,27 +146,37 @@ const FullBomUpload = () => {
         <div className="flex items-center justify-between">
           <div className="text-sm text-blue-700">
             <strong>Ready to compare:</strong>{" "}
-            {fileA && fileB ? (
+            {pdf1 && pdf2 ? (
               <span className="text-green-600">Both files uploaded</span>
             ) : (
               <span className="text-orange-600">Waiting for files</span>
             )}
           </div>
           <div className="flex items-center gap-4 text-sm">
-            <span className={fileA ? "text-green-600" : "text-gray-400"}>
-              File A: {fileA ? "✓" : "✗"}
+            <span className={pdf1 ? "text-green-600" : "text-gray-400"}>
+              Drawing 1: {pdf1 ? "✓" : "✗"}
             </span>
-            <span className={fileB ? "text-green-600" : "text-gray-400"}>
-              File B: {fileB ? "✓" : "✗"}
-            </span>
-            <span className="text-gray-400">
-              BOM Level: {bomLevel ? "✓" : "Optional"}
+            <span className={pdf2 ? "text-green-600" : "text-gray-400"}>
+              Drawing 2: {pdf2 ? "✓" : "✗"}
             </span>
           </div>
         </div>
+      </div>
+
+      {/* Compare Button */}
+      <div className="flex justify-center">
+        <Button
+          onClick={onCompare}
+          disabled={!pdf1 || !pdf2}
+          variant="contained"
+          className="flex items-center gap-2 px-6 py-2 rounded-lg font-medium normal-case shadow-sm hover:shadow transition-all disabled:bg-gray-400 disabled:cursor-not-allowed"
+          startIcon={<Upload className="w-4 h-4" />}
+        >
+          Compare Drawings
+        </Button>
       </div>
     </div>
   );
 };
 
-export default FullBomUpload;
+export default ImageComparisonUpload;

@@ -1,28 +1,38 @@
 // src/pages/OfnGaComparison.jsx
 import React, { useState } from "react";
 import MainLayout from "../layouts/MainLayout";
-import OfnGaStepper from "../components/stepper/OfnGaStepper/OfnGaStepper"
-import { ComparisonProvider } from '../context/ComparisonContext.jsx'
-import { Compare } from "@mui/icons-material";
+import { Box } from "@mui/material";
+import { ComparisonProvider } from "../context/ComparisonContext.jsx";
+import ComparisonResultHeader from "../components/comparison/ComparisonResultHeader.jsx";
+import ComparisonTable from "../components/comparison/ComparisonTable.jsx";
+import UploadComparisonModal from "../components/comparison/UploadComparisonModal.jsx";
+import useLiveComparisons from "../hooks/useLiveComparisons.js";
 
 const OfnGaComparison = () => {
-  const [ofnResult, setOfnResult] = useState(null);
-  const [gaResult, setGaResult] = useState(null);
+  const { comparisons, loading, reload } = useLiveComparisons();
+  const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
   return (
-    <MainLayout 
+    <MainLayout
       breadcrumbItems={[
         { label: "Dashboard", href: "/dashboard" },
-        { label: "OFN vs GA", href: "/operations/ofn-vs-ga", active: true }
+        { label: "OFN vs GA", href: "/operations/ofn-vs-ga", active: true },
       ]}
     >
       <ComparisonProvider>
-        <OfnGaStepper
-          ofnResult={ofnResult}
-          setOfnResult={setOfnResult}
-          gaResult={gaResult}
-          setGaResult={setGaResult}
-        />
+        <Box p={3}>
+          <ComparisonResultHeader onStart={() => setUploadModalOpen(true)} />
+          <ComparisonTable
+            comparisons={comparisons}
+            loading={loading}
+            onReload={reload}
+          />
+          <UploadComparisonModal
+            open={uploadModalOpen}
+            onClose={() => setUploadModalOpen(false)}
+            onSuccess={reload}
+          />
+        </Box>
       </ComparisonProvider>
     </MainLayout>
   );

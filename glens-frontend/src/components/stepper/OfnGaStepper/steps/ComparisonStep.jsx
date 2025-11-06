@@ -31,6 +31,8 @@ const ComparisonStep = ({ handleBack }) => {
       setComparisonLoading(true);
       setProgress(0);
 
+      const userId = localStorage.getItem("user_id");
+
       const formData = new FormData();
       formData.append(
         "ga_json",
@@ -43,9 +45,13 @@ const ComparisonStep = ({ handleBack }) => {
         "ofn.json"
       );
 
-      const res = await axios.post(`${API_URL}/api/comparison/ofn-ga/start`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await axios.post(
+        `${API_URL}/api/comparison/ofn-ga/start?user_id=${userId}`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
 
       const { job_id } = res.data;
 

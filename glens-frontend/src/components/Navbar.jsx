@@ -22,7 +22,7 @@ export default function Navbar() {
     "/ga-ga-comparison", 
     "/full-bom-comparison",
     "/model-bom-comparison",
-    "/ga-vs-ga-pixel"
+    "/image-comparison"
   ].some(route => location.pathname.includes(route));
 
   // Operations menu
@@ -180,7 +180,7 @@ export default function Navbar() {
                 { path: "/ga-ga-comparison", label: "GA vs GA" },
                 { path: "/full-bom-comparison", label: "Excel BOM vs Excel BOM" },
                 { path: "/model-bom-comparison", label: "Excel BOM vs Model BOM" },
-                { path: "/ga-vs-ga-pixel", label: "GA vs GA (Pixel)" },
+                { path: "/image-comparison", label: "GA vs GA (Pixel)" },
               ].map((item) => (
                 <MenuItem 
                   key={item.path}
@@ -257,7 +257,7 @@ export default function Navbar() {
               <ListItem button onClick={() => { handleNavigate("/model-bom-comparison"); setMobileOpen(false); }}>
                 <ListItemText primary="Excel BOM vs Model BOM" />
               </ListItem>
-              <ListItem button onClick={() => { handleNavigate("/ga-vs-ga-pixel"); setMobileOpen(false); }}>
+              <ListItem button onClick={() => { handleNavigate("/image-comparison"); setMobileOpen(false); }}>
                 <ListItemText primary="GA vs GA (Pixel)" />
               </ListItem>
               <ListItem button onClick={() => { setConfirmOpen(true); setMobileOpen(false); }}>

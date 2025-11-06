@@ -34,7 +34,7 @@ const operations = [
   },
   { 
     label: "GA vs GA (Pixel)", 
-    path: "/ga-vs-ga-pixel",
+    path: "/image-comparison",
     description: "Pixel-level analysis",
     status: "beta"
   },

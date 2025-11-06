@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, File, HTTPException, Depends, BackgroundTasks, WebSocket
+from fastapi import APIRouter, UploadFile, File, HTTPException, Depends, BackgroundTasks, WebSocket,Query
 from app.core.database import get_session
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.ws_manager import send_ws_message, register_ws, unregister_ws
@@ -9,6 +9,7 @@ import os, json, uuid, asyncio
 from datetime import datetime, timezone
 from sqlalchemy import select, and_
 from zoneinfo import ZoneInfo
+from typing import Optional
 
 router = APIRouter(tags=["GA-to-GA Comparison"])
 
@@ -209,3 +210,84 @@ async def ga_to_ga_ws(websocket: WebSocket, job_id: str):
     finally:
         await unregister_ws(job_id, websocket)
         print(f"🔴 [WS] Disconnected for job_id={job_id}")
+
+# -------------------------
+# Get paginated GA-to-GA comparison history
+# -------------------------
+@router.get("/history")
+async def get_ga_ga_comparison_history(
+    limit: int = Query(50, ge=1, le=500),
+    offset: int = Query(0, ge=0),
+    status: Optional[str] = Query(None),
+    db: AsyncSession = Depends(get_session),
+):
+    """
+    Return a paginated list of GA-to-GA comparison records from the database.
+    """
+    q = select(GAGaComparisonResult).order_by(GAGaComparisonResult.result_date.desc()).limit(limit).offset(offset)
+
+    if status:
+        q = (
+            select(GAGaComparisonResult)
+            .where(GAGaComparisonResult.status == status)
+            .order_by(GAGaComparisonResult.result_date.desc())
+            .limit(limit)
+            .offset(offset)
+        )
+
+    res = await db.execute(q)
+    rows = res.scalars().all()
+
+    items = []
+    for r in rows:
+        items.append({
+            "id": r.id,
+            "job_id": r.job_id,
+            "ga1_file_name": r.ga1_file_name,
+            "ga2_file_name": r.ga2_file_name,
+            "comparison_result_path": r.comparison_result_path,
+            "status": getattr(r.status, "value", r.status) if r.status is not None else None,
+            "result_date": r.result_date.isoformat() if r.result_date else None,
+            "error_msg": r.error_msg,
+        })
+
+    return {"count": len(items), "items": items}
+
+
+# -------------------------
+# Get a single comparison by ID
+# -------------------------
+@router.get("/history/{comparison_id}")
+async def get_ga_ga_comparison_by_id(comparison_id: int, db: AsyncSession = Depends(get_session)):
+    """
+    Return a single GA-to-GA comparison record by database ID.
+    Includes parsed comparison result data from the stored JSON file.
+    """
+    q = select(GAGaComparisonResult).where(GAGaComparisonResult.id == comparison_id)
+    res = await db.execute(q)
+    record = res.scalars().first()
+
+    if not record:
+        raise HTTPException(status_code=404, detail="Comparison record not found")
+
+    # Try to read comparison JSON result
+    comparison_data = None
+    if record.comparison_result_path and os.path.exists(record.comparison_result_path):
+        try:
+            with open(record.comparison_result_path, "r", encoding="utf-8") as f:
+                comparison_data = json.load(f)
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Error reading comparison file: {e}")
+    else:
+        raise HTTPException(status_code=404, detail="Comparison result file not found on server")
+
+    return {
+        "id": record.id,
+        "job_id": record.job_id,
+        "ga1_file_name": record.ga1_file_name,
+        "ga2_file_name": record.ga2_file_name,
+        "status": getattr(record.status, "value", record.status) if record.status is not None else None,
+        "result_date": record.result_date.isoformat() if record.result_date else None,
+        "error_msg": record.error_msg,
+        "comparison_data": comparison_data,  # 🧩 full result content here
+    }

@@ -11,14 +11,23 @@ import FullBomComparison from './pages/FullBomComparison';
 import { FullBomComparisonProvider } from './context/FullBomComparisonContext';
 import ModelBomComparison from './pages/ModelBomComparison';
 import { ModelBomComparisonProvider } from './context/ModelBomComparisonContext';
+import ImageComparison from './pages/ImageComparison';
+import { ImageComparisonProvider } from './context/ImageComparisonContext';
+import ComparisonResultPage from './pages/history_pages/ComparisonResultPage';
+import ComparisonHistoryPage from './pages/history_pages/ComparisonHistoryPage';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} /> 
-        <Route path="/ofn-ga-comparison" element={<OfnGaComparison />} /> 
+        <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* 🧩 OFN-GA Comparison Module */}
+        <Route path="/ofn-ga-comparison" element={<OfnGaComparison />} />
+        <Route path="/ofn-ga-comparison/history" element={<ComparisonHistoryPage />} />
+        <Route path="/ofn-ga-comparison/result/:id" element={<ComparisonResultPage />} /> 
+
         <Route path="/ga-ga-comparison" element={<GaGaComparison />} />
         <Route
           path="/full-bom-comparison"
@@ -36,6 +45,12 @@ function App() {
             </ModelBomComparisonProvider>
           }
         />
+        <Route path="/image-comparison" element={
+          <ImageComparisonProvider>
+            <ImageComparison />
+          </ImageComparisonProvider>
+          } />
+
       </Routes>
     </Router>
   );

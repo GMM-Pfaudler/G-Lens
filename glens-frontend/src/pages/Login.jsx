@@ -39,7 +39,7 @@ const Login = () => {
       const res = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ user_id: username, password }),
       });
 
       const data = await res.json();
@@ -48,6 +48,8 @@ const Login = () => {
 
       if (res.ok) {
         localStorage.setItem("token", data.access_token);
+        localStorage.setItem("role", data.role);
+        localStorage.setItem("user_id", data.user_id);
 
         setTimeout(() => {
           setToast({
