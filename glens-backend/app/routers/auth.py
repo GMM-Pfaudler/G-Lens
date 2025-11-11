@@ -98,3 +98,22 @@ def dashboard(token: str = Depends(oauth2_scheme)):
             "notifications": 3,
         },
     }
+
+
+# ----------------------------------
+# Helper: get current user from token
+# ----------------------------------
+def get_current_user(token: str = Depends(oauth2_scheme)):
+    """
+    Extracts the current user_id and role from JWT.
+    Raises 401 if invalid or expired.
+    """
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id: str = payload.get("sub")
+        role: str = payload.get("role")
+        if not user_id:
+            raise HTTPException(status_code=401, detail="Invalid token payload")
+        return {"user_id": user_id, "role": role}
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid or expired token")

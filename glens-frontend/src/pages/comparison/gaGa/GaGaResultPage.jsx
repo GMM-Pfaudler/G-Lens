@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import MainLayout from "../../../layouts/MainLayout";
-import ComparisonViewer from "../../../components/results/ComparisonViewer";
+import GAtoGAComparisonViewer from "../../../components/results/ga_vs_ga_results/GAtoGAComparisonViewer";
+
 import {
   Box,
   CircularProgress,
@@ -104,7 +105,7 @@ const GaGaResultPage = () => {
             </Button>
           </Stack>
         ) : data ? (
-          <ComparisonViewer data={data?.result || data} />
+          <GAtoGAComparisonViewer data={data?.result || data} />
         ) : (
           <Typography color="text.secondary">No data available</Typography>
         )}

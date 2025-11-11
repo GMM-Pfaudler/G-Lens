@@ -125,7 +125,7 @@ const NozzleComparisonViewer = ({ data }) => {
         />
       </Box>
 
-      <Box sx={{ maxHeight: 380, overflowY: "auto" }}>
+      <Box sx={{ maxHeight: 570, overflowY: "auto" }}>
         <Table size="small" stickyHeader>
           <TableHead>
             <TableRow>

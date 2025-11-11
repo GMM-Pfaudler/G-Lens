@@ -15,6 +15,7 @@ from app.utils.log_helper import add_activity_log_async
 from app.core.sse_event_sender import broker
 from app.models.ga_ga_comparison import StatusEnum
 from app.models.activity_log import LogStatusEnum
+from app.routers.auth import get_current_user
 
 router = APIRouter(tags=["GA-to-GA Comparison"])
 
@@ -316,7 +317,7 @@ async def ga_to_ga_ws(websocket: WebSocket, job_id: str):
         print(f"🔴 [WS] Disconnected for job_id={job_id}")
 
 # -------------------------
-# Get GA→GA comparison history
+# Get GA→GA comparison history (role-aware)
 # -------------------------
 @router.get("/history")
 async def get_ga_ga_comparison_history(
@@ -325,26 +326,33 @@ async def get_ga_ga_comparison_history(
     status: Optional[str] = Query(None),
     user_id: Optional[str] = Query(None),
     db: AsyncSession = Depends(get_session),
+    current_user: dict = Depends(get_current_user)
 ):
     """
-    Fetch paginated GA→GA comparison records with optional filters.
+    Fetch paginated GA→GA comparison records.
+    Non-admins only see their own comparisons.
+    Admins can use ?user_id= to filter others.
     """
     q = select(GAGaComparisonResult).order_by(GAGaComparisonResult.created_at.desc())
 
-    # Apply filters
+    # Role-based filtering
+    if current_user["role"] != "admin":
+        q = q.where(GAGaComparisonResult.user_id == current_user["user_id"])
+    elif user_id:
+        q = q.where(GAGaComparisonResult.user_id == user_id)
+
+    # Optional status filter
     if status:
         q = q.where(GAGaComparisonResult.status == status)
-    if user_id:
-        q = q.where(GAGaComparisonResult.user_id == user_id)
 
     # Pagination
     q = q.limit(limit).offset(offset)
     res = await db.execute(q)
     rows = res.scalars().all()
 
-    items = []
-    for r in rows:
-        items.append({
+    # Format response
+    items = [
+        {
             "id": r.id,
             "job_id": r.job_id,
             "user_id": r.user_id,
@@ -355,12 +363,12 @@ async def get_ga_ga_comparison_history(
             "error_msg": r.error_msg,
             "created_at": r.created_at.isoformat() if r.created_at else None,
             "updated_at": r.updated_at.isoformat() if r.updated_at else None,
-        })
+        }
+        for r in rows
+    ]
 
-    return {
-        "count": len(items),
-        "items": items
-    }
+    return {"count": len(items), "items": items}
+
 
 
 # -------------------------

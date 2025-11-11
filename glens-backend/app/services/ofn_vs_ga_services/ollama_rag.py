@@ -15,9 +15,11 @@ import asyncio
 from langchain_core.documents import Document
 from app.core.ws_manager import send_ws_message
 
-OLLAMA_BASE_URL = "http://192.168.157.82:11434"
+# OLLAMA_BASE_URL = "http://192.168.157.82:11434"
+OLLAMA_BASE_URL = "http://ko-gmmpfw0078:11434"
 # MODEL_NAME = "gemma3n:latest"
 MODEL_NAME = "llama3.2:latest"
+# MODEL_NAME = "gpt-oss:20b"
 # MODEL_NAME = "gpt-oss:120b-cloud"
 
 class OllamaEmbeddingWrapper(Embeddings):

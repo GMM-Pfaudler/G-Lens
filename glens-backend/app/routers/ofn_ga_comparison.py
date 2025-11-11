@@ -21,6 +21,7 @@ from app.core.sse_event_sender import broker
 from app.utils.logger import log_event
 from app.utils.log_helper import add_activity_log_async
 from app.models.activity_log import LogStatusEnum
+from app.routers.auth import get_current_user
 
 router = APIRouter(tags=["OFN-GA Comparison"])
 
@@ -267,6 +268,54 @@ async def comparison_ws(websocket: WebSocket, job_id: str):
 # -------------------------
 # Get paginated comparison history (supports user & status filter)
 # -------------------------
+# @router.get("/history")
+# async def get_comparison_history(
+#     limit: int = Query(50, ge=1, le=500),
+#     offset: int = Query(0, ge=0),
+#     status: Optional[str] = Query(None),
+#     user_id: Optional[str] = Query(None),
+#     db: AsyncSession = Depends(get_session),
+# ):
+#     """
+#     Fetch paginated comparison records with optional filters for status and user_id.
+#     """
+#     q = select(ComparisonResult).order_by(ComparisonResult.created_at.desc())
+
+#     # apply filters
+#     if status:
+#         q = q.where(ComparisonResult.status == status)
+#     if user_id:
+#         q = q.where(ComparisonResult.user_id == user_id)
+
+#     # pagination
+#     q = q.limit(limit).offset(offset)
+
+#     res = await db.execute(q)
+#     rows = res.scalars().all()
+
+#     items = []
+#     for r in rows:
+#         items.append({
+#             "id": r.id,
+#             "job_id": r.job_id,
+#             "user_id": r.user_id,
+#             "ofn_file_name": r.ofn_file_name,
+#             "ga_file_name": r.ga_file_name,
+#             "comparison_result_path": r.comparison_result_path,
+#             "status": getattr(r.status, "value", r.status) if r.status is not None else None,
+#             "error_msg": r.error_msg,
+#             "created_at": r.created_at.isoformat() if r.created_at else None,
+#             "updated_at": r.updated_at.isoformat() if r.updated_at else None,
+#         })
+
+#     return {
+#         "count": len(items),
+#         "items": items
+#     }
+
+# -------------------------
+# Get paginated comparison history with userID filter (supports user & status filter)
+# -------------------------
 @router.get("/history")
 async def get_comparison_history(
     limit: int = Query(50, ge=1, le=500),
@@ -274,27 +323,31 @@ async def get_comparison_history(
     status: Optional[str] = Query(None),
     user_id: Optional[str] = Query(None),
     db: AsyncSession = Depends(get_session),
+    current_user: dict = Depends(get_current_user)
 ):
     """
-    Fetch paginated comparison records with optional filters for status and user_id.
+    Fetch paginated comparison records.
+    Non-admins only see their own comparisons.
+    Admins can use ?user_id= to filter others.
     """
+
     q = select(ComparisonResult).order_by(ComparisonResult.created_at.desc())
 
-    # apply filters
-    if status:
-        q = q.where(ComparisonResult.status == status)
-    if user_id:
+    # Apply role-based filter
+    if current_user["role"] != "admin":
+        q = q.where(ComparisonResult.user_id == current_user["user_id"])
+    elif user_id:
         q = q.where(ComparisonResult.user_id == user_id)
 
-    # pagination
-    q = q.limit(limit).offset(offset)
+    if status:
+        q = q.where(ComparisonResult.status == status)
 
+    q = q.limit(limit).offset(offset)
     res = await db.execute(q)
     rows = res.scalars().all()
 
-    items = []
-    for r in rows:
-        items.append({
+    items = [
+        {
             "id": r.id,
             "job_id": r.job_id,
             "user_id": r.user_id,
@@ -305,12 +358,12 @@ async def get_comparison_history(
             "error_msg": r.error_msg,
             "created_at": r.created_at.isoformat() if r.created_at else None,
             "updated_at": r.updated_at.isoformat() if r.updated_at else None,
-        })
+        }
+        for r in rows
+    ]
 
-    return {
-        "count": len(items),
-        "items": items
-    }
+    return {"count": len(items), "items": items}
+
 
 # -------------------------
 # Get a single comparison by ID
