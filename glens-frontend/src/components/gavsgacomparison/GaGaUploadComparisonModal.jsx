@@ -25,9 +25,8 @@ import {
   Description as FileIcon
 } from "@mui/icons-material";
 import axios from "axios";
-import { extractOfn } from "../../services/ofnService";
 
-// Reusable File Upload Card Component
+// Reusing your FileUploadCard component
 const FileUploadCard = ({ 
   title, 
   file, 
@@ -127,19 +126,23 @@ const FileUploadCard = ({
   );
 };
 
-// Main Modal Component
-const UploadComparisonModal = ({ open, onClose, onSuccess }) => {
+// Main GA vs GA Modal Component
+const GaVsGaComparisonModal = ({ open, onClose, onSuccess }) => {
   const API_URL = import.meta.env.VITE_API_URL;
 
-  // State management
-  const [files, setFiles] = useState({ ofn: null, ga: null });
-  const [results, setResults] = useState({ ofn: null, ga: null });
-  const [loading, setLoading] = useState({ ofn: false, ga: false, comparison: false });
+  // State management for two GA instances
+  const [files, setFiles] = useState({ ga1: null, ga2: null });
+  const [results, setResults] = useState({ ga1: null, ga2: null });
+  const [loading, setLoading] = useState({ 
+    ga1: false, 
+    ga2: false, 
+    comparison: false 
+  });
   const [message, setMessage] = useState("");
-  const wsGaRef = useRef(null);
+  const wsRefs = useRef({ ga1: null, ga2: null });
 
   // Derived states
-  const canStartComparison = results.ofn && results.ga && !loading.comparison;
+  const canStartComparison = results.ga1 && results.ga2 && !loading.comparison;
 
   const getFileStatus = (type) => {
     if (loading[type]) return 'loading';
@@ -157,95 +160,86 @@ const UploadComparisonModal = ({ open, onClose, onSuccess }) => {
     }
   };
 
-  // Extraction handlers
-  const handleExtractOfn = async () => {
-    if (!files.ofn) return;
+  // GA Extraction handler (reusable for both instances)
+  const handleExtractGa = async (type) => {
+    if (!files[type]) return;
     
-    setLoading(prev => ({ ...prev, ofn: true }));
-    setMessage("Extracting OFN file...");
-    
-    try {
-      const data = await extractOfn(files.ofn);
-      setResults(prev => ({ ...prev, ofn: data.result }));
-      setMessage("OFN extraction completed successfully!");
-    } catch (error) {
-      setMessage("OFN extraction failed");
-      console.error("OFN extraction error:", error);
-    } finally {
-      setLoading(prev => ({ ...prev, ofn: false }));
-    }
-  };
-
-  const handleExtractGa = async () => {
-    if (!files.ga) return;
-    
-    setLoading(prev => ({ ...prev, ga: true }));
-    setMessage("Uploading GA file and starting extraction...");
+    setLoading(prev => ({ ...prev, [type]: true }));
+    setMessage(`Extracting ${type.toUpperCase()} file...`);
     
     try {
       const formData = new FormData();
-      formData.append("file", files.ga);
+      formData.append("file", files[type]);
+      
       const res = await axios.post(`${API_URL}/api/ga/extract`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       
-      const ws = new WebSocket(`${API_URL.replace(/^http/, "ws")}/api/ga/ws/ga/${res.data.job_id}`);
-      wsGaRef.current = ws;
+      const ws = new WebSocket(
+        `${API_URL.replace(/^http/, "ws")}/api/ga/ws/ga/${res.data.job_id}`
+      );
+      wsRefs.current[type] = ws;
 
       ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        setResults(prev => ({ ...prev, ga: { ...prev.ga, ...data.result }}));
+        setResults(prev => ({ 
+          ...prev, 
+          [type]: { ...prev[type], ...data.result }
+        }));
         
         if (data.status === 'completed') {
-          setMessage("GA extraction completed successfully!");
-          setLoading(prev => ({ ...prev, ga: false }));
+          setMessage(`${type.toUpperCase()} extraction completed successfully!`);
+          setLoading(prev => ({ ...prev, [type]: false }));
         } else if (data.status === 'error') {
-          setMessage("GA extraction failed");
-          setLoading(prev => ({ ...prev, ga: false }));
+          setMessage(`${type.toUpperCase()} extraction failed`);
+          setLoading(prev => ({ ...prev, [type]: false }));
           ws.close();
         } else {
-          setMessage(`GA extraction: ${data.status}...`);
+          setMessage(`${type.toUpperCase()} extraction: ${data.status}...`);
         }
       };
       
-      ws.onclose = () => console.log("GA WebSocket closed");
+      ws.onclose = () => console.log(`${type.toUpperCase()} WebSocket closed`);
       ws.onerror = () => {
-        setMessage("WebSocket connection error for GA extraction");
-        setLoading(prev => ({ ...prev, ga: false }));
+        setMessage(`WebSocket connection error for ${type.toUpperCase()} extraction`);
+        setLoading(prev => ({ ...prev, [type]: false }));
       };
       
     } catch (err) {
-      console.error("GA extraction error:", err);
-      setMessage("GA extraction failed");
-      setLoading(prev => ({ ...prev, ga: false }));
+      console.error(`${type.toUpperCase()} extraction error:`, err);
+      setMessage(`${type.toUpperCase()} extraction failed`);
+      setLoading(prev => ({ ...prev, [type]: false }));
     }
   };
 
-  // Comparison handler
+  // Comparison handler for GA vs GA
   const handleStartComparison = async () => {
     if (!canStartComparison) return;
     
     setLoading(prev => ({ ...prev, comparison: true }));
-    setMessage("Starting comparison process...");
+    setMessage("Starting GA vs GA comparison process...");
 
     try {
       const userId = localStorage.getItem("user_id");
       const formData = new FormData();
-      formData.append("ofn_json", new Blob([JSON.stringify(results.ofn)], { type: "application/json" }), "ofn.json");
-      formData.append("ga_json", new Blob([JSON.stringify(results.ga)], { type: "application/json" }), "ga.json");
+      formData.append("ga1_json", new Blob([JSON.stringify(results.ga1)], { type: "application/json" }), "ga1.json");
+      formData.append("ga2_json", new Blob([JSON.stringify(results.ga2)], { type: "application/json" }), "ga2.json");
 
-      const res = await axios.post(`${API_URL}/api/comparison/ofn-ga/start?user_id=${userId}`, formData);
+      const res = await axios.post(
+        `${API_URL}/api/comparison/ga-ga/start?user_id=${userId}`, 
+        formData
+      );
 
       if (res.status === 200) {
-        setMessage("Comparison started successfully!");
+        setMessage("GA vs GA comparison started successfully!");
         handleClose();
         onSuccess?.();
       } else {
-        throw new Error("Failed to start comparison");
+        throw new Error("Failed to start GA vs GA comparison");
       }
     } catch (err) {
-      console.error("Comparison error:", err);
-      setMessage("Failed to start comparison");
+      console.error("GA vs GA comparison error:", err);
+      setMessage("Failed to start GA vs GA comparison");
     } finally {
       setLoading(prev => ({ ...prev, comparison: false }));
     }
@@ -253,10 +247,11 @@ const UploadComparisonModal = ({ open, onClose, onSuccess }) => {
 
   // Cleanup
   const handleClose = () => {
-    wsGaRef.current?.close();
-    setFiles({ ofn: null, ga: null });
-    setResults({ ofn: null, ga: null });
-    setLoading({ ofn: false, ga: false, comparison: false });
+    // Close all WebSocket connections
+    Object.values(wsRefs.current).forEach(ws => ws?.close());
+    setFiles({ ga1: null, ga2: null });
+    setResults({ ga1: null, ga2: null });
+    setLoading({ ga1: false, ga2: false, comparison: false });
     setMessage("");
     onClose();
   };
@@ -280,7 +275,7 @@ const UploadComparisonModal = ({ open, onClose, onSuccess }) => {
       <DialogTitle sx={{ pb: 2 }}>
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <Typography variant="h5" fontWeight="600">
-            Start New Comparison
+            GA vs GA Comparison
           </Typography>
           <IconButton onClick={handleClose} size="small">
             <CloseIcon />
@@ -291,21 +286,21 @@ const UploadComparisonModal = ({ open, onClose, onSuccess }) => {
       <DialogContent>
         <Stack spacing={2}>
           <FileUploadCard
-            title="OFN File"
-            file={files.ofn}
-            status={getFileStatus('ofn')}
-            onFileSelect={handleFileSelect('ofn')}
-            onExtract={handleExtractOfn}
-            loading={loading.ofn}
+            title="First GA File"
+            file={files.ga1}
+            status={getFileStatus('ga1')}
+            onFileSelect={handleFileSelect('ga1')}
+            onExtract={() => handleExtractGa('ga1')}
+            loading={loading.ga1}
           />
 
           <FileUploadCard
-            title="GA File"
-            file={files.ga}
-            status={getFileStatus('ga')}
-            onFileSelect={handleFileSelect('ga')}
-            onExtract={handleExtractGa}
-            loading={loading.ga}
+            title="Second GA File"
+            file={files.ga2}
+            status={getFileStatus('ga2')}
+            onFileSelect={handleFileSelect('ga2')}
+            onExtract={() => handleExtractGa('ga2')}
+            loading={loading.ga2}
           />
 
           {message && (
@@ -333,17 +328,17 @@ const UploadComparisonModal = ({ open, onClose, onSuccess }) => {
             borderRadius: 2,
             px: 3,
             fontWeight: '600',
-            background: !canStartComparison ? 'grey.400' : 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+            background: !canStartComparison ? 'grey.400' : 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
             '&:hover': {
-              background: !canStartComparison ? 'grey.400' : 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)',
+              background: !canStartComparison ? 'grey.400' : 'linear-gradient(135deg, #059669 0%, #047857 100%)',
             }
           }}
         >
-          {loading.comparison ? 'Starting...' : 'Start Comparison'}
+          {loading.comparison ? 'Starting...' : 'Start GA vs GA'}
         </Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default UploadComparisonModal;
+export default GaVsGaComparisonModal;

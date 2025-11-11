@@ -1,0 +1,1118 @@
+[
+  {
+    "page_content": "GLASS : -\nPFAUDLER 9100-DARK BLUE\n(DIN EN ISO 28721-1:2011-06 & DIN EN ISO 28721-4:2013-03 FOR PIPES & FITTINGS)\nSPARK TEST :\nINTERNAL INSPECTION : 20,000 V. ONLY ONCE.\nPLUG FREE\nFINAL INSPECTION : 10,000 V. (IN PRESENCE OF CLIENT)",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "lining_and_notes",
+      "field": "LINING SPECIFICATION"
+    }
+  },
+  {
+    "page_content": "1.\nALL DIMENSIONS ARE IN mm. UNLESS OTHERWISE SPECIFIED.\n2.\nTHE BOLT HOLES OF FIXED FLANGES TO BE OFF C LS. OF VESSEL.\n3.\nEXTERNAL SURFACE PREP. : - SA 2½ SHOT BLASTING.\nAPPLY BY AIR SPRAY TWO FULL COATS OF AIR\nDRYING, GLASS REINFORCED, RUST TOLERANT\nCOATING : COLOUR - RAL 5015 (SKY BLUE)\n4. GENERAL TOLERANCES : DIN 28006.\n5. N.D.T. :- MAIN WELD SEAMS OF INNER VESSEL TO BE 100\nULTRASONICALLY\nTESTED FOR INTERNAL QUALITY ASSURANCE ONLY.\n6.\nPROVIDE CAP ON ALL C-CLAMP (COLOUR=BLUE, MOC=LIGHT DENSITY POLY ETHYLENE)\n7.\nRUNNING TRIAL TO BE TAKEN AT ATM. PRESSURE AND WITH WATER UP TO NOMINAL\nCAPACITY. DURATION WILL BE ONE HOUR.\n8.\nVALUES OF STIRRING & SENSING VOLUME SHOWN ON DRAWING ARE THEORETICAL &\nIN STATIC CONDITION. FINAL VALUES MAY CHANGE ACCORDING TO FABRICATION\nTOLERANCE ALLOWED BY RESPECTIVE STANDARD.\n9.\nFOR LIMITATION ON OPERATING TEMPERATURE, REFER M SEAL DRAWING.\n10. REQUIREMENTS FOR AGITATOR DRIVES AS PER DIN 28161.",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "lining_and_notes",
+      "field": "GENERAL NOTES"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 34, qty: 2, description: MS SIGHT LIGHT GLASS FLANGE, 100NB, FLANGE DRILLING : PN10 DIN EN 1092-1, drawing_no: 99-GPF-9373-MS-100-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "34"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 1, qty: 1, description: GL INNER BODY, CE-5KL, UT, drawing_no: MBCE-05000-2018-000",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "1"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 2, qty: 1, description: FABRICATED JACKET, 1900 OD, CE-5KL, drawing_no: 95-JKT-6699 C05000-29",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "2"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 35, qty: 2, description: TOUGHENED GLASS 19 T. x 155 O D, drawing_no: -",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "35"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 3, qty: 106, description: HEX NUT, FOR INSULATION, drawing_no: M8x1.25P",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "3"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 36, qty: 12, description: C CLAMP ASSEMBLY, M24x125LG, SA307GRB, MAX. TIGHTNING TORQUE : 69.01 N.m, drawing_no: 02-GPF-11619",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "36"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 4, qty: 4, description: MS SIDE BRACKET, 4KL, STANDARD, drawing_no: LSJ-MS-1900BP-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "4"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 5, qty: 1, description: MS EARTHING BOSS, 40 DIAx50Lg (M16x2P. TAPPED HOLE), drawing_no: 99-GPF-9088",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "5"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 37, qty: 24, description: C CLAMP ASSEMBLY, M24x100LG, SA307GRB, MAX. TIGHTNING TORQUE : 69.01 N.m, drawing_no: 02-GPF-11619",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "37"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 6, qty: 1, description: MS, NAME PLATE BRACKET, drawing_no: 93-GPF-6026",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "6"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 7, qty: 1, description: 12\" NB DIAPHRAGM RING, drawing_no: 3616000460 01",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "7"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 38, qty: 1, description: GL MANHOLE COVER, DN500, WITH DN 100 PAD TYPE NOZZLE, UT, drawing_no: GMHC-CS-500-20-01-15",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "38"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 8, qty: 2, description: MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG, ASME CLASS 150, drawing_no: JNSMS1-050160-160-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "8"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 39, qty: 1, description: SPRING BALANCE ASSEMBLY, drawing_no: 90-GPF-5403",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "39"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 9, qty: 2, description: MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x195LG, ASME CLASS 150, drawing_no: JNSMS1-050160-195-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "9"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 40, qty: 1, description: GL AGITATOR, IMPELLER, M SEAL,100 DIA, CE-5KL, drawing_no: GWAG-100M-3490-200-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "40"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 41, qty: 1, description: GL COC, 800NB, CE-4KL, UT, drawing_no: 07-GPF-0851",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "41"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 10, qty: 2, description: IMPINGEMENT PLATE FOR 50NB JACKET NOZZLE, drawing_no: 97-GPF-7586",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "10"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 42, qty: 1, description: GL FLANGE TYPE BAFFLE BEAVERTAIL, 250NB NOZZLE DIN, CE-6.3KL, drawing_no: GLBF-AE-250-2395-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "42"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 11, qty: 2, description: BAFFLE PLATE ROUND, drawing_no: 4 THK. X 60 DIA",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "11"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 12, qty: 1, description: MS SPLIT LAPPED FLANGE, DN80, ASA 150, drawing_no: DF-ASAS-080-18-MSH-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "12"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 43, qty: 1, description: 4\" DIAL THERMOMETER -40 TO +240ºC,M20x1.5P(M),3M WIRE, drawing_no: -",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "43"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 13, qty: 1, description: MS SPLIT LAPPED FLANGE, DN250, ASA 150, drawing_no: DF-ASAS-250-28-MSH-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "13"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 44, qty: 2, description: 1 2'' BSP MS DRAIN VENT COUPLING, 50 Lg., drawing_no: 96-GPF-7236 17834",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "44"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 14, qty: 1, description: MS SPLIT LAPPED FLANGE, DN100, ASA 150, drawing_no: DF-ASAS-100-20-MST-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "14"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 45, qty: 2, description: 1 2'' BSP MS DRAIN VENT PLUG, drawing_no: 96-GPF-7236",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "45"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 15, qty: 1, description: MS SPLIT LAPPED FLANGE, DN100, DIN EN 1092-1 TYPE-2, drawing_no: DF-DINS-100-20-MSH-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "15"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 46, qty: 2, description: DRAIN VENT GASKET, 1 2'' BSP, drawing_no: 3 THKx35 23 DIA",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "46"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 16, qty: 1, description: MS SPLIT LAPPED FLANGE, DN150, DIN EN 1092-1 TYPE-2, drawing_no: DF-DINS-150-22-MSH-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "16"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 47, qty: 1, description: MS LANTERN SUPPORT, E-400, AE CE-4KL, STANDARD, drawing_no: LST-400-00-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "47"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 17, qty: 1, description: MS SPLIT LAPPED FLANGE, DN250, DIN EN 1092-1 TYPE-2, drawing_no: DF-DINS-250-28-MSH-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "17"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 48, qty: 3, description: MS WIRE MESH TYPE LANTERN GUARD, AE CE-4KL, drawing_no: LSG-400-00-15",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "48"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 18, qty: 2, description: MS SPLIT LAPPED FLANGE, DN100, ASA 150, drawing_no: DF-ASAS-100-20-MSH-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "18"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 49, qty: 1, description: GLASS LINED PAD PLATE, 100 DIA, E500, drawing_no: PDS-G 100-02",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "49"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 19, qty: 1, description: MS SPLIT LAPPED FLANGE, DN150, ASA 150, drawing_no: DF-ASAS-150-22-MSH-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "19"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 50, qty: 1, description: MS DRIVE BASE RING ASSEMBLY, CE-4KL (NEW DIN), E400, drawing_no: DBR-400-01-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "50"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 20, qty: 8, description: GASKET, DN100, drawing_no: 04-GPF-14352",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "20"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 51, qty: 1, description: AGITATOR & GEAR COUPLING ASSEMBLY, drawing_no: 04-GPF-14211",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "51"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 21, qty: 3, description: GASKET, DN150, drawing_no: 04-GPF-14352",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "21"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 52, qty: 1, description: ADAPTOR, AS-55, drawing_no: 04-GPF-14178",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "52"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 22, qty: 1, description: GASKET, DN200, drawing_no: 04-GPF-14352",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "22"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 53, qty: 1, description: OIL SEAL, drawing_no: 12Tx140x115_TYPE B",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "53"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 23, qty: 1, description: GASKET, DN250, drawing_no: 04-GPF-14352",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "23"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 54, qty: 1, description: SPHERICAL ROLLER BEARING, drawing_no: 22220B",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "54"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 24, qty: 2, description: GASKET, DN500, drawing_no: 97-GPF-7916",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "24"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 55, qty: 1, description: CIRCLIP,INT,TYPE-B,LIGHT,D180, drawing_no: 180 DIA",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "55"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 25, qty: 1, description: GASKET, DN800, drawing_no: 97-GPF-7916",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "25"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 56, qty: 1, description: DN80x2400L CS PTFE LINED DIP PIPE, drawing_no: 95-GPF-6627",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "56"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 26, qty: 2, description: PTFE BUSH, 100NBx60 HT 1, drawing_no: PB-100-001",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "26"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 57, qty: 1, description: ROLON MAKE DOUBLE M SEAL, 100 DIA, drawing_no: 1G779 R2",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "57"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 27, qty: 1, description: PTFE BUSH, 150NBx60 HT. 1, drawing_no: PB-150-001",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "27"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 58, qty: 1, description: ELECTRIC MOTOR, drawing_no: -",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "58"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 28, qty: 1, description: PTFE BUSH, 250NBx65 HT. 1, drawing_no: PB-250-001",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "28"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 59, qty: 1, description: \"BONFIGLIOLI\" MAKE INLINE HELICAL GEAR BOX, drawing_no: AS 55 F P132 B5 V1,",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "59"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 29, qty: 1, description: PTFE BUSH, 500NBx75 HT., drawing_no: PB-500-006",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "29"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 30, qty: 2, description: GL BLIND COVER, 100NB, ASA, drawing_no: 88-EP-5000",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "30"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 60, qty: 1, description: GL BELLOW TYPE UPPER TO OPEN BOV_100x80NB, drawing_no: GPF-301-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "60"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 31, qty: 1, description: GL BLIND COVER, 150NB, ASA, drawing_no: 88-EP-5000",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "31"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 61, qty: 1, description: MS J CLEAT FOR THERMOSYPHON, drawing_no: 07-GPF-1034",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "61"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 32, qty: 1, description: GL BLIND COVER, 250NB, ASA, drawing_no: 88-EP-5000",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "32"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 62, qty: 1, description: MS CLEAT FOR THERMOSYPHON, 10 THK. x 90W x 180Lg., drawing_no: 07-GPF-1034",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "62"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 33, qty: 1, description: GL REDUCING FLANGE (C. I.), 150x100 NB, DIN - PN 10, drawing_no: RFG-D150-D100-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "33"
+    }
+  },
+  {
+    "page_content": "Part: part_no: 63, qty: 1, description: MS, THERMOSYPHON SYSTEM, LEAK-PROOF MAKE, drawing_no: P00159A P4 R0",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "part_list",
+      "part_no": "63"
+    }
+  },
+  {
+    "page_content": "DESIGN CODE : ASME SECTION VIII, DIV.1 (LATEST)\nINTERNAL\nINSPECTION : (I)\nSTAGEWISE\n:-\n(II)\nFINAL\n:-\nINTERNAL\nBY CLIENT - INNER VESSEL: ",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "DESIGN CODE : ASME SECTION VIII, DIV.1 (LATEST)\nINTERNAL\nINSPECTION : (I)\nSTAGEWISE\n:-\n(II)\nFINAL\n:-\nINTERNAL\nBY CLIENT",
+      "field": "INNER VESSEL"
+    }
+  },
+  {
+    "page_content": "DESIGN CODE : ASME SECTION VIII, DIV.1 (LATEST)\nINTERNAL\nINSPECTION : (I)\nSTAGEWISE\n:-\n(II)\nFINAL\n:-\nINTERNAL\nBY CLIENT - JACKET: ",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "DESIGN CODE : ASME SECTION VIII, DIV.1 (LATEST)\nINTERNAL\nINSPECTION : (I)\nSTAGEWISE\n:-\n(II)\nFINAL\n:-\nINTERNAL\nBY CLIENT",
+      "field": "JACKET"
+    }
+  },
+  {
+    "page_content": "FLUID - INNER VESSEL: NON LETHAL WITH SP.\nGRAVITY ≤ 1.6\nVISCOSITY : 10 cP",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "FLUID",
+      "field": "INNER VESSEL"
+    }
+  },
+  {
+    "page_content": "FLUID - JACKET: NON LETHAL HEATING\nCOOLING MEDIA WITH\nGRAVITY ≤ 1.0",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "FLUID",
+      "field": "JACKET"
+    }
+  },
+  {
+    "page_content": "VOLUME (NOMINAL) - INNER VESSEL: 5000 LITER",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "VOLUME (NOMINAL)",
+      "field": "INNER VESSEL"
+    }
+  },
+  {
+    "page_content": "VOLUME (NOMINAL) - JACKET: 685 LITER",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "VOLUME (NOMINAL)",
+      "field": "JACKET"
+    }
+  },
+  {
+    "page_content": "VOLUME (FULL) - INNER VESSEL: 5880 LITER",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "VOLUME (FULL)",
+      "field": "INNER VESSEL"
+    }
+  },
+  {
+    "page_content": "VOLUME (FULL) - JACKET: 685 LITER",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "VOLUME (FULL)",
+      "field": "JACKET"
+    }
+  },
+  {
+    "page_content": "OPERATING TEMPERATURE - INNER VESSEL: ----",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "OPERATING TEMPERATURE",
+      "field": "INNER VESSEL"
+    }
+  },
+  {
+    "page_content": "OPERATING TEMPERATURE - JACKET: -----",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "OPERATING TEMPERATURE",
+      "field": "JACKET"
+    }
+  },
+  {
+    "page_content": "MAX. DESIGN TEMPERATURE - INNER VESSEL: 200 °C\n(REFER NOTE-9)",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "MAX. DESIGN TEMPERATURE",
+      "field": "INNER VESSEL"
+    }
+  },
+  {
+    "page_content": "MAX. DESIGN TEMPERATURE - JACKET: 200 °C",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "MAX. DESIGN TEMPERATURE",
+      "field": "JACKET"
+    }
+  },
+  {
+    "page_content": "MIN. DESIGN TEMPERATURE - INNER VESSEL: -28.8 °C",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "MIN. DESIGN TEMPERATURE",
+      "field": "INNER VESSEL"
+    }
+  },
+  {
+    "page_content": "MIN. DESIGN TEMPERATURE - JACKET: -28.8 °C",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "MIN. DESIGN TEMPERATURE",
+      "field": "JACKET"
+    }
+  },
+  {
+    "page_content": "MAX. ALLOWABLE WORKING PRESSURE\n(DESIGN PRESSURE) - INNER VESSEL: F. V.\n6 bar(g)",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "MAX. ALLOWABLE WORKING PRESSURE\n(DESIGN PRESSURE)",
+      "field": "INNER VESSEL"
+    }
+  },
+  {
+    "page_content": "MAX. ALLOWABLE WORKING PRESSURE\n(DESIGN PRESSURE) - JACKET: F. V.\n6 bar(g)",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "MAX. ALLOWABLE WORKING PRESSURE\n(DESIGN PRESSURE)",
+      "field": "JACKET"
+    }
+  },
+  {
+    "page_content": "PRESSURE\nHYDROSTATIC TEST (AFTER\nLINING)\nDURATION - INNER VESSEL: 7 bar(g)\n1 2 HOUR",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "PRESSURE\nHYDROSTATIC TEST (AFTER\nLINING)\nDURATION",
+      "field": "INNER VESSEL"
+    }
+  },
+  {
+    "page_content": "PRESSURE\nHYDROSTATIC TEST (AFTER\nLINING)\nDURATION - JACKET: 7 bar(g)\n1 2 HOUR",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "design_data",
+      "parameter": "PRESSURE\nHYDROSTATIC TEST (AFTER\nLINING)\nDURATION",
+      "field": "JACKET"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N17, Size (DN): 50, Rating: ASA 150, Service: SERVICE, Fittings: ",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N17"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N16, Size (DN): 50, Rating: ASA 150, Service: SERVICE, Fittings: ",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N16"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N15, Size (DN): 50, Rating: ASA 150, Service: SERVICE, Fittings: ",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N15"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N11, Size (DN): 50, Rating: ASA 150, Service: SERVICE, Fittings: ",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N11"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N13, Size (DN): 1 2\" BSP, Rating: 3000, Service: VENT, Fittings: PLUG",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N13"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: T11, Size (DN): 1 2\" BSP, Rating: 3000, Service: DRAIN, Fittings: PLUG",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "T11"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: M, Size (DN): 200, Rating: -, Service: AGITATOR, Fittings: MECHANICAL SEAL",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "M"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: L, Size (DN): 100, Rating: ASA 150, Service: OUTLET, Fittings: 100x80NB MSGL BELLOW TYPE BOV",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "L"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N10, Size (DN): 250, Rating: ASA 150, Service: SPARE, Fittings: PTFE BUSH + GL BLIND COVER",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N10"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N9, Size (DN): 150, Rating: ASA 150, Service: SPARE, Fittings: PTFE BUSH + GL BLIND COVER",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N9"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N7, Size (DN): 100, Rating: ASA 150, Service: SPARE, Fittings: PTFE BUSH + GL BLIND COVER",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N7"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N6, Size (DN): 100, Rating: PN-10 DIN 2673, Service: LIGHT GLASS, Fittings: LIGHT GLASS ASSEMBLY",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N6"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N5, Size (DN): 100, Rating: ASA 150, Service: SPARE, Fittings: PTFE BUSH + GL BLIND COVER",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N5"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N3, Size (DN): 150 100 80, Rating: DIN TO ASA, Service: DIP PIPE, Fittings: GL REDUCING FLANGE + CS PTFE LINED DIP PIPE",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N3"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N2, Size (DN): 250, Rating: PN-10 DIN 2673, Service: BAFFLE, Fittings: DIAL THERMOMETER",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N2"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N1A, Size (DN): 100, Rating: PN-10 DIN 2673, Service: SIGHT GLASS, Fittings: SIGHT GLASS ASSEMBLY",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N1A"
+    }
+  },
+  {
+    "page_content": "Nozzle: Ref.: N1, Size (DN): 500, Rating: CLAMPED, Service: MANHOLE, Fittings: PTFE BUSH TYPE MANHOLE RING + GL MANHOLE COVER",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "nozzle_data",
+      "ref": "N1"
+    }
+  },
+  {
+    "page_content": "INNERVESSEL - SHELL, HEADS & BLIND COVER: SA 516 Gr. 60 ENAMEL QUALITY",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "material_of_construction",
+      "component": "INNERVESSEL",
+      "part": "SHELL, HEADS & BLIND COVER"
+    }
+  },
+  {
+    "page_content": "INNERVESSEL - WELDING NECKS FOR BODY FLANGE & NOZZLES: SA 181 CL. 60 SA 836 ENAMEL QUALITY",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "material_of_construction",
+      "component": "INNERVESSEL",
+      "part": "WELDING NECKS FOR BODY FLANGE & NOZZLES"
+    }
+  },
+  {
+    "page_content": "INNERVESSEL - SPLIT FLANGES: REFER TABLE SA 516 Gr. 70 SA 105",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "material_of_construction",
+      "component": "INNERVESSEL",
+      "part": "SPLIT FLANGES"
+    }
+  },
+  {
+    "page_content": "INNERVESSEL - GASKET FOR BODY FLANGE & NOZZLES: PTFE ENVELOPED NON ASBESTOS WITH S.S. CORRUGATED RING INSERT",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "material_of_construction",
+      "component": "INNERVESSEL",
+      "part": "GASKET FOR BODY FLANGE & NOZZLES"
+    }
+  },
+  {
+    "page_content": "INNERVESSEL - FASTENERS: CARBON STEEL IS:1363 1367 CL 4.6 4",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "material_of_construction",
+      "component": "INNERVESSEL",
+      "part": "FASTENERS"
+    }
+  },
+  {
+    "page_content": "JACKET - SHELL, HEAD: SA 516 Gr. 55 60 70 WITH C = 0.21 MAX.",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "material_of_construction",
+      "component": "JACKET",
+      "part": "SHELL, HEAD"
+    }
+  },
+  {
+    "page_content": "JACKET - NOZZLE NECKS: SA 106 Gr. B",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "material_of_construction",
+      "component": "JACKET",
+      "part": "NOZZLE NECKS"
+    }
+  },
+  {
+    "page_content": "JACKET - SORF FLANGES: REFER TABLE SA 105",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "material_of_construction",
+      "component": "JACKET",
+      "part": "SORF FLANGES"
+    }
+  },
+  {
+    "page_content": "JACKET - FLANGES: RFG-D150-D100-00",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "material_of_construction",
+      "component": "JACKET",
+      "part": "FLANGES"
+    }
+  },
+  {
+    "page_content": "JACKET - COUPLINGS & PLUGS: SA 105 3000",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "material_of_construction",
+      "component": "JACKET",
+      "part": "COUPLINGS & PLUGS"
+    }
+  },
+  {
+    "page_content": "DESIGN CODE: ASME SECTION VIII, DIV.1 (LATEST) INTERNAL INSPECTION : (I) STAGEWISE :- (II) FINAL :- INTERNAL BY CLIENT",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "DESIGN CODE"
+    }
+  },
+  {
+    "page_content": "NDT: REFER GENERAL NOTE - 5",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "NDT"
+    }
+  },
+  {
+    "page_content": "WIND LOAD: INDOOR INSTALLATION",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "WIND LOAD"
+    }
+  },
+  {
+    "page_content": "SEISMIC LOADING: N.A.",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "SEISMIC LOADING"
+    }
+  },
+  {
+    "page_content": "HEAT TRANSFER AREA: 12.0 SQ. M.",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "HEAT TRANSFER AREA"
+    }
+  },
+  {
+    "page_content": "TARE WEIGHT: 5500 kg (APPROX.)",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "TARE WEIGHT"
+    }
+  },
+  {
+    "page_content": "WEIGHT FULL OF WATER: 12065 kg (APPROX.)",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "WEIGHT FULL OF WATER"
+    }
+  },
+  {
+    "page_content": "FASTENERS: CARBON STEEL IS:1363 1367 CL 4.6 4",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "FASTENERS"
+    }
+  },
+  {
+    "page_content": "CARBON STEEL IS: 1363 1367 CL 4.6 4",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "CARBON STEEL IS"
+    }
+  },
+  {
+    "page_content": "SO. NO.: GLE004273/2",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "SO. NO."
+    }
+  },
+  {
+    "page_content": "QNTY.: 01 NO.",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "QNTY."
+    }
+  },
+  {
+    "page_content": "PREPARED BY: JNS 26-05-2025",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "PREPARED BY"
+    }
+  },
+  {
+    "page_content": "CLIENT: LEMA CHEMICALS INDUSTRIES",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "CLIENT"
+    }
+  },
+  {
+    "page_content": "CHECKED BY: ARPIT 26-05-2025",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "CHECKED BY"
+    }
+  },
+  {
+    "page_content": "PO NO.: LEMA 25-26 25 DATED : 21 05 2025",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "PO NO."
+    }
+  },
+  {
+    "page_content": "APPROVED BY: VMP 26-05-2025",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "APPROVED BY"
+    }
+  },
+  {
+    "page_content": "ADDRESS: MIDC, LOTE PARSHURAM, DIST-RATNAGIRI, MAHARASHTRA",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "ADDRESS"
+    }
+  },
+  {
+    "page_content": "TITLE: GLASS LINED REACTOR, CERIM-5000 LITER",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "TITLE"
+    }
+  },
+  {
+    "page_content": "DRG. NO.: GLE004272/3",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "DRG. NO."
+    }
+  },
+  {
+    "page_content": "REV. NO.: 1",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "REV. NO."
+    }
+  },
+  {
+    "page_content": "CORROSION ALLOWANCE - GLASSED SURFACE: 0",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "CORROSION ALLOWANCE - GLASSED SURFACE"
+    }
+  },
+  {
+    "page_content": "CORROSION ALLOWANCE - WETTED WITH JKT FLUID: 1",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "CORROSION ALLOWANCE - WETTED WITH JKT FLUID"
+    }
+  },
+  {
+    "page_content": "CORROSION ALLOWANCE - NON WETTED SURFACE: 0.5",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "CORROSION ALLOWANCE - NON WETTED SURFACE"
+    }
+  },
+  {
+    "page_content": "CALCULATED RPM: 102",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "key_value_pairs",
+      "key": "CALCULATED RPM"
+    }
+  },
+  {
+    "page_content": "DRIVE GEARBOX: \"BONFIGLIOLI\" MAKE INLINE HELICAL GEAR BOX, MODEL NO. AS55 F 14.13 P132 B5 V1, RATIO 14.13:1",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "drive_data",
+      "type": "DRIVE GEARBOX"
+    }
+  },
+  {
+    "page_content": "DRIVE MOTOR: BBL MAKE FLAMEPROOF(TEFC IS IEC 60079-1) EFFICIENCY CLASS IE2,10HP(7.5KW) FLANGE MOUNTED ELECTRIC MOTOR, FRAME SIZE = 132M, SPEED = 1450 RPM, VOLTAGE = 415±10 V, FREQUENCY = 50±5 HZ, 3 PHASE,HAZARDOUS AREA ZONE 1, GAS GROUP IIA & IIB, DEGREE OF PROTECTION = IP-55,TEMPERATURE CLASS = T5, AMBIANT TEMPERATURE = 45° C,TEMPERATURE RISE UP TO CLASS B, INSULATION CLASS F.",
+    "metadata": {
+      "doc_name": "GLE004272-3_CERIM-5KL",
+      "section": "drive_data",
+      "type": "DRIVE MOTOR"
+    }
+  }
+]

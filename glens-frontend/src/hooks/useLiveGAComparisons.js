@@ -1,36 +1,36 @@
-// src/hooks/useLiveComparisons.js
+// src/hooks/useLiveGAComparisons.js
 import { useEffect, useState, useRef } from "react";
-import { fetchLiveComparisons } from "../services/liveComparisonService";
+import { fetchLiveGAComparisons } from "../services/gaComparisonService";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8006";
 const WS_BASE = API_BASE.replace(/^http/, "ws");
 
-export default function useLiveComparisons() {
-  const [comparisons, setComparisons] = useState([]);
+export default function useLiveGAComparisons() {
+  const [gaComparisons, setGAComparisons] = useState([]);
   const [loading, setLoading] = useState(true);
   const wsConnections = useRef({});
-  const comparisonsRef = useRef([]); // holds latest list for other callbacks
+  const comparisonsRef = useRef([]);
 
-  // keep ref updated whenever comparisons state changes
+  // keep ref updated whenever list changes
   useEffect(() => {
-    comparisonsRef.current = comparisons;
-  }, [comparisons]);
+    comparisonsRef.current = gaComparisons;
+  }, [gaComparisons]);
 
   // -------------------------------
-  // 🔄 Fetch list from backend (returns list)
+  // 🔄 Fetch GA–GA list
   // -------------------------------
   const reload = async () => {
     try {
       setLoading(true);
-      const data = await fetchLiveComparisons();
+      const data = await fetchLiveGAComparisons();
       const list = Array.isArray(data)
         ? data
         : data?.items || data?.data || data?.results || [];
-      setComparisons(list);
-      comparisonsRef.current = list; // update ref immediately with fresh data
+      setGAComparisons(list);
+      comparisonsRef.current = list;
       return list;
     } catch (err) {
-      console.error("❌ Error loading data:", err);
+      console.error("❌ Error loading GA–GA comparisons:", err);
       return comparisonsRef.current || [];
     } finally {
       setLoading(false);
@@ -43,17 +43,17 @@ export default function useLiveComparisons() {
   const connectWebSocket = (jobId) => {
     if (!jobId || wsConnections.current[jobId]) return;
 
-    const ws = new WebSocket(`${WS_BASE}/api/comparison/ws/${jobId}`);
+    const ws = new WebSocket(`${WS_BASE}/api/ga-ga-comparison/ws/${jobId}`);
     wsConnections.current[jobId] = ws;
 
-    ws.onopen = () => console.log(`🟢 WS connected: ${jobId}`);
+    ws.onopen = () => console.log(`🟢 GA–GA WS connected: ${jobId}`);
 
     ws.onmessage = (event) => {
       try {
         const msg = JSON.parse(event.data);
-        console.log("📡 WS update:", msg);
+        console.log("📡 GA–GA WS update:", msg);
 
-        setComparisons((prev) =>
+        setGAComparisons((prev) =>
           prev.map((item) =>
             item.job_id === jobId
               ? {
@@ -69,17 +69,16 @@ export default function useLiveComparisons() {
           )
         );
 
-        // Refresh DB list when job completes or errors
         if (["completed", "error"].includes(msg.status)) reload();
       } catch (e) {
         console.error("⚠️ WS message parse error:", e);
       }
     };
 
-    ws.onerror = (err) => console.error(`⚠️ WS error: ${jobId}`, err);
+    ws.onerror = (err) => console.error(`⚠️ GA–GA WS error: ${jobId}`, err);
 
     ws.onclose = () => {
-      console.log(`🔴 WS closed: ${jobId}`);
+      console.log(`🔴 GA–GA WS closed: ${jobId}`);
       delete wsConnections.current[jobId];
     };
   };
@@ -93,41 +92,37 @@ export default function useLiveComparisons() {
       Object.values(wsConnections.current).forEach((ws) => ws.close());
       wsConnections.current = {};
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // -------------------------------
   // 📡 Auto-connect to active jobs
   // -------------------------------
   useEffect(() => {
-    const activeJobs = comparisons.filter((c) =>
+    const activeJobs = gaComparisons.filter((c) =>
       ["pending", "running"].includes(c.status)
     );
     activeJobs.forEach((job) => connectWebSocket(job.job_id));
-  }, [comparisons]);
+  }, [gaComparisons]);
 
   // -------------------------------
-  // 🔔 SSE: Listen for DB updates & poll while pending
+  // 🔔 SSE: DB updates + pending poll
   // -------------------------------
   useEffect(() => {
     let intervalId = null;
-    let closed = false;
 
     const startPendingPoll = async () => {
-      // If a poll already exists, keep it
       if (intervalId) return;
-      console.log("⏳ Starting pending poll (every 5s)...");
+      console.log("⏳ GA–GA pending poll (5s)...");
       intervalId = setInterval(async () => {
         try {
-          const list = await reload(); // reload returns fresh list
+          const list = await reload();
           const stillPending = list.some((c) => c.status === "pending");
           if (!stillPending) {
-            console.log("✅ Pending cleared — stopping pending poll");
             clearInterval(intervalId);
             intervalId = null;
           }
         } catch (e) {
-          console.error("⚠️ Pending poll error:", e);
+          console.error("⚠️ Poll error:", e);
         }
       }, 5000);
     };
@@ -141,10 +136,10 @@ export default function useLiveComparisons() {
 
     let eventSource;
     try {
-      eventSource = new EventSource(`${API_BASE}/api/sse/db-updates`);
-      console.log("🟢 SSE connected");
+      eventSource = new EventSource(`${API_BASE}/api/sse/ga-ga-db-updates`);
+      console.log("🟢 GA–GA SSE connected");
     } catch (err) {
-      console.error("🔴 SSE connection failed:", err);
+      console.error("🔴 GA–GA SSE connection failed:", err);
       eventSource = null;
     }
 
@@ -153,41 +148,30 @@ export default function useLiveComparisons() {
     eventSource.onmessage = async (event) => {
       try {
         const msg = JSON.parse(event.data);
-        if (msg.event === "comparison_update") {
-          console.log("📡 SSE comparison update:", msg.data);
-
-          // get fresh list right away
+        if (msg.event === "ga_ga_update") {
+          console.log("📡 GA–GA SSE update:", msg.data);
           const list = await reload();
-
-          // if any pending in returned list, start short poll until pending cleared
           const hasPending = list.some((c) => c.status === "pending");
-          if (hasPending) {
-            // start polling every 5s until pending cleared
-            startPendingPoll();
-          } else {
-            // no pending - ensure any running poll is stopped
-            stopPendingPoll();
-          }
+          if (hasPending) startPendingPoll();
+          else stopPendingPoll();
         }
       } catch (err) {
-        console.error("⚠️ SSE message error:", err);
+        console.error("⚠️ SSE parse error:", err);
       }
     };
 
     eventSource.onerror = (err) => {
-      console.error("🔴 SSE connection error:", err);
-      // don't spam browser; close source and stop polling
+      console.error("🔴 SSE error:", err);
       if (eventSource) eventSource.close();
       stopPendingPoll();
     };
 
     return () => {
-      closed = true;
       if (eventSource) eventSource.close();
       stopPendingPoll();
     };
   }, []);
 
-  // ✅ Always return these
-  return { comparisons, loading, reload };
+  // ✅ Return usable values
+  return { gaComparisons, loading, reload };
 }

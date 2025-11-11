@@ -11,6 +11,9 @@
 
 __pycache__/
 *.py[cod]
+chroma_store
+logs
+tmp
 
 glens-backend/data
 glens-backend/chroma_store

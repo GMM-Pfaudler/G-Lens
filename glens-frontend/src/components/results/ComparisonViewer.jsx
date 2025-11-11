@@ -127,7 +127,7 @@ const ComparisonViewer = ({ data }) => {
         />
       </Box>
 
-      <Box sx={{ maxHeight: 400, overflowY: "auto" }}>
+      <Box sx={{ maxHeight: 600, overflowY: "auto" }}>
         <Table size="small" stickyHeader>
           <TableHead>
             <TableRow>

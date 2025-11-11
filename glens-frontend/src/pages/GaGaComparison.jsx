@@ -1,20 +1,37 @@
-// src/pages/GaGaComparison.jsx
-import React from "react";
+import React, { useState } from "react";
 import MainLayout from "../layouts/MainLayout";
-import GaGaStepper from "../components/stepper/GaGaStepper/GaGaStepper";
-import { ComparisonProvider } from "../context/ComparisonContext"; // local provider
+import { Box } from "@mui/material";
+import { ComparisonProvider } from "../context/ComparisonContext.jsx";
+import GaGaResultHeader from "../components/gavsgacomparison/GaGaResultHeader.jsx";
+import GAGaComparisonTable from "../components/gavsgacomparison/GaGaComparisonTable.jsx";
+import GaVsGaComparisonModal from "../components/gavsgacomparison/GaGaUploadComparisonModal.jsx";
+import useLiveGAComparisons from "../hooks/useLiveGAComparisons.js";
 
 const GaGaComparison = () => {
+  const { gaComparisons, loading, reload } = useLiveGAComparisons();
+  const [uploadModalOpen, setUploadModalOpen] = useState(false);
+
   return (
     <MainLayout
       breadcrumbItems={[
         { label: "Dashboard", href: "/dashboard" },
-        { label: "GA vs GA", href: "/operations/ga-ga-comparison", active: true }
+        { label: "GA vs GA", href: "/operations/ga-ga-comparison", active: true },
       ]}
     >
-      {/* Wrap only this stepper with its own provider */}
       <ComparisonProvider>
-        <GaGaStepper />
+        <Box p={3}>
+          <GaGaResultHeader onStart={() => setUploadModalOpen(true)} />
+          <GAGaComparisonTable
+            comparisons={gaComparisons}
+            loading={loading}
+            onReload={reload}
+          />
+          <GaVsGaComparisonModal
+            open={uploadModalOpen}
+            onClose={() => setUploadModalOpen(false)}
+            onSuccess={reload}
+          />
+        </Box>
       </ComparisonProvider>
     </MainLayout>
   );

@@ -17,6 +17,10 @@ import uuid
 import os
 import json
 import asyncio
+from app.core.sse_event_sender import broker
+from app.utils.logger import log_event
+from app.utils.log_helper import add_activity_log_async
+from app.models.activity_log import LogStatusEnum
 
 router = APIRouter(tags=["OFN-GA Comparison"])
 
@@ -38,35 +42,49 @@ async def start_comparison(
     try:
         # 1️⃣ Generate unique job ID
         job_id = str(uuid.uuid4())
+
+        # --- Log: Comparison started
+        await add_activity_log_async(
+            db=db,
+            message=f"Comparison started by user {user_id}",
+            operation_type="ofn_ga_comparison",
+            status=LogStatusEnum.started,
+            user_id=user_id
+        )
+        log_event("ofn_ga_comparison", "started", f"Job {job_id} initiated by {user_id}")
         print(f"\n🔹 [DEBUG] Job started: {job_id}, initiated by user: {user_id}")
 
         # 2️⃣ Read uploaded files
         ga_content = await ga_json.read()
         ofn_content = await ofn_json.read()
+        log_event("ofn_ga_comparison", "info", f"Files read successfully — GA: {ga_json.filename}, OFN: {ofn_json.filename}")
         print(f"📂 [DEBUG] Files read successfully — GA: {ga_json.filename}, OFN: {ofn_json.filename}")
 
         # 3️⃣ Decode JSON
         try:
             ga_data = json.loads(ga_content.decode("utf-8"))
             ofn_data = json.loads(ofn_content.decode("utf-8"))
+            log_event("ofn_ga_comparison", "info", f"JSON decoded — GA keys: {list(ga_data.keys())[:5] if isinstance(ga_data, dict) else 'N/A'}")
             print(f"🧾 [DEBUG] JSON decoded successfully — GA keys: {list(ga_data.keys())[:5] if isinstance(ga_data, dict) else 'N/A'}")
         except Exception as e:
+            log_event("ofn_ga_comparison", "error", f"JSON decoding failed: {e}")
             print(f"❌ [DEBUG] JSON decoding failed: {e}")
             raise HTTPException(status_code=400, detail=f"Invalid JSON: {e}")
 
-        # 4️⃣ Build names
+        # 4️⃣ Build sanitized filenames
         ofn_name = f"{ofn_data.get('GMM Pfaudler Quote No', 'Unknown')}_{ofn_data.get('Capacity', 'Unknown')}"
         ga_name = list(ga_data.keys())[0] if ga_data else "Unknown"
         sanitized_ofn_name = sanitize_filename(ofn_name)
         sanitized_ga_name = sanitize_filename(ga_name)
+        log_event("ofn_ga_comparison", "info", f"Sanitized filenames — OFN: {sanitized_ofn_name}, GA: {sanitized_ga_name}")
         print(f"🧩 [DEBUG] Sanitized filenames — OFN: {sanitized_ofn_name}, GA: {sanitized_ga_name}")
 
         # 🌐 Current IST time
         ist_now = datetime.now(ZoneInfo("Asia/Kolkata"))
+        log_event("ofn_ga_comparison", "info", f"Current IST time: {ist_now}")
         print(f"🕒 [DEBUG] Current IST Time: {ist_now}")
 
-        # 5️⃣ Check for existing record for this user
-        print(f"🔍 [DEBUG] Checking if record already exists for user_id={user_id} ...")
+        # 5️⃣ Check for existing record
         result = await db.execute(
             select(ComparisonResult).where(
                 and_(
@@ -79,7 +97,6 @@ async def start_comparison(
         existing_record = result.scalar_one_or_none()
 
         if existing_record:
-            print(f"♻️ [DEBUG] Existing record found (ID={existing_record.id}), updating it...")
             existing_record.status = StatusEnum.pending
             existing_record.error_msg = None
             existing_record.comparison_result_path = None
@@ -89,8 +106,9 @@ async def start_comparison(
             await db.refresh(existing_record)
             db_id = existing_record.id
             action = "updated"
+            log_event("ofn_ga_comparison", "info", f"Existing record found (ID={db_id}) — updated for new job {job_id}")
+            print(f"♻️ [DEBUG] Existing record found (ID={db_id}), updated.")
         else:
-            print("🆕 [DEBUG] Creating new comparison record...")
             new_record = ComparisonResult(
                 ofn_file_name=sanitized_ofn_name,
                 ga_file_name=sanitized_ga_name,
@@ -103,21 +121,26 @@ async def start_comparison(
             await db.refresh(new_record)
             db_id = new_record.id
             action = "created"
+            log_event("ofn_ga_comparison", "info", f"New record created (ID={db_id}) for job {job_id}")
             print(f"✅ [DEBUG] New record created successfully (ID={db_id})")
 
-        # 6️⃣ Run comparison in background
-        print(f"🚀 [DEBUG] Scheduling background comparison task for DB_ID={db_id}")
+        # 6️⃣ Schedule background comparison
         background_tasks.add_task(
             process_comparison_task,
             job_id,
             db_id,
             ga_data,
             ofn_data,
-            db
+            db,
+            user_id
         )
+        log_event("ofn_ga_comparison", "info", f"Background comparison task scheduled — DB_ID={db_id}, Job={job_id}")
+        print(f"🚀 [DEBUG] Scheduled background comparison task for DB_ID={db_id}")
 
-        # 7️⃣ Return immediate response
+        # 7️⃣ Return response
+        log_event("ofn_ga_comparison", "completed", f"Comparison started successfully — Job: {job_id}, DB_ID: {db_id}, Action: {action}")
         print(f"✅ [DEBUG] Comparison started successfully — Job: {job_id}, DB_ID: {db_id}, Action: {action}\n")
+
         return {
             "job_id": job_id,
             "db_id": db_id,
@@ -126,43 +149,47 @@ async def start_comparison(
         }
 
     except Exception as e:
+        log_event("ofn_ga_comparison", "error", f"Exception during comparison start: {e}")
         print(f"🔥 [DEBUG] Exception while starting comparison: {e}\n")
         raise HTTPException(status_code=500, detail=f"Failed to start comparison: {e}")
 
 # -------------------------
 # Background task
 # -------------------------
-async def process_comparison_task(job_id: str, db_id: int, ga_data: dict, ofn_data: dict, db: AsyncSession):
+async def process_comparison_task(job_id: str, db_id: int, ga_data: dict, ofn_data: dict, db: AsyncSession, user_id: str):
     service = ComparisonService()
-    print(f"\n🚀 [DEBUG] Background comparison started — job_id={job_id}, db_id={db_id}")
     try:
-        # -----------------------------------------
-        # 🔹 Mark as running
-        # -----------------------------------------
         record = await db.get(ComparisonResult, db_id)
         if record:
             record.status = StatusEnum.running
             await db.commit()
-            print(f"🟢 [DEBUG] Marked record {db_id} as 'running'")
-        else:
-            print(f"⚠️ [DEBUG] No record found in DB for db_id={db_id}")
 
-        # -----------------------------------------
-        # 🔹 Send initial WS update
-        # -----------------------------------------
+        # --- Add log_event for debugging / SSE
+        log_event("ofn_ga_comparison", "info", f"Comparison running for OFN: {record.ofn_file_name} and GA: {record.ga_file_name}")
+        await add_activity_log_async(
+            db=db,
+            message=f"Comparison running for OFN: {record.ofn_file_name} and GA: {record.ga_file_name}",
+            operation_type="ofn_ga_comparison",
+            status=LogStatusEnum.info,
+            user_id=user_id
+        )
+
+        # ✅ NEW: Send "running" status update to frontend via WS and broker
         await send_ws_message(job_id, {"status": "running", "progress": 0})
-        print(f"📡 [DEBUG] WebSocket update sent — running 0%")
+        await broker.push({
+            "event": "comparison_update",
+            "data": {
+                "db_id": db_id,
+                "job_id": job_id,
+                "user_id": user_id,
+                "status": "running",
+                "progress": 0
+            }
+        })
 
-        # -----------------------------------------
-        # ⚡ Run async comparison
-        # -----------------------------------------
-        print("⚙️ [DEBUG] Starting ComparisonService.process_comparison_async()...")
+        # -------------- Proceed with the comparison --------------
         result = await service.process_comparison_async(ga_data, ofn_data, job_id=job_id)
-        print("✅ [DEBUG] Comparison completed — result obtained")
 
-        # -----------------------------------------
-        # 🗂 Save result file
-        # -----------------------------------------
         ofn_name = f"{ofn_data.get('GMM Pfaudler Quote No', 'Unknown')}_{ofn_data.get('Capacity', 'Unknown')}"
         ga_name = list(ga_data.keys())[0] if ga_data else "Unknown"
 
@@ -171,51 +198,52 @@ async def process_comparison_task(job_id: str, db_id: int, ga_data: dict, ofn_da
         filename = f"{sanitize_filename(ofn_name)}__{sanitize_filename(ga_name)}.json"
         save_path = os.path.join(save_dir, filename)
 
-        print(f"💾 [DEBUG] Saving comparison result to {save_path}")
         with open(save_path, "w", encoding="utf-8") as f:
             json.dump(result, f, indent=4, ensure_ascii=False)
-        print(f"📁 [DEBUG] File saved successfully")
 
-        # -----------------------------------------
-        # ✅ Update DB
-        # -----------------------------------------
-        record = await db.get(ComparisonResult, db_id)
-        if record:
-            record.status = StatusEnum.completed
-            record.comparison_result_path = save_path
-            await db.commit()
-            print(f"✅ [DEBUG] DB record updated to 'completed' for db_id={db_id}")
-        else:
-            print(f"⚠️ [DEBUG] Could not update record — record not found for db_id={db_id}")
+        record.status = StatusEnum.completed
+        record.comparison_result_path = save_path
+        await db.commit()
 
-        # -----------------------------------------
-        # 📡 Send WS update
-        # -----------------------------------------
-        await send_ws_message(job_id, {
-            "status": "completed",
-            "progress": 100,
-            "ofn_name": ofn_name,
-            "ga_name": ga_name,
-            "result": result,
+        # --- Add completion log_event
+        log_event("ofn_ga_comparison", "completed", f"Comparison completed for OFN: {ofn_name} and GA: {ga_name}")
+        await add_activity_log_async(
+            db=db,
+            message=f"Comparison completed for OFN: {ofn_name} and GA: {ga_name}",
+            operation_type="ofn_ga_comparison",
+            status=LogStatusEnum.completed,
+            user_id=user_id
+        )
+
+        await send_ws_message(job_id, {"status": "completed", "progress": 100})
+        await broker.push({
+            "event": "comparison_update",
+            "data": {"db_id": db_id, "job_id": job_id, "user_id": user_id, "status": "completed"}
         })
-        print(f"📡 [DEBUG] Final WebSocket update sent — completed 100%")
 
     except Exception as e:
-        print(f"🔥 [DEBUG] Exception during process_comparison_task: {e}")
-        try:
-            record = await db.get(ComparisonResult, db_id)
-            if record:
-                record.status = StatusEnum.error
-                record.error_msg = str(e)
-                await db.commit()
-                print(f"🛑 [DEBUG] Updated DB record to 'error' for db_id={db_id}")
-            else:
-                print(f"⚠️ [DEBUG] No DB record found while handling error for db_id={db_id}")
-        except Exception as inner_e:
-            print(f"💣 [DEBUG] Error while handling exception: {inner_e}")
+        record = await db.get(ComparisonResult, db_id)
+        if record:
+            record.status = StatusEnum.error
+            record.error_msg = str(e)
+            await db.commit()
+
+        # --- Add error log_event
+        log_event("ofn_ga_comparison", "error", f"Comparison failed for job {job_id}: {str(e)}")
+        await add_activity_log_async(
+            db=db,
+            message=f"Comparison failed for job {job_id}: {str(e)}",
+            operation_type="ofn_ga_comparison",
+            status=LogStatusEnum.error,
+            user_id=user_id
+        )
 
         await send_ws_message(job_id, {"status": "error", "error_msg": str(e)})
-        print(f"📡 [DEBUG] WebSocket error update sent for job_id={job_id}")
+        await broker.push({
+            "event": "comparison_update",
+            "data": {"db_id": db_id, "job_id": job_id, "user_id": user_id, "status": "error", "error_msg": str(e)}
+        })
+
 
 # -------------------------
 # WebSocket for progress

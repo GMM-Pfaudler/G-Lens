@@ -31,7 +31,7 @@ const statusIcons = {
   error: <ErrorOutline fontSize="small" />,
 };
 
-const ComparisonResultHeader = ({ latestComparison, onViewResult, onStart }) => {
+const GaGaResultHeader = ({ latestComparison, onViewResult, onStart }) => {
   if (!latestComparison) {
     return (
       <Card 
@@ -49,10 +49,10 @@ const ComparisonResultHeader = ({ latestComparison, onViewResult, onStart }) => 
           <Stack direction="row" justifyContent="space-between" alignItems="center">
             <Box>
               <Typography variant="h6" fontWeight="600" color="grey.800" gutterBottom>
-                Ready for Comparison
+                Ready for GA vs GA Comparison
               </Typography>
               <Typography variant="body2" color="grey.600">
-                Start your first OFN vs GA comparison to see results here
+                Start your first GA vs GA comparison to see results here.
               </Typography>
             </Box>
             <Button
@@ -78,7 +78,7 @@ const ComparisonResultHeader = ({ latestComparison, onViewResult, onStart }) => 
     );
   }
 
-  const { ofn_file_name, ga_file_name, status, comparison_result_path, updated_at } =
+  const { ga1_file_name, ga2_file_name, status, comparison_result_path, updated_at } =
     latestComparison;
 
   const statusIcon = statusIcons[status] || <AccessTime fontSize="small" />;
@@ -106,7 +106,7 @@ const ComparisonResultHeader = ({ latestComparison, onViewResult, onStart }) => 
             <Stack direction="row" alignItems="center" spacing={1} mb={1.5}>
               <CompareArrows color="primary" fontSize="small" />
               <Typography variant="h6" fontWeight="600" color="grey.800">
-                Latest Comparison
+                Latest GA vs GA Comparison
               </Typography>
             </Stack>
 
@@ -125,7 +125,7 @@ const ComparisonResultHeader = ({ latestComparison, onViewResult, onStart }) => 
               >
                 <Description sx={{ mr: 1, color: 'primary.main', fontSize: 18 }} />
                 <Typography variant="body2" fontWeight="500" color="grey.700">
-                  {ofn_file_name}
+                  {ga1_file_name}
                 </Typography>
               </Box>
               
@@ -146,7 +146,7 @@ const ComparisonResultHeader = ({ latestComparison, onViewResult, onStart }) => 
               >
                 <Description sx={{ mr: 1, color: 'secondary.main', fontSize: 18 }} />
                 <Typography variant="body2" fontWeight="500" color="grey.700">
-                  {ga_file_name}
+                  {ga2_file_name}
                 </Typography>
               </Box>
             </Stack>
@@ -220,4 +220,4 @@ const ComparisonResultHeader = ({ latestComparison, onViewResult, onStart }) => 
   );
 };
 
-export default ComparisonResultHeader;
+export default GaGaResultHeader;

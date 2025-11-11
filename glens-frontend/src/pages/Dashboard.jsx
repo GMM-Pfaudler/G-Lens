@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import OperationCard from "../components/OperationCard";
 import StatCard from "../components/StatCard";
 import ActivityCard from "../components/ActivityCard";
+import { useActivityLogs } from "../hooks/useActivityLogs";
 
 const operations = [
   { 
@@ -46,15 +47,10 @@ const stats = [
   { title: "Alerts / Notifications", value: 5 },
 ];
 
-const recentActivity = [
-  { title: "OFN vs GA completed", description: "Project ABC comparison finished", time: "2 hours ago" },
-  { title: "GA vs GA pending", description: "Project XYZ needs review", time: "5 hours ago" },
-  { title: "Excel BOM vs Model BOM", description: "Comparison started", time: "1 day ago" },
-  { title: "Excel BOM vs Model BOM", description: "Comparison started", time: "1 day ago" },
-];
-
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { logs, loading, error } = useActivityLogs(6); // ✅ fetch 6 logs
+  console.log("Activity Logs →", logs, "Loading:", loading, "Error:", error);
 
   return (
     <>
@@ -168,34 +164,56 @@ const Dashboard = () => {
           </Grid>
 
           {/* Right Column - Recent Activity */}
-          <Grid item xs={12} lg={4}>
+          <Grid item xs={12} lg={4} sx={{ maxWidth: 330 }}>
             <Paper 
               variant="outlined"
               sx={{ 
                 p: 3, 
                 position: 'sticky', 
                 top: 100,
-                height:"100%",
+                height: "100%",
                 borderRadius: 3
               }}
             >
+              {/* Header */}
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
                 <Typography variant="h5" sx={{ fontWeight: "bold" }}>
                   Recent Activity
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                  {recentActivity.length} items
+                  {logs?.length || 0} items
                 </Typography>
               </Box>
-              
-              <Box sx={{ maxHeight: 470, overflowY: 'auto', pr: 1, pt:1}}>
-                {recentActivity.length > 0 ? (
-                  recentActivity.map((act, index) => (
+
+              {/* Activity List */}
+              <Box sx={{ maxHeight: 470, overflowY: 'auto', pr: 1, pt: 1 }}>
+                {loading ? (
+                  <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center', py: 4 }}>
+                    Loading recent activity...
+                  </Typography>
+                ) : error ? (
+                  <Typography variant="body2" color="error" sx={{ textAlign: 'center', py: 4 }}>
+                    Failed to load activity logs
+                  </Typography>
+                ) : logs && logs.length > 0 ? (
+                  logs.map((log) => (
                     <ActivityCard
-                      key={index}
-                      title={act.title}
-                      description={act.description}
-                      time={act.time}
+                      key={log.id}
+                      title={
+                        log.status === "completed"
+                          ? "✅ Comparison Completed"
+                          : log.status === "started"
+                          ? "🚀 Comparison Started"
+                          : "ℹ️ Information"
+                      }
+                      description={log.message}
+                      time={new Date(log.created_at).toLocaleString("en-IN", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })}
                     />
                   ))
                 ) : (
@@ -203,14 +221,6 @@ const Dashboard = () => {
                     <Typography variant="body2" color="text.secondary">
                       No recent activity
                     </Typography>
-                    <Button 
-                      variant="text" 
-                      size="small" 
-                      sx={{ mt: 1 }}
-                      onClick={() => navigate('/activity')}
-                    >
-                      View all activity
-                    </Button>
                   </Box>
                 )}
               </Box>
