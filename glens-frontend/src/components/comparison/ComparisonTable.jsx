@@ -61,7 +61,7 @@ const ComparisonTable = ({ comparisons, loading, onRefresh }) => {
   const [orderBy, setOrderBy] = useState('updated_at');
   const [order, setOrder] = useState('desc');
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  // const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const navigate = useNavigate();
 
@@ -93,10 +93,10 @@ const ComparisonTable = ({ comparisons, loading, onRefresh }) => {
 
   // Paginate sorted comparisons
   const paginatedComparisons = useMemo(() => {
-    const start = page * rowsPerPage;
-    const end = start + rowsPerPage;
-    return sortedComparisons.slice(start, end);
-  }, [sortedComparisons, page, rowsPerPage]);
+    const start = page * 5;
+    return sortedComparisons.slice(start, start + 5);
+  }, [sortedComparisons, page]);
+
 
   const handleSort = (property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -108,10 +108,10 @@ const ComparisonTable = ({ comparisons, loading, onRefresh }) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event) => {
+  //   setRowsPerPage(parseInt(event.target.value, 10));
+  //   setPage(0);
+  // };
 
   if (loading) {
     return (
@@ -327,13 +327,14 @@ const ComparisonTable = ({ comparisons, loading, onRefresh }) => {
 
       {/* Pagination */}
       <TablePagination
-        rowsPerPageOptions={[5, 10, 25, 50]}
+        // rowsPerPageOptions={[5, 10, 25, 50]}
         component="div"
         count={comparisons.length}
-        rowsPerPage={rowsPerPage}
+        rowsPerPage={5}
         page={page}
         onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        rowsPerPageOptions={[]}
+        // onRowsPerPageChange={handleChangeRowsPerPage}
         sx={{
           borderTop: '1px solid',
           borderColor: 'grey.200'

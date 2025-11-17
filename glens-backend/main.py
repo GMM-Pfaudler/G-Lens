@@ -3,6 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routers import auth,ofn_router,ga_router,test_router
 from app.routers import ofn_ga_comparison,ga_ga_comparison,full_bom_router,model_vs_bom_comparison,image_comparison_router,sse_router,activity_log_router
 import uvicorn
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+import os
 
 app = FastAPI()
 
@@ -14,7 +17,7 @@ origins = [
     "http://localhost:5173",
     "http://localhost:5174",
     # "https://glens.gmmpfualder.com",
-    # "*"
+    "*"
 ]
 
 app.add_middleware(
@@ -25,9 +28,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# ---------------------------------
+# Static Files setup
+# ---------------------------------
+# Path to static directory (contains your React build)
+static_dir = os.path.join(os.path.dirname(__file__), "app", "static")
+
+# Serve assets like /assets/*
+app.mount("/assets", StaticFiles(directory=os.path.join(static_dir, "assets")), name="assets")
+
+# Root endpoint should serve the React app
 @app.get("/")
-def root():
-    return {"message":"Backend Running successfully."}
+def serve_index():
+    index_path = os.path.join(static_dir, "index.html")
+    return FileResponse(index_path)
 
 # include auth endpoints
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
@@ -57,4 +71,4 @@ app.include_router(activity_log_router.router)
 app.include_router(sse_router.router, prefix="/api/sse", tags=["SSE"])
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8006, reload=True)
+    uvicorn.run("main:app", port=8006, reload=True)

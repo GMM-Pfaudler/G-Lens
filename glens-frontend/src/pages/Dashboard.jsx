@@ -6,6 +6,7 @@ import OperationCard from "../components/OperationCard";
 import StatCard from "../components/StatCard";
 import ActivityCard from "../components/ActivityCard";
 import { useActivityLogs } from "../hooks/useActivityLogs";
+import formatUserName from "../utils/formatUserName";
 
 const operations = [
   { 
@@ -50,6 +51,8 @@ const stats = [
 const Dashboard = () => {
   const navigate = useNavigate();
   const { logs, loading, error } = useActivityLogs(6); // ✅ fetch 6 logs
+  const userId = localStorage.getItem("user_id");
+  const displayName = formatUserName(userId);
   console.log("Activity Logs →", logs, "Loading:", loading, "Error:", error);
 
   return (
@@ -69,6 +72,10 @@ const Dashboard = () => {
         >
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <Box>
+              {/* Add welcome message here */}
+              <Typography variant="subtitle2" color="primary" sx={{ mb: 1, fontWeight: 'medium' }}>
+                Welcome back, {displayName} 👋
+              </Typography>
               <Typography variant="h4" sx={{ fontWeight: "bold", mb: 1 }}>
                 GL Drawing Verification Portal
               </Typography>

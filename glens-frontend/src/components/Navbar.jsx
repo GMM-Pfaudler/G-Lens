@@ -98,7 +98,7 @@ export default function Navbar() {
               }
             }}
           >
-            AI Powered GL Drawing Verification
+            GLens - AI Powered GL Drawing Verification
           </Typography>
 
           <IconButton

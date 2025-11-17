@@ -16,7 +16,7 @@ router = APIRouter()
 # ----------------------------------
 SECRET_KEY = "GMMpfaulder"
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRATION_MINUTES = 30
+ACCESS_TOKEN_EXPIRATION_MINUTES = 120
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
 

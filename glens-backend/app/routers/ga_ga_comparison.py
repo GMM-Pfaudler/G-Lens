@@ -229,10 +229,11 @@ async def process_ga_to_ga_task(
         result = await service.process_comparison_ga(ga1_data, ga2_data)
 
         # 3️⃣ Save comparison file
-        save_dir = r"D:/Glens_data/GA_to_GA_Comparison"
-        os.makedirs(save_dir, exist_ok=True)
+        base_dir = r"D:/Glens_data/GA_to_GA_Comparison"
+        user_dir = os.path.join(base_dir, str(user_id))
+        os.makedirs(user_dir, exist_ok=True)
         filename = f"{sanitize_filename(ga1_name)}__{sanitize_filename(ga2_name)}.json"
-        save_path = os.path.join(save_dir, filename)
+        save_path = os.path.join(user_dir, filename)
         with open(save_path, "w", encoding="utf-8") as f:
             json.dump(result, f, indent=4, ensure_ascii=False)
 
@@ -336,10 +337,12 @@ async def get_ga_ga_comparison_history(
     q = select(GAGaComparisonResult).order_by(GAGaComparisonResult.created_at.desc())
 
     # Role-based filtering
-    if current_user["role"] != "admin":
-        q = q.where(GAGaComparisonResult.user_id == current_user["user_id"])
-    elif user_id:
-        q = q.where(GAGaComparisonResult.user_id == user_id)
+    # if current_user["role"] != "admin":
+    #     q = q.where(GAGaComparisonResult.user_id == current_user["user_id"])
+    # elif user_id:
+    #     q = q.where(GAGaComparisonResult.user_id == user_id)
+
+    q = q.where(GAGaComparisonResult.user_id == current_user["user_id"])
 
     # Optional status filter
     if status:

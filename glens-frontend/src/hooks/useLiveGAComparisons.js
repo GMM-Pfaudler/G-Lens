@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { fetchLiveGAComparisons } from "../services/gaComparisonService";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8006";
-const WS_BASE = API_BASE.replace(/^http/, "ws");
+const WS_BASE = API_BASE.replace(/^https/, "ws");
 
 export default function useLiveGAComparisons() {
   const [gaComparisons, setGAComparisons] = useState([]);
@@ -43,7 +43,13 @@ export default function useLiveGAComparisons() {
   const connectWebSocket = (jobId) => {
     if (!jobId || wsConnections.current[jobId]) return;
 
-    const ws = new WebSocket(`${WS_BASE}/api/ga-ga-comparison/ws/${jobId}`);
+    const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+    const host = window.location.host;
+
+    const ws = new WebSocket(
+      `${protocol}://${host}/api/ga-ga-comparison/ws/${jobId}`
+    );
+
     wsConnections.current[jobId] = ws;
 
     ws.onopen = () => console.log(`🟢 GA–GA WS connected: ${jobId}`);
@@ -136,7 +142,7 @@ export default function useLiveGAComparisons() {
 
     let eventSource;
     try {
-      eventSource = new EventSource(`${API_BASE}/api/sse/ga-ga-db-updates`);
+      eventSource = new EventSource(`${API_BASE}/api/sse/db-updates`);
       console.log("🟢 GA–GA SSE connected");
     } catch (err) {
       console.error("🔴 GA–GA SSE connection failed:", err);
@@ -148,7 +154,7 @@ export default function useLiveGAComparisons() {
     eventSource.onmessage = async (event) => {
       try {
         const msg = JSON.parse(event.data);
-        if (msg.event === "ga_ga_update") {
+        if (msg.event === "comparison_update") {
           console.log("📡 GA–GA SSE update:", msg.data);
           const list = await reload();
           const hasPending = list.some((c) => c.status === "pending");

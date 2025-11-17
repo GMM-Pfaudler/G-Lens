@@ -1,371 +1,528 @@
 {
-  "GLE004272-1_CERIM-2KL": {
+  "GLE004109_CERTM-10KL": {
     "Lining and Notes": {
-      "LINING SPECIFICATION": "GLASS : - ULTRA GLASS 6500 (GLASS LINING MINIMUM THICKNESS IS 1 MM, EXCEPT FOR CONVEX\nSURFACES WHERE MINIMUM 0.8 mm IS ACCEPTABLE.THICKNESS TO BE FROM 1 TO 2.2 mm)\nIMP. NOTE : - ULTRA GLASS WILL NOT APPLIED TO BE ON C.I. G.L. FITTINGS LIKE\nTEE, REDUCING FLANGE, BOV BODY ETC. THE SAME TO BE SUPPLIED WITH\nPFAUDLER 9100 - DARK BLUE (DIN EN ISO 28721-1 : 2011-06)\nSPARK TEST : INTERNAL INSPECTION : 20,000 V. ONLY ONCE.\nFINAL INSPECTION : 10,000 V. (IN PRESENCE OF CLIENT)\nPLUG FREE",
+      "LINING SPECIFICATION": "GLASS : -\nPFAUDLER PHARMA GLASS LIGHT BLUE\n(DIN EN ISO 28721-1:2011-06 & DIN EN ISO 28721-4:2013-03 FOR PIPES & FITTINGS)\nIMP. NOTE. :\nAS PHARMA GLASS CAN NOT BE APPLIED ON CI GL FITTINGS LIKE BOV BODY,\nREDUCING FLG, TEE ETC, THE SAME TO BE SUPPLIED WITH PFAUDLER 9100 - DARK BLUE\nSPARK TEST :\nINTERNAL INSPECTION\n: 20,000 V. ONLY ONCE.\nFINAL INSPECTION : 10,000 V. (IN PRESENCE OF CLIENT)\nPLUG FREE",
       "GENERAL NOTES": [
-        "1.\nALL DIMENSIONS ARE IN mm. UNLESS OTHERWISE SPECIFIED.\n2.\nTHE BOLT HOLES OF FIXED FLANGES TO BE OFF C LS. OF VESSEL.\n3.\nEXTERNAL SURFACE PREP.\n:\n- SA 2 \u00bd SHOT BLASTING.\nAPPLY BY AIR SPRAY TWO FULL COATS OF AIR\nDRYING, GLASS REINFORCED, RUST TOLERANT\nCOATING : COLOUR - RAL 5015 (SKY BLUE)\n4. GENERAL TOLERANCES : DIN 28006.\n5. N.D.T. :-MAIN WELD SEAMS OF INNER VESSEL TO BE 100\nULTRASONICALLY TESTED\nFOR INTERNAL QUALITY ASSURANCE ONLY.\n6.\nPROVIDE CAP ON ALL C-CLAMP (COLOUR=BLUE, MOC=LIGHT DENSITY POLY ETHYLENE)\n7.\nRUNNING TRIAL TO BE TAKEN AT ATM. PRESSURE AND WITH WATER UP TO NOMINAL\nCAPACITY. DURATION WILL BE ONE HOUR.\n8.\nVALUES OF STIRRING & SENSING VOLUME SHOWN ON DRAWING ARE THEORETICAL &\nIN STATIC CONDITION. FINAL VALUES MAY CHANGE ACCORDING TO FABRICATION\nTOLERANCE ALLOWED BY RESPECTIVE STANDARD.\n9.\nFOR LIMITATION ON OPERATING TEMPERATURE, REFER M SEAL DRAWING.\n10. REQUIREMENTS FOR AGITATOR DRIVES WILL BE AS PER DIN 28161."
+        "1.\nALL DIMENSIONS ARE IN mm. UNLESS OTHERWISE SPECIFIED.\n2.\nTHE BOLT HOLES OF FIXED FLANGES TO BE OFF C LS. OF VESSEL.\n3.\nEXTERNAL SURFACE PREP.\n:\n-\nSA 2 \u00bd SHOT BLASTING.\nCS SURFACE : - APPLY BY AIR SPRAY TWO FULL COATS OF AIR\nDRYING, GLASS REINFORCED, RUST TOLERANT\nCOATING : COLOUR - RAL 5015 (SKY BLUE)\nSS SURFACE : 180 GRIT SURFACE\nTOP HEAD LIFTING LUG : TWO COATS OF SILVER EPOXY PAINT.\n4. GENERAL TOLERANCES : DIN 28006.\n5. N.D.T. :- MAIN WELD SEAMS OF INNER VESSEL TO BE 100\nULTRASONICALLY\nTESTED FOR INTERNAL QUALITY ASSURANCE ONLY.\n6.\nPROVIDE CAP ON ALL C-CLAMP (COLOUR=BLUE, MOC=LIGHT DENSITY POLY ETHYLENE)\n7.\nRUNNING TRIAL TO BE TAKEN AT ATM. PRESSURE AND WITH WATER UP TO NOMINAL\nCAPACITY. DURATION WILL BE ONE HOUR.",
+        "8.\nVALUES OF STIRRING & SENSING VOLUME SHOWN ON DRAWING ARE THEORETICAL &\nIN STATIC CONDITION. FINAL VALUES MAY CHANGE ACCORDING TO FABRICATION\nTOLERANCE ALLOWED BY RESPECTIVE STANDARD.\n9.\nFOR LIMITATION ON OPERATING TEMPERATURE, REFER M SEAL DRAWING.\n10. REQUIREMENTS FOR AGITATOR DRIVES WILL BE AS PER DIN 28161."
       ]
     },
     "Part List": [
       {
-        "part_no": "32",
+        "part_no": "47",
         "qty": "1",
-        "description": "SPRING BALANCE ASSEMBLY",
-        "drawing_no": "90-GPF-5403"
+        "description": "MS,150NB ( DIN) FLANGE WITH 100 DIA. OPENING FOR C H ASSLY.",
+        "drawing_no": "24-GPF-0377"
       },
       {
         "part_no": "1",
         "qty": "1",
-        "description": "UGL INNER BODY, CE-2KL, UT",
-        "drawing_no": "MBCE-02000-161612-003"
+        "description": "PPGL INNER BODY, CE-10KL, UT, LOW TEMP",
+        "drawing_no": "MBCE-10000-2222-014"
       },
       {
-        "part_no": "33",
-        "qty": "24",
-        "description": "C CLAMP ASSEMBLY, M24x100LG, SA307GRB, MAX. TIGHTNING TORQUE : 69.01 N.m",
-        "drawing_no": "02-GPF-11619"
+        "part_no": "48",
+        "qty": "1",
+        "description": "SPLIT LAPPED FLANGE, DN150, FOR HINGE TYPE CHARGE HOLE ASSEMBLY",
+        "drawing_no": "07-GPF-0638"
       },
       {
         "part_no": "2",
         "qty": "1",
-        "description": "FABRICATED JACKET, 1500 OD, CE-2KL, NIL RT",
-        "drawing_no": "95-JKT-6699 C02000-29"
+        "description": "JACKET, SUIT TO INSULATION, CE-10KL, LOW TEMP.",
+        "drawing_no": "JKT-INS-C10000-17"
+      },
+      {
+        "part_no": "49",
+        "qty": "1",
+        "description": "MS CAP BALANCER ASSEMBLY, HARD CHROME PLATED",
+        "drawing_no": "20-GPF-0025"
       },
       {
         "part_no": "3",
-        "qty": "4",
-        "description": "MS SIDE BRACKET, 1.6KL-2KL, STANDARD",
-        "drawing_no": "LSJ-MS-1500BP-00"
-      },
-      {
-        "part_no": "34",
-        "qty": "10",
-        "description": "C CLAMP ASSEMBLY, M24x125LG, SA307GRB, MAX. TIGHTNING TORQUE : 69.01 N.m",
-        "drawing_no": "02-GPF-11619"
-      },
-      {
-        "part_no": "4",
-        "qty": "1",
-        "description": "MS EARTHING BOSS, 40 DIAx50Lg (M16x2P. TAPPED HOLE)",
-        "drawing_no": "99-GPF-9088"
-      },
-      {
-        "part_no": "5",
         "qty": "1",
         "description": "MS, NAME PLATE BRACKET",
         "drawing_no": "93-GPF-6026"
       },
       {
-        "part_no": "35",
+        "part_no": "50",
         "qty": "1",
-        "description": "UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL",
-        "drawing_no": "GWAG-080M-2485-200-00"
+        "description": "SS 304, SIGHT LIGHT GLASS FLANGE, 200NB, FLANGE DRILLING : PN10 DIN EN 1092-1",
+        "drawing_no": "99-GPF-9373-SS-200-00"
+      },
+      {
+        "part_no": "4",
+        "qty": "4",
+        "description": "SS304 SIDE BRACKET, CE-10KL",
+        "drawing_no": "LSJ-S4-2500WP-00"
+      },
+      {
+        "part_no": "51",
+        "qty": "1",
+        "description": "TOUGHENED GLASS 19 T. x 205 O D",
+        "drawing_no": "-"
+      },
+      {
+        "part_no": "5",
+        "qty": "2",
+        "description": "SS 304 EARTHING BOSS, 40 DIAx50Lg (M16x2P. TAPPED HOLE)",
+        "drawing_no": "03-GPF-13113"
+      },
+      {
+        "part_no": "52",
+        "qty": "1",
+        "description": "TOUGHENED GLASS 22 T. x 260 O D",
+        "drawing_no": "-"
       },
       {
         "part_no": "6",
         "qty": "1",
-        "description": "DIAPHRAGM RING, 100NB NOZZLE",
-        "drawing_no": "03-GPF-13849"
+        "description": "16\" NB DIAPHRAGM RING",
+        "drawing_no": "3616000548 01"
       },
       {
-        "part_no": "36",
-        "qty": "1",
-        "description": "UGL COC, 800NB, CE-1.6 TO 4KL, UT",
-        "drawing_no": "91-GPF-5633-01"
+        "part_no": "53",
+        "qty": "40",
+        "description": "C CLAMP ASSEMBLY, M24x100LG, SA 182 F 304, MAX. TIGHTENING TORQUE : 210 N.m",
+        "drawing_no": "02-GPF-11619"
       },
       {
         "part_no": "7",
         "qty": "1",
-        "description": "MS RING",
-        "drawing_no": "8 THK x 457 406 DIA"
+        "description": "JACKET NOZZLE, 80 NBxSCH 80sx240LG",
+        "drawing_no": "96-GPF-6931 SS"
       },
       {
-        "part_no": "37",
-        "qty": "1",
-        "description": "UGL FLANGE TYPE BAFFLE BEAVERTAIL, 200NB NOZZLE DIN, CE-2KL, STD",
-        "drawing_no": "GLBF-AE-200-1475-00"
+        "part_no": "54",
+        "qty": "12",
+        "description": "C CLAMP ASSEMBLY, M24x125LG, SA 182 F 304, MAX. TIGHTENING TORQUE : 210 N.m",
+        "drawing_no": "02-GPF-11619"
       },
       {
         "part_no": "8",
         "qty": "1",
-        "description": "MS RING",
-        "drawing_no": "6 THK x 432 381 DIA"
+        "description": "JACKET NOZZLE, 80 NBxSCH 80sx345LG",
+        "drawing_no": "96-GPF-6931 SS"
       },
       {
-        "part_no": "38",
+        "part_no": "55",
         "qty": "1",
-        "description": "4\" DIAL THERMOMETER -40 TO +350\u00baC,M20x1.5P(M),3M WIRE",
-        "drawing_no": "-"
+        "description": "PPGL TRIPLE FLIGHT 4CBRT+4PBT+4PBT AGITATOR WITH VOLUME MARKING, M SEAL, 125 DIA, CE-10KL, LOW TEMP",
+        "drawing_no": "VWAG-125M-4035-344-01"
       },
       {
         "part_no": "9",
-        "qty": "2",
-        "description": "MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG, ASME CLASS 150",
-        "drawing_no": "JNSMS1-050160-160-00"
-      },
-      {
-        "part_no": "39",
-        "qty": "1",
-        "description": "MS DRIVE BASE RING ASSEMBLY, CAPACITY : CE-1.6 TO 3KL & 4KL OLD DIN",
-        "drawing_no": "DBR-300-02-00"
+        "qty": "3",
+        "description": "JACKET NOZZLE, 50 NBxSCH 80sx195LG",
+        "drawing_no": "96-GPF-6931 SS"
       },
       {
         "part_no": "10",
-        "qty": "2",
-        "description": "MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x195LG, ASME CLASS 150",
-        "drawing_no": "JNSMS1-050160-195-00"
-      },
-      {
-        "part_no": "40",
         "qty": "1",
-        "description": "MS LANTERN SUPPORT, HDM-80, AS-55 & 60, AE CE-1.6 TO 3KL",
-        "drawing_no": "LST-300-00-00"
-      },
-      {
-        "part_no": "41",
-        "qty": "3",
-        "description": "MS WIRE MESH TYPE LANTERN GUARD, AE CE-1.6KL TO 3KL & CE-4KL",
-        "drawing_no": "LSG-300-00-27"
-      },
-      {
-        "part_no": "11",
-        "qty": "2",
-        "description": "IMPINGEMENT PLATE FOR 50NB JACKET NOZZLE",
+        "description": "IMPINGEMENT PLATE FOR 80NB JACKET NOZZLE",
         "drawing_no": "97-GPF-7586"
       },
       {
-        "part_no": "42",
+        "part_no": "56",
         "qty": "1",
-        "description": "ULTRA GLASS LINED PAD PLATE, 80 DIA, E300",
-        "drawing_no": "PDS-G 080-01"
+        "description": "PPGL FLG BAFFLE BEAVERTIAL,250NB NOZZLE DIN, CE-10KL ( WITH M12 TAPPING),LOW TEMP, EXTRA LONG",
+        "drawing_no": "GLBF-LT-250-2835-00"
       },
       {
-        "part_no": "12",
-        "qty": "2",
+        "part_no": "11",
+        "qty": "3",
         "description": "BAFFLE PLATE ROUND",
         "drawing_no": "4 THK. X 60 DIA"
       },
       {
-        "part_no": "43",
+        "part_no": "12",
         "qty": "1",
-        "description": "AGITATOR & GEAR COUPLING ASSEMBLY",
-        "drawing_no": "04-GPF-14180"
+        "description": "BAFFLE PLATE ROUND",
+        "drawing_no": "4 THK. X 90 DIA"
+      },
+      {
+        "part_no": "57",
+        "qty": "1",
+        "description": "MACHINED LOOSE FLANGE, DN250, DIN, BOSS MOUNTED",
+        "drawing_no": "LFS-MS-250-DIN-24-00"
       },
       {
         "part_no": "13",
-        "qty": "1",
-        "description": "MS SPLIT LAPPED FLANGE, DN50, ASA 150",
-        "drawing_no": "DF-ASAS-050-16-MSH-00"
+        "qty": "3",
+        "description": "AGITATING NOZZLE, 50NB",
+        "drawing_no": "99-GPF-8607"
       },
       {
-        "part_no": "44",
+        "part_no": "58",
         "qty": "1",
-        "description": "ADAPTOR, AS-55",
-        "drawing_no": "04-GPF-14178"
+        "description": "PTFE GASKET 3T x 30 12.5 DIA",
+        "drawing_no": "3Tx30 12.5 DIA"
       },
       {
         "part_no": "14",
         "qty": "1",
-        "description": "MS SPLIT LAPPED FLANGE, DN100, ASA 150",
-        "drawing_no": "DF-ASAS-100-20-MSH-00"
+        "description": "SS304, 45 DEGREE BEND COUPLING, 1 2\" BSP",
+        "drawing_no": "15-GPF-0014"
       },
       {
-        "part_no": "45",
+        "part_no": "59",
         "qty": "1",
-        "description": "CIRCLIP,INT,TYPE-B,LIGHT,D180",
-        "drawing_no": "180 DIA"
+        "description": "M12 T TIP, SINGLE PIECE, MAX. TIGHTENING TORQUE : 30(+0.5 -0.5) N.m.",
+        "drawing_no": "23-GPF-0341"
       },
       {
         "part_no": "15",
         "qty": "1",
-        "description": "MS SPLIT LAPPED FLANGE, DN200, ASA 150",
-        "drawing_no": "DF-ASAS-200-24-MSH-00"
+        "description": "1 2'' BSP SS 304 DRAIN VENT COUPLING, 100 Lg.",
+        "drawing_no": "03-GPF-12787"
       },
       {
-        "part_no": "46",
+        "part_no": "60",
         "qty": "1",
-        "description": "SPHERICAL ROLLER BEARING",
-        "drawing_no": "22220B"
+        "description": "FLP RTD PT100 3050L+60,-35 250",
+        "drawing_no": "-"
       },
       {
         "part_no": "16",
-        "qty": "3",
-        "description": "MS SPLIT LAPPED FLANGE, DN100, DIN EN 1092-1 TYPE-2",
-        "drawing_no": "DF-DINS-100-20-MSH-00"
+        "qty": "4",
+        "description": "1 2'' BSP SS 304 DRAIN VENT PLUG",
+        "drawing_no": "03-GPF-12787"
       },
       {
-        "part_no": "47",
+        "part_no": "61",
         "qty": "1",
-        "description": "OIL SEAL",
-        "drawing_no": "12Tx140x115_TYPE B"
+        "description": "PPGL COC, 1000NB, CE-10 12.5KL, UT, LOW TEMP",
+        "drawing_no": "GCOC-CS-1000-28-00"
       },
       {
         "part_no": "17",
-        "qty": "1",
-        "description": "MS SPLIT LAPPED FLANGE, DN200, DIN EN 1092-1 TYPE-2",
-        "drawing_no": "DF-DINS-200-24-MSH-00"
+        "qty": "2",
+        "description": "1 2'' BSP SS 304 DRAIN VENT COUPLING, 30 Lg.",
+        "drawing_no": "03-GPF-12787"
       },
       {
-        "part_no": "48",
+        "part_no": "62",
         "qty": "1",
-        "description": "ROLON MAKE DOUBLE M SEAL, 80 DIA",
-        "drawing_no": "LATER ON"
+        "description": "SS 304 DRIVE BASE RING ASSEMBLY, E700",
+        "drawing_no": "DBR-700-01-00"
       },
       {
         "part_no": "18",
-        "qty": "1",
-        "description": "GASKET, DN80, DIN",
-        "drawing_no": "04-GPF-14352"
+        "qty": "4",
+        "description": "DRAIN VENT GASKET, 1 2'' BSP",
+        "drawing_no": "3 THKx35 23 DIA"
       },
       {
-        "part_no": "49",
+        "part_no": "63",
         "qty": "1",
-        "description": "\"BONFIGLIOLI\" MAKE INLINE HELICAL GEAR BOX",
-        "drawing_no": "AS 55 F P132 B5 V1,"
+        "description": "GL PAD PLATE, 125 DIA SHAFT, E700",
+        "drawing_no": "PDS-G 125-01"
       },
       {
         "part_no": "19",
-        "qty": "6",
-        "description": "GASKET, DN100",
-        "drawing_no": "04-GPF-14352"
+        "qty": "1",
+        "description": "1 4'' NPT SS 304 DRAIN VENT COUPLING, 35 Lg.",
+        "drawing_no": "04-GPF-13929"
+      },
+      {
+        "part_no": "64",
+        "qty": "1",
+        "description": "SS 304 LANTERN SUPPORT, AS-80 & 90, CE-10 12.5 16KL",
+        "drawing_no": "LS-700-01-00"
       },
       {
         "part_no": "20",
         "qty": "1",
-        "description": "GASKET, DN150",
-        "drawing_no": "04-GPF-14352"
+        "description": "1 4'' NPT SS 304 DRAIN VENT PLUG",
+        "drawing_no": "04-GPF-13929"
       },
       {
-        "part_no": "50",
+        "part_no": "65",
+        "qty": "2",
+        "description": "SS304 COUPLING & SHAFT GUARD, 125 DIA",
+        "drawing_no": "CSG-S4-125-0390-00"
+      },
+      {
+        "part_no": "21",
+        "qty": "2",
+        "description": "MS BAFFLE BOSS 63 ODx300L,DN250",
+        "drawing_no": "07-GPF-0425"
+      },
+      {
+        "part_no": "66",
+        "qty": "4",
+        "description": "SS 304 CLEAT FOR COUPLING & SHAFT GUARD",
+        "drawing_no": "CSGC-S4-125-00"
+      },
+      {
+        "part_no": "22",
+        "qty": "2",
+        "description": "MS BAFFLE BOSS 63 ODx85L,DN250",
+        "drawing_no": "07-GPF-0425"
+      },
+      {
+        "part_no": "67",
+        "qty": "1",
+        "description": "AGITATOR & GEAR COUPLING ASSEMBLY",
+        "drawing_no": "04-GPF-14316"
+      },
+      {
+        "part_no": "23",
+        "qty": "1",
+        "description": "SS 304, SPLIT LAPPED FLANGE, DN150, ASA 150 , BTM NOZZLE",
+        "drawing_no": "DF-ASAS-150-33-S4T-01"
+      },
+      {
+        "part_no": "68",
+        "qty": "1",
+        "description": "ADAPTOR, AS90",
+        "drawing_no": "04-GPF-14317"
+      },
+      {
+        "part_no": "24",
+        "qty": "2",
+        "description": "SS 304, SPLIT LAPPED FLANGE, DN200, ASA 150",
+        "drawing_no": "DF-ASAS-200-33-S4T-00"
+      },
+      {
+        "part_no": "69",
+        "qty": "1",
+        "description": "SPHERICAL ROLLER BEARING",
+        "drawing_no": "22228B"
+      },
+      {
+        "part_no": "25",
+        "qty": "1",
+        "description": "SS 304, SPLIT LAPPED FLANGE, DN200, DIN EN 1092-1 TYPE-2",
+        "drawing_no": "DF-DINS-200-33-S4T-00"
+      },
+      {
+        "part_no": "70",
+        "qty": "1",
+        "description": "CIRCLIP,INT,TYPE-B,LIGHT,D250",
+        "drawing_no": "250 DIA"
+      },
+      {
+        "part_no": "26",
+        "qty": "1",
+        "description": "SS 304, SPLIT LAPPED FLANGE, DN250, DIN EN 1092-1 TYPE-2",
+        "drawing_no": "DF-DINS-250-37-S4H-00"
+      },
+      {
+        "part_no": "71",
+        "qty": "1",
+        "description": "OIL SEAL",
+        "drawing_no": "15Tx190x160_TYPE B"
+      },
+      {
+        "part_no": "27",
+        "qty": "3",
+        "description": "SS 304, SPLIT LAPPED FLANGE, DN150, ASA 150",
+        "drawing_no": "DF-ASAS-150-33-S4T-00"
+      },
+      {
+        "part_no": "72",
+        "qty": "1",
+        "description": "BONFIGLIOLI MAKE INLINE HELICAL GEAR BOX",
+        "drawing_no": "AS 90 F P200 B5 V1,"
+      },
+      {
+        "part_no": "28",
+        "qty": "3",
+        "description": "SS 304, SPLIT LAPPED FLANGE, DN100, ASA 150",
+        "drawing_no": "DF-ASAS-100-28-S4T-00"
+      },
+      {
+        "part_no": "29",
+        "qty": "1",
+        "description": "SS 304, SPLIT LAPPED FLANGE, DN250, DIN EN 1092-1 TYPE-2",
+        "drawing_no": "DF-DINS-250-37-S4T-00"
+      },
+      {
+        "part_no": "73",
         "qty": "1",
         "description": "ELECTRIC MOTOR",
         "drawing_no": "-"
       },
       {
-        "part_no": "21",
-        "qty": "3",
+        "part_no": "30",
+        "qty": "7",
+        "description": "GASKET, DN100",
+        "drawing_no": "04-GPF-14352"
+      },
+      {
+        "part_no": "74",
+        "qty": "1",
+        "description": "SS 304, INSULATION DISHED END, 2512 O D x 5 THK.",
+        "drawing_no": "IDE-S4-2512-05-00"
+      },
+      {
+        "part_no": "31",
+        "qty": "10",
+        "description": "GASKET, DN150",
+        "drawing_no": "04-GPF-14352"
+      },
+      {
+        "part_no": "75",
+        "qty": "1",
+        "description": "CONE AT TOP JCR, 100mm THK. INSULATION, 2500 OD",
+        "drawing_no": "ICONE-TOP-100-2500-304-01"
+      },
+      {
+        "part_no": "32",
+        "qty": "5",
         "description": "GASKET, DN200",
         "drawing_no": "04-GPF-14352"
       },
       {
-        "part_no": "51",
+        "part_no": "76",
         "qty": "1",
-        "description": "DN50x1450L CS PTFE LINED DIP PIPE",
-        "drawing_no": "95-GPF-6627"
-      },
-      {
-        "part_no": "22",
-        "qty": "2",
-        "description": "GASKET, DN350X450",
-        "drawing_no": "97-GPF-7916"
-      },
-      {
-        "part_no": "52",
-        "qty": "2",
-        "description": "1 2'' BSP MS DRAIN VENT COUPLING, 50 Lg.",
-        "drawing_no": "96-GPF-7236 17834"
-      },
-      {
-        "part_no": "23",
-        "qty": "1",
-        "description": "GASKET, DN800",
-        "drawing_no": "97-GPF-7916"
-      },
-      {
-        "part_no": "53",
-        "qty": "2",
-        "description": "1 2'' BSP MS DRAIN VENT PLUG",
-        "drawing_no": "96-GPF-7236"
-      },
-      {
-        "part_no": "24",
-        "qty": "1",
-        "description": "ULGL BLIND COVER, 100NB, ASA",
-        "drawing_no": "88-EP-5000"
-      },
-      {
-        "part_no": "54",
-        "qty": "2",
-        "description": "DRAIN VENT GASKET, 1 2'' BSP",
-        "drawing_no": "3 THKx35 23 DIA"
-      },
-      {
-        "part_no": "25",
-        "qty": "1",
-        "description": "ULGL BLIND COVER, 200NB, ASA",
-        "drawing_no": "88-EP-5000"
-      },
-      {
-        "part_no": "55",
-        "qty": "1",
-        "description": "ULGL REDUCING FLANGE, 100x80 NB, DIN - PN 10",
-        "drawing_no": "RFG-D100-D080-00"
-      },
-      {
-        "part_no": "26",
-        "qty": "1",
-        "description": "PTFE BUSH, 100NBx60 HT 1",
-        "drawing_no": "PB-100-001"
-      },
-      {
-        "part_no": "56",
-        "qty": "1",
-        "description": "MS, THERMOSYPHON SYSTEM, LEAK-PROOF MAKE",
-        "drawing_no": "P00159A P4 R0"
-      },
-      {
-        "part_no": "27",
-        "qty": "1",
-        "description": "PTFE BUSH, 200NBx65 HT. 1",
-        "drawing_no": "PB-200-001"
-      },
-      {
-        "part_no": "57",
-        "qty": "1",
-        "description": "MS J CLEAT FOR THERMOSYPHON",
-        "drawing_no": "07-GPF-1034"
-      },
-      {
-        "part_no": "28",
-        "qty": "1",
-        "description": "PTFE BUSH, 350x450NB",
-        "drawing_no": "PB-350-006"
-      },
-      {
-        "part_no": "58",
-        "qty": "1",
-        "description": "MS CLEAT FOR THERMOSYPHON, 10 THK. x 90W x 180Lg.",
-        "drawing_no": "07-GPF-1034"
-      },
-      {
-        "part_no": "29",
-        "qty": "2",
-        "description": "MS SIGHT LIGHT GLASS FLANGE, 100NB, FLANGE DRILLING : PN10 DIN EN 1092-1",
-        "drawing_no": "99-GPF-9373-MS-100-00"
-      },
-      {
-        "part_no": "59",
-        "qty": "1",
-        "description": "ULGL BELLOW TYPE UPPER TO OPEN BOV, 100x80NB",
-        "drawing_no": "98-GPF-8075"
-      },
-      {
-        "part_no": "60",
-        "qty": "52",
-        "description": "HEX NUT, FOR INSULATION",
-        "drawing_no": "M8x1.25P"
-      },
-      {
-        "part_no": "30",
-        "qty": "2",
-        "description": "TOUGHENED GLASS 19 T. x 155 O D",
+        "description": "INSULATION SHELL, P C 3Tx7882CIRx100H",
         "drawing_no": "-"
       },
       {
-        "part_no": "31",
+        "part_no": "33",
+        "qty": "2",
+        "description": "GASKET, DN250",
+        "drawing_no": "04-GPF-14352"
+      },
+      {
+        "part_no": "77",
         "qty": "1",
-        "description": "UGL MANHOLE COVER, 350X450 NB, WITH DN100 NOZZLE, SPRING BALANCE, UT",
-        "drawing_no": "GMHC-CS-350-25-01-00"
+        "description": "INSULATION SHELL, P C 3Tx8492CIRx2307H",
+        "drawing_no": "-"
+      },
+      {
+        "part_no": "34",
+        "qty": "2",
+        "description": "GASKET, DN500",
+        "drawing_no": "97-GPF-7916"
+      },
+      {
+        "part_no": "78",
+        "qty": "1",
+        "description": "CONE AT BOTTOM JACKET CLOSER RING, 100mm THK. INSULATION, 2500 OD",
+        "drawing_no": "ICONE-BTM-100-2500-304-00"
+      },
+      {
+        "part_no": "35",
+        "qty": "1",
+        "description": "GASKET, DN1000",
+        "drawing_no": "97-GPF-7916"
+      },
+      {
+        "part_no": "79",
+        "qty": "1",
+        "description": "CONE AT JACKET HEAD, 100mm THK. INSULATION, 2500 OD",
+        "drawing_no": "ICONE-JKT-100-2500-304-00"
+      },
+      {
+        "part_no": "36",
+        "qty": "2",
+        "description": "PTFE BUSH, 200NBx65 HT.",
+        "drawing_no": "PB-200-001"
+      },
+      {
+        "part_no": "80",
+        "qty": "1",
+        "description": "SS 304 SPILLAGE COLLECTION TRAY",
+        "drawing_no": "14-GPF-0050"
+      },
+      {
+        "part_no": "37",
+        "qty": "3",
+        "description": "PTFE BUSH, 150NBx60 HT.",
+        "drawing_no": "PB-150-001"
+      },
+      {
+        "part_no": "81",
+        "qty": "2",
+        "description": "SS 304 PTFE LINED EQUAL TEE, 100NB",
+        "drawing_no": "GA-PFAL-EQ.TEE-GMM-21072"
+      },
+      {
+        "part_no": "38",
+        "qty": "1",
+        "description": "PTFE BUSH, 100NBx60 HT",
+        "drawing_no": "PB-100-001"
+      },
+      {
+        "part_no": "39",
+        "qty": "1",
+        "description": "PTFE BUSH, 500NBx75 HT.",
+        "drawing_no": "PB-500-006"
+      },
+      {
+        "part_no": "82",
+        "qty": "2",
+        "description": "SPRAY BALL PIPE, 25NB, SUIT TO 100NB NOZZLE",
+        "drawing_no": "17-GPF-0521"
+      },
+      {
+        "part_no": "40",
+        "qty": "2",
+        "description": "PPGL BLIND COVER, 200NB, ASA",
+        "drawing_no": "88-EP-5000"
+      },
+      {
+        "part_no": "83",
+        "qty": "2",
+        "description": "1\" BSPP PTFE \"LECHLER\" MAKE SPRAY BALL",
+        "drawing_no": "583.279.55.AN"
+      },
+      {
+        "part_no": "41",
+        "qty": "3",
+        "description": "PPGL BLIND COVER, 150NB, ASA",
+        "drawing_no": "88-EP-5000"
+      },
+      {
+        "part_no": "84",
+        "qty": "1",
+        "description": "125 DIA SHAFT 'EBIPL' MAKE, DOUBLE DRY M SEAL WITH HASTELLOY C-22 DEBRIS COLLECTOR + KALREZ 'O' RING",
+        "drawing_no": "09-SECCOMIX461L-D24 125-E"
+      },
+      {
+        "part_no": "42",
+        "qty": "1",
+        "description": "PPGL BLIND COVER, 100NB, ASA",
+        "drawing_no": "88-EP-5000"
+      },
+      {
+        "part_no": "43",
+        "qty": "1",
+        "description": "PPGL SUPPORT RING, 150NB",
+        "drawing_no": "07-GPF-0639"
+      },
+      {
+        "part_no": "85",
+        "qty": "1",
+        "description": "SS304 DRIVE HOOD, HORIZONTALLY AND VERTICALLY SPLIT TYPE(SUIT. FOR AS 90 GEAR BOX, E200L FRAME SIZE CGL IE3 INV ELECTRIC MOTOR)",
+        "drawing_no": "HOOD-S4-AS90-200-02"
+      },
+      {
+        "part_no": "44",
+        "qty": "1",
+        "description": "PPGL SUPPORT RING, 150NB",
+        "drawing_no": "24-GPF-0142-00"
+      },
+      {
+        "part_no": "45",
+        "qty": "1",
+        "description": "PPGL EXTENSION PIECE SIZE : 100NB x 150LG.",
+        "drawing_no": "16-GPF-1258"
+      },
+      {
+        "part_no": "86",
+        "qty": "1",
+        "description": "DN150 100 PNEUMATICALLY OPERATED 'DEMBLA' MAKE PPGL BOV WITH M12 T TIP + FLAME PROOF RTD SENSOR",
+        "drawing_no": "BOV-GPF2704-02"
+      },
+      {
+        "part_no": "46",
+        "qty": "1",
+        "description": "NICKEL PLATED PPGL MANHOLE COVER, WITH DN 150 NOZZLE, 500NB, UT, LOW TEMP",
+        "drawing_no": "GMHC-CS-500-20-01-19"
       }
     ],
     "Design Data": [
@@ -376,166 +533,211 @@
       },
       {
         "Parameter": "FLUID",
-        "INNER VESSEL": "NON LETHAL WITH\nSP. GRAVITY \u2264 1.6\nVISCOSITY : 10 cP",
-        "JACKET": "NON LETHAL HEATING\nCOOLING MEDIA WITH\nSP. GRAVITY \u2264 1.0"
+        "INNER VESSEL": "NON LETHAL WITH SP.\nGRAVITY \u2264 1.7\nVISCOSITY : 4000 cP",
+        "JACKET": "NON LETHAL HEATING\nCOOLING MEDIA WITH\nSP.GRAVITY \u2264 1.0"
       },
       {
         "Parameter": "VOLUME (NOMINAL)",
-        "INNER VESSEL": "2000 LITER",
-        "JACKET": "375 LITER"
+        "INNER VESSEL": "10000 LITER",
+        "JACKET": "935 LITER"
       },
       {
         "Parameter": "VOLUME (FULL)",
-        "INNER VESSEL": "2305 LITER",
-        "JACKET": "375 LITER"
+        "INNER VESSEL": "11875 LITER",
+        "JACKET": "935 LITER"
       },
       {
         "Parameter": "OPERATING TEMPERATURE",
-        "INNER VESSEL": "----",
-        "JACKET": "-----"
+        "INNER VESSEL": "30\u00b0C TO 170\u00b0C",
+        "JACKET": "30\u00b0C TO 170\u00b0C"
       },
       {
         "Parameter": "MAX. DESIGN TEMPERATURE",
-        "INNER VESSEL": "250\u00b0 C (REFER NOTE-9)",
-        "JACKET": "250\u00b0 C"
+        "INNER VESSEL": "200 \u00b0C (REFER NOTE-9)",
+        "JACKET": "200 \u00b0C"
       },
       {
         "Parameter": "MIN. DESIGN TEMPERATURE",
-        "INNER VESSEL": "-28.8\u00b0 C",
-        "JACKET": "-28.8\u00b0 C"
+        "INNER VESSEL": "-35 \u00b0C",
+        "JACKET": "-35 \u00b0C"
       },
       {
-        "Parameter": "MAX. ALLOWABLE WORKING PRESSURE\n(DESIGN PRESSURE)",
+        "Parameter": "MAX. ALLOWABLE WORKING PRESSURE (DESIGN\nPRESSURE)",
         "INNER VESSEL": "F.V.\n6 bar(g)",
         "JACKET": "F.V.\n6 bar(g)"
       },
       {
-        "Parameter": "PRESSURE\nHYDROSTATIC TEST (AFTER\nLINING)\nDURATION",
+        "Parameter": "HYDROSTATIC TEST (AFTER\nPRESSURE\nLINING)\nDURATION",
         "INNER VESSEL": "7 bar(g)\n1 2 HOUR",
         "JACKET": "7 bar(g)\n1 2 HOUR"
       }
     ],
     "Nozzle Data": [
       {
-        "Ref.": "N17",
-        "Size (DN)": "50",
-        "Rating": "ASA 150",
-        "Service": "SERVICE",
-        "Fittings": ""
-      },
-      {
-        "Ref.": "N16",
-        "Size (DN)": "50",
-        "Rating": "ASA 150",
-        "Service": "SERVICE",
-        "Fittings": ""
-      },
-      {
-        "Ref.": "N15",
-        "Size (DN)": "50",
-        "Rating": "ASA 150",
-        "Service": "SERVICE",
-        "Fittings": ""
-      },
-      {
-        "Ref.": "N11",
-        "Size (DN)": "50",
-        "Rating": "ASA 150",
-        "Service": "SERVICE",
-        "Fittings": ""
-      },
-      {
-        "Ref.": "N13",
-        "Size (DN)": "1 2\" BSP",
-        "Rating": "3000",
-        "Service": "VENT",
-        "Fittings": "PLUG"
-      },
-      {
-        "Ref.": "T11",
+        "Ref.": "T1 T2",
         "Size (DN)": "1 2\" BSP",
         "Rating": "3000",
         "Service": "DRAIN",
         "Fittings": "PLUG"
       },
       {
-        "Ref.": "L",
-        "Size (DN)": "100",
+        "Ref.": "T12",
+        "Size (DN)": "1 4\" NPT",
+        "Rating": "3000",
+        "Service": "INSU. DRAIN",
+        "Fittings": "PLUG"
+      },
+      {
+        "Ref.": "N18",
+        "Size (DN)": "50",
         "Rating": "ASA 150",
-        "Service": "OUTLET",
-        "Fittings": "100 x 80NB MS ULGL BOV"
+        "Service": "INLET FOR LIQUID",
+        "Fittings": "CI AGITATING NOZZLE"
+      },
+      {
+        "Ref.": "N17",
+        "Size (DN)": "50",
+        "Rating": "ASA 150",
+        "Service": "INLET FOR LIQUID",
+        "Fittings": "CI AGITATING NOZZLE"
+      },
+      {
+        "Ref.": "N16",
+        "Size (DN)": "50",
+        "Rating": "ASA 150",
+        "Service": "INLET FOR LIQUID",
+        "Fittings": "CI AGITATING NOZZLE"
+      },
+      {
+        "Ref.": "N15",
+        "Size (DN)": "80",
+        "Rating": "ASA 150",
+        "Service": "OUTLET FOR LIQUID",
+        "Fittings": ""
+      },
+      {
+        "Ref.": "N11",
+        "Size (DN)": "80",
+        "Rating": "ASA 150",
+        "Service": "OUTLET FOR LIQUID",
+        "Fittings": ""
+      },
+      {
+        "Ref.": "N13",
+        "Size (DN)": "1 2\" BSP",
+        "Rating": "3000",
+        "Service": "JACKET VENT",
+        "Fittings": "PLUG"
+      },
+      {
+        "Ref.": "T11",
+        "Size (DN)": "1 2\" BSP",
+        "Rating": "3000",
+        "Service": "JACKET DRAIN",
+        "Fittings": "PLUG"
       },
       {
         "Ref.": "M",
-        "Size (DN)": "150",
+        "Size (DN)": "250",
         "Rating": "-",
         "Service": "AGITATOR",
         "Fittings": "MECHANICAL SEAL"
       },
       {
+        "Ref.": "L",
+        "Size (DN)": "150",
+        "Rating": "ASA 150",
+        "Service": "OUTLET",
+        "Fittings": "150 100 NB BOV + M12 TANTALUM TIP + RTD SENSOR * * *"
+      },
+      {
+        "Ref.": "N12",
+        "Size (DN)": "150",
+        "Rating": "ASA 150",
+        "Service": "SPARE",
+        "Fittings": "PTFE BUSH + GL BLIND COVER"
+      },
+      {
+        "Ref.": "N10",
+        "Size (DN)": "150",
+        "Rating": "ASA 150",
+        "Service": "SPARE",
+        "Fittings": "PTFE BUSH + GL BLIND COVER"
+      },
+      {
         "Ref.": "N9",
         "Size (DN)": "100",
         "Rating": "ASA 150",
+        "Service": "SPRAY BALL",
+        "Fittings": "EXT. PIECE + SPRAY BALL ASSEMBLY"
+      },
+      {
+        "Ref.": "N8",
+        "Size (DN)": "100",
+        "Rating": "ASA 150",
         "Service": "SPARE",
-        "Fittings": "PTFE BUSH + ULGL BLIND COVER"
+        "Fittings": "PTFE BUSH + GL BLIND COVER"
       },
       {
         "Ref.": "N7",
         "Size (DN)": "200",
         "Rating": "ASA 150",
-        "Service": "SPARE",
-        "Fittings": "PTFE BUSH + ULGL BLIND COVER"
+        "Service": "VAPOUR",
+        "Fittings": "PTFE BUSH + GL BLIND COVER"
       },
       {
         "Ref.": "N6",
-        "Size (DN)": "100",
+        "Size (DN)": "200",
         "Rating": "PN-10 DIN 2673",
         "Service": "LIGHT GLASS",
         "Fittings": "LIGHT GLASS ASSEMBLY"
       },
       {
         "Ref.": "N5",
-        "Size (DN)": "200",
+        "Size (DN)": "150",
+        "Rating": "ASA 150",
+        "Service": "SPARE",
+        "Fittings": "PTFE BUSH + GL BLIND COVER"
+      },
+      {
+        "Ref.": "N4",
+        "Size (DN)": "250",
         "Rating": "PN-10 DIN 2673",
         "Service": "BAFFLE",
-        "Fittings": "THERMOMETER"
+        "Fittings": "M12 TANTALUM TIP + RTD SENSOR * * *"
       },
       {
         "Ref.": "N3",
-        "Size (DN)": "100 80 50",
-        "Rating": "DIN TO ASA",
-        "Service": "DIP PIPE",
-        "Fittings": "ULGL REDUCING FLANGE + CS PTFE LINED DIP PIPE"
+        "Size (DN)": "100",
+        "Rating": "ASA 150",
+        "Service": "SPRAY BALL",
+        "Fittings": "EXT. PIECE + SPRAY BALL ASSEMBLY"
+      },
+      {
+        "Ref.": "N2",
+        "Size (DN)": "200",
+        "Rating": "ASA 150",
+        "Service": "SPARE",
+        "Fittings": "PTFE BUSH + GL BLIND COVER"
       },
       {
         "Ref.": "N1A",
-        "Size (DN)": "100",
+        "Size (DN)": "150",
         "Rating": "PN-10 DIN 2673",
-        "Service": "SIGHT GLASS",
-        "Fittings": "SIGHT GLASS ASSEMBLY"
+        "Service": "CHARGE HOLE",
+        "Fittings": "CHARGE HOLE ASSEMBLY"
       },
       {
         "Ref.": "N1",
-        "Size (DN)": "350 450",
+        "Size (DN)": "500",
         "Rating": "CLAMPED",
         "Service": "MANHOLE",
-        "Fittings": "PTFE BUSH TYPE MANHOLE RING + ULGL MANHOLE COVER"
+        "Fittings": "PTFE BUSH TYPE MANHOLE RING + NICKEL PLATED GL MANHOLE COVER"
       }
     ],
     "Material of Construction": {
-      "INNERVESSEL": {
-        "SHELL, HEADS AND BLIND COVER": "SA 516 Gr. 60 ENAMEL QUALITY",
-        "WELDING NECKS FOR BODY FLANGE & NOZZLES": "SA 181 CL. 60 SA 836 ENAMEL QUALITY",
-        "SPLIT FLANGES": "REFER TABLE SA 516 Gr. 70 SA 105",
-        "GASKET FOR BODY FLANGE & NOZZLES": "PTFE ENVELOPED NON ASBESTOS WITH S.S. CORRUGATED RING INSERT",
-        "FASTENERS": "CARBON STEEL IS:1363 1367 CL 4.6 4"
-      },
-      "JACKET": {
-        "SHELL, HEAD": "SA 516 Gr. 60 70 WITH C = 0.21 MAX.",
-        "NOZZLE NECKS": "SA 106 Gr. B",
-        "SORF FLANGES": "REFER TABLE SA 105",
-        "COUPLINGS & PLUGS": "SA 105 3000"
-      },
+      "INNERVESSEL": {},
+      "JACKET": {},
       "LIMPET COIL": {}
     },
     "Key-Value Pairs": {
@@ -544,33 +746,30 @@
         "NDT": "REFER GENERAL NOTE - 5",
         "WIND LOAD": "INDOOR INSTALLATION",
         "SEISMIC LOADING": "N.A.",
-        "HEAT TRANSFER AREA": "7.4 SQ. M.",
-        "TARE WEIGHT": "2850 kg. (APPROX.)",
-        "WEIGHT FULL OF WATER": "5530 kg. (APPROX.)",
-        "FASTENERS": "CARBON STEEL IS:1363 1367 CL 4.6 4",
-        "CARBON STEEL IS": "1363 1367 CL 4.6 4",
-        "SO. NO.": "GLE004272/1",
-        "QNTY.": "01 No.",
-        "PREPARED BY": "RONAK 24-05-2025",
-        "CLIENT ": "LEMA CHEMICALS INDUSTRIES",
-        "CHECKED BY": "AMBRISH 24-05-2025",
-        "PO NO. ": "LEMA 25-26 25 DATED : 21-05-2025",
-        "APPROVED BY": "VMP 24-05-2025",
-        "ADDRESS": "LOTE PARSHURAM, DIST-RATNAGIRI, MAHARASHTRA",
-        "TITLE ": "ULTRA GLASS LINED REACTOR DIN 28136 CERIM 2000 LITER",
-        "DRG. NO.": "GLE004272/1",
-        "REV. NO.": "1",
+        "HEAT TRANSFER AREA": "20.9 SQ. M.",
+        "TARE WEIGHT": "11330 kg. (APPROX.)",
+        "WEIGHT FULL OF WATER": "24140 kg. (APPROX.)",
+        "PPGL EXTENSION PIECE SIZE ": "100NB x 150LG.",
+        "2460 605 N15 32 25 N8 42 30 38 30 IMPORTANT NOTE ": "- PLEASE USE WELDING ELECTRODS SUITABLE TO -40\u00b0C TEMPERATURE TOTAL FLOW RATE OF AGITATING NOZZLE (V) ; 29 89 m\u00b3 h TOTAL SURFACE CONTACT AREA: 28.7 Sq mtr R.L. 4",
+        "PROCESS CONNECTION ": "M20x1.5P(M) SS304 ADJUSTABLE COMPRESSION FITTING.",
+        "CLIENT ": "PREPARED BY MILIND 04-03-2025 AJINOMOTO BIO-PHARMA",
+        "CHECKED BY ARPIT 04-03-2025 PO NO. ": "4000000880 DATED: 18 02 2025",
+        "ADDRESS": "RAMKY PHARMA CITY(I) LTD, SEZ PARWADA, VISAKHAPATANAM, AP APPROVED BY VMP 04-03-2025",
+        "TITLE ": "PHARMA GLASS LINED REACTOR, DIN 28136, CERTM-10000 LITER",
+        "SECTIONAL ELEVATION FOR WELD PLAN REFER DRAWING NO. ": "WD-1000-INS-GLE004109",
+        "DRG. NO.": "GLE004109",
+        "REV. NO.": "0",
         "CORROSION ALLOWANCE": {
           "GLASSED SURFACE": 0,
           "WETTED WITH JKT FLUID": 1,
           "NON WETTED SURFACE": 0.5
         },
-        "CALCULATED RPM": 102
+        "CALCULATED RPM": 94
       }
     },
     "Drive Data": {
-      "DRIVE GEARBOX": "\"BONFIGLIOLI\" MAKE INLINE HELICAL GEAR BOX, MODEL NO. AS55 F 14.13 P132 B5 V1, RATIO 14.13:1",
-      "DRIVE MOTOR": "BBL MAKE FLAMEPROOF(TEFC IS IEC 60079-1) EFFICIENCY CLASS IE27.5HP(5.5KW) FLANGE MOUNTED ELECTRIC MOTOR, FRAME SIZE = 132S, SPEED = 1450 RPM, VOLTAGE = 415\u00b110 V, FREQUENCY = 50\u00b15 HZ, 3 PHASE,HAZARDOUS AREA ZONE 1, GAS GROUP IIA & IIB, DEGREE OF PROTECTION = IP-55,TEMPERATURE CLASS = T5, AMBIANT TEMPERATURE = 45\u00b0 C,TEMPERATURE RISE UP TO CLASS B, INSULATION CLASS F. 59 1 ULGL BELLOW TYPE UPPER TO OPEN BOV, 100X80NB 98-GPF-8075"
+      "DRIVE GEARBOX": "46 2215 138 3405 88 FACEOFDRIVEBASERING 3170OSTOOS 630 588 153 70 FACEOFAGITATOR 540 520 0 N3 8 3 5 N2 TOP N12 BTM. 90\u00b0 100\u00b0 0 N4 76\u00b0 9 1 52\u00b0 127\u00b0 63\u00b0 135\u00b0 T1 45\u00b0 (2) \u00d827 HOLES 4 4 BTM 30\u00b0 150\u00b0 N7 158\u00b0 3 TOP 170\u00b0 M N13 T12 0\u00b0 180\u00b0 N1 T11 185\u00b0 L N1A N16 N17 N18 N6 49 WITH C.I. 330\u00b0 AGITATING NOZZLE 215\u00b0 W BTM O L F 4 N5 320\u00b0 225\u00b0 TOP 315\u00b0 305\u00b0 T2 243\u00b0 232\u00b0 280\u00b0 N8 250\u00b0 BTM TOP 270\u00b0 N10 4 N9 5 N11 N15 TRUE ORIENTATION PLAN N900 SWEEP VIEW OF MIDDLE & UPPER BLADES (4-PBT) 900 SWEEP DIA LOOKING FROM TOP VIEW OF LOWER BLADES (4-CBRT) 73 INVERTER DUTY + EFFICIENCY CLASS IE3, FLAME LOOKING FROM TOP PROOF (IS:2148) ELECTRIC MOTOR MAKE = 'BBL' , TEMP. CLASS = T4, GAS GROUP = IIA & IIB, VOLTAGE = 415 \u00b110 V, FREQUENCY=50 \u00b15 HZ, AMBIENT TEMP.=45\u00b0 C, PROTECTION = IP-55, 3 85 PHASE, HP = 30 (22 KW), RPM=1475, FRAME SIZE=E200L, FLANGE MOUNTED 73 72 BONFIGLIOLI MAKE INLINE HELICAL GEAR BOX, MODEL NO. AS90 F 15.65 P200 B5 V1, RATIO 15.65:1 72 40 ~ N2 N7 N12 N5 N10 41 32 N9 N3 N8 REFER NOTE :10 68 69 70 71 31 T 0.1 36 67 37 N9 N3 32 30 64 65 66 31 31 84 M R 925 24 81 N1A R.L. 27 47 44 33 48 51 35 53 61 62 63 N1 26 60 30 80 17 N4 34 29 56 N6 N7 33 18 N2 43 28 82 22 O S 16 57 965 I D. 46 83 21 T2 T1 54 74 7 R 950 50 N6 34 39 52 R 925 76 R.L. R.L. R.L. 10000L ~ 5 4 1 2 INNER O S NOZZLE FACE UNIT PART LIST UNIT PART LIST DESIGN CODE : ASME SECTION VIII, DIV.1 (LATEST) INTERNAL INSPECTION : (I) STAGEWISE :- (II) FINAL :- INTERNAL BY CLIENT",
+      "DRIVE MOTOR": "46 2215 138 3405 88 FACEOFDRIVEBASERING 3170OSTOOS 630 588 153 70 FACEOFAGITATOR 540 520 0 N3 8 3 5 N2 TOP N12 BTM. 90\u00b0 100\u00b0 0 N4 76\u00b0 9 1 52\u00b0 127\u00b0 63\u00b0 135\u00b0 T1 45\u00b0 (2) \u00d827 HOLES 4 4 BTM 30\u00b0 150\u00b0 N7 158\u00b0 3 TOP 170\u00b0 M N13 T12 0\u00b0 180\u00b0 N1 T11 185\u00b0 L N1A N16 N17 N18 N6 49 WITH C.I. 330\u00b0 AGITATING NOZZLE 215\u00b0 W BTM O L F 4 N5 320\u00b0 225\u00b0 TOP 315\u00b0 305\u00b0 T2 243\u00b0 232\u00b0 280\u00b0 N8 250\u00b0 BTM TOP 270\u00b0 N10 4 N9 5 N11 N15 TRUE ORIENTATION PLAN N900 SWEEP VIEW OF MIDDLE & UPPER BLADES (4-PBT) 900 SWEEP DIA LOOKING FROM TOP VIEW OF LOWER BLADES (4-CBRT) 73 INVERTER DUTY + EFFICIENCY CLASS IE3, FLAME LOOKING FROM TOP PROOF (IS:2148) ELECTRIC MOTOR MAKE = 'BBL' , TEMP. CLASS = T4, GAS GROUP = IIA & IIB, VOLTAGE = 415 \u00b110 V, FREQUENCY=50 \u00b15 HZ, AMBIENT TEMP.=45\u00b0 C, PROTECTION = IP-55, 3 85 PHASE, HP = 30 (22 KW), RPM=1475, FRAME SIZE=E200L, FLANGE MOUNTED 73 72 BONFIGLIOLI MAKE INLINE HELICAL GEAR BOX, MODEL NO. AS90 F 15.65 P200 B5 V1, RATIO 15.65:1 72 40 ~ N2 N7 N12 N5 N10 41 32 N9 N3 N8 REFER NOTE :10 68 69 70 71 31 T 0.1 36 67 37 N9 N3 32 30 64 65 66 31 31 84 M R 925 24 81 N1A R.L. 27 47 44 33 48 51 35 53 61 62 63 N1 26 60 30 80 17 N4 34 29 56 N6 N7 33 18 N2 43 28 82 22 O S 16 57 965 I D. 46 83 21 T2 T1 54 74 7 R 950 50 N6 34 39 52 R 925 76 R.L. R.L. R.L. 10000L ~ 5 4 1 2 INNER O S NOZZLE FACE UNIT PART LIST UNIT PART LIST DESIGN CODE : ASME SECTION VIII, DIV.1 (LATEST) INTERNAL INSPECTION : (I) STAGEWISE :- (II) FINAL :- INTERNAL BY CLIENT"
     }
   }
 }

@@ -1,6 +1,5 @@
-import axios from "axios";
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8006";
+// import axios from "axios";
+import api from "../api/axios";
 
 export const compareDrawings = async (pdf1, pdf2) => {
   const formData = new FormData();
@@ -8,8 +7,8 @@ export const compareDrawings = async (pdf1, pdf2) => {
   formData.append("pdf2", pdf2);
 
   try {
-    const response = await axios.post(
-      `${API_BASE_URL}/api/comparison/compare_drawings/`,
+    const response = await api.post(
+      `/api/comparison/compare_drawings/`,
       formData,
       {
         headers: { "Content-Type": "multipart/form-data" },

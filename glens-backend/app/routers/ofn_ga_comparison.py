@@ -194,10 +194,11 @@ async def process_comparison_task(job_id: str, db_id: int, ga_data: dict, ofn_da
         ofn_name = f"{ofn_data.get('GMM Pfaudler Quote No', 'Unknown')}_{ofn_data.get('Capacity', 'Unknown')}"
         ga_name = list(ga_data.keys())[0] if ga_data else "Unknown"
 
-        save_dir = r"D:/Glens_data/Comparison"
-        os.makedirs(save_dir, exist_ok=True)
+        base_dir = r"D:/Glens_data/Comparison"
+        user_dir = os.path.join(base_dir, str(user_id))
+        os.makedirs(user_dir, exist_ok=True)
         filename = f"{sanitize_filename(ofn_name)}__{sanitize_filename(ga_name)}.json"
-        save_path = os.path.join(save_dir, filename)
+        save_path = os.path.join(user_dir, filename)
 
         with open(save_path, "w", encoding="utf-8") as f:
             json.dump(result, f, indent=4, ensure_ascii=False)
@@ -334,10 +335,12 @@ async def get_comparison_history(
     q = select(ComparisonResult).order_by(ComparisonResult.created_at.desc())
 
     # Apply role-based filter
-    if current_user["role"] != "admin":
-        q = q.where(ComparisonResult.user_id == current_user["user_id"])
-    elif user_id:
-        q = q.where(ComparisonResult.user_id == user_id)
+    # if current_user["role"] != "admin":
+    #     q = q.where(ComparisonResult.user_id == current_user["user_id"])
+    # elif user_id:
+    #     q = q.where(ComparisonResult.user_id == user_id)
+
+    q = q.where(ComparisonResult.user_id == current_user["user_id"])
 
     if status:
         q = q.where(ComparisonResult.status == status)

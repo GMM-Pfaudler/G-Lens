@@ -4,7 +4,8 @@ import { Person, Lock, Visibility, VisibilityOff } from "@mui/icons-material";
 import { InputAdornment } from "@mui/material";
 import { Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Logo from "../assets/gmm_Glens.png"
+// import Logo from "../assets/gmm_Glens.png"
+import Logo from "../assets/glens_logo.png"
 import { Snackbar, Alert } from "@mui/material";
 
 const API_URL = import.meta.env.VITE_API_URL;

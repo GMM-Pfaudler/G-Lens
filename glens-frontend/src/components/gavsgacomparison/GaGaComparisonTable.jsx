@@ -58,7 +58,6 @@ const GAGaComparisonTable = ({ comparisons, loading, onRefresh }) => {
   const [orderBy, setOrderBy] = useState("updated_at");
   const [order, setOrder] = useState("desc");
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
   const navigate = useNavigate();
 
   const sortedComparisons = useMemo(() => {
@@ -85,10 +84,10 @@ const GAGaComparisonTable = ({ comparisons, loading, onRefresh }) => {
   }, [comparisons, orderBy, order]);
 
   const paginatedComparisons = useMemo(() => {
-    const start = page * rowsPerPage;
-    const end = start + rowsPerPage;
-    return sortedComparisons.slice(start, end);
-  }, [sortedComparisons, page, rowsPerPage]);
+    const start = page * 5;
+    return sortedComparisons.slice(start, start + 5);
+  }, [sortedComparisons, page]);
+
 
   const handleSort = (property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -97,10 +96,6 @@ const GAGaComparisonTable = ({ comparisons, loading, onRefresh }) => {
   };
 
   const handleChangePage = (event, newPage) => setPage(newPage);
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
 
   const handleViewResult = (id) => {
     navigate(`/comparison/ga-ga/result/${id}`);
@@ -303,13 +298,14 @@ const GAGaComparisonTable = ({ comparisons, loading, onRefresh }) => {
       </Table>
 
       <TablePagination
-        rowsPerPageOptions={[5, 10, 25, 50]}
+        // rowsPerPageOptions={[5, 10, 25, 50]}
         component="div"
         count={comparisons.length}
-        rowsPerPage={rowsPerPage}
+        rowsPerPage={5}
         page={page}
         onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+        rowsPerPageOptions={[]}
+        // onRowsPerPageChange={handleChangeRowsPerPage}
         sx={{
           borderTop: "1px solid",
           borderColor: "grey.200",

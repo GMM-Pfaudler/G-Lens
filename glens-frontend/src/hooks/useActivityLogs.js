@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api/axios";
 
 /**
  * Custom hook to fetch recent activity logs from the backend.
@@ -11,18 +11,16 @@ export const useActivityLogs = (limit = 6) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8006";
-
   useEffect(() => {
     const fetchLogs = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        const url = `${API_BASE}/activity-log/recent`;
-        console.log("Fetching Activity Logs from:", url, "with limit:", limit);
+        console.log("Fetching Activity Logs with limit:", limit);
 
-        const response = await axios.get(url, { params: { limit } });
+        // ✅ Using the global API instance — automatically handles baseURL + auth header
+        const response = await api.get("/activity-log/recent", { params: { limit } });
 
         console.log("Activity Logs API response:", response.data);
 
