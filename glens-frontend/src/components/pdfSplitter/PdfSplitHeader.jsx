@@ -10,7 +10,7 @@ const PdfSplitHeader = ({ onStart }) => {
       justifyContent="space-between"
       alignItems="center"
     >
-      <Typography variant="h5" fontWeight="bold">
+      <Typography variant="h5" fontWeight="bold" color="#0e2980">
         PDF Splitter
       </Typography>
 
@@ -18,6 +18,14 @@ const PdfSplitHeader = ({ onStart }) => {
         variant="contained"
         startIcon={<UploadFileIcon />}
         onClick={onStart}
+        sx={{
+          backgroundColor: "#0e2980",
+          '&:hover': {
+            backgroundColor: "#1a3a9e",
+            transform: 'translateY(-1px)',
+          },
+          transition: 'all 0.2s ease',
+        }}
       >
         Upload PDF
       </Button>

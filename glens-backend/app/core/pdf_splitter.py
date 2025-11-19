@@ -113,7 +113,8 @@ def generate_section_pdfs(base_page_path, source_pdf_path, sections, quote_numbe
             for p in pages:
                 writer.add_page(source_reader.pages[p])
 
-            filename = f"{quote_number}_{capacity}.pdf"
+            # ✅ Add section index to filename
+            filename = f"{quote_number}_{capacity}_section_{idx}.pdf"
             output_path = os.path.join(output_folder, filename)
 
             with open(output_path, "wb") as f:
@@ -122,3 +123,4 @@ def generate_section_pdfs(base_page_path, source_pdf_path, sections, quote_numbe
             created_files.append(output_path)
 
     return created_files
+
