@@ -16,6 +16,8 @@ import ComparisonResultPage from "./pages/history_pages/ComparisonResultPage";
 import ComparisonHistoryPage from "./pages/history_pages/ComparisonHistoryPage";
 import OfnGaResultPage from "./pages/comparison/ofnGa/ResultPage.jsx";
 import GaGaResultPage from "./pages/comparison/gaGa/GaGaResultPage.jsx";
+import Documentation from "./pages/Documentation.jsx";
+import PdfSplitter from "./pages/PdfSplitter.jsx";
 
 function App() {
   return (
@@ -37,6 +39,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+
+          {/*Documentation and Tools*/}
+          <Route path="/documentation" element={<Documentation />} />
+          <Route path="/pdf-splitter" element={<PdfSplitter/>} />
 
           {/* 🧩 OFN-GA Comparison Module */}
           <Route path="/ofn-ga-comparison" element={<OfnGaComparison />} />

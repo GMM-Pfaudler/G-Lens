@@ -543,7 +543,7 @@ class ComparisonService: #------- real One
             # Step 5: Process Questions Async (Batch-based)
             # -------------------------
             results = []
-            batch_size = 5  # tune depending on Ollama’s load tolerance
+            batch_size = 15  # tune depending on Ollama’s load tolerance
 
             async def process_question(idx, q):
                 try:

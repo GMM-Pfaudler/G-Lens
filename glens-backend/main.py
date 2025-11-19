@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import auth,ofn_router,ga_router,test_router
-from app.routers import ofn_ga_comparison,ga_ga_comparison,full_bom_router,model_vs_bom_comparison,image_comparison_router,sse_router,activity_log_router
+from app.routers import ofn_ga_comparison,ga_ga_comparison,full_bom_router,model_vs_bom_comparison,image_comparison_router,sse_router,activity_log_router,pdf_splitter_routes
 import uvicorn
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -67,8 +67,10 @@ app.include_router(image_comparison_router.router,prefix="/api/comparison", tags
 
 app.include_router(activity_log_router.router)
 
+app.include_router(pdf_splitter_routes.router)
+
 # SSE Router
 app.include_router(sse_router.router, prefix="/api/sse", tags=["SSE"])
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", port=8006, reload=True)
+    uvicorn.run("main:app", port=8010, reload=True)

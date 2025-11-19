@@ -11,7 +11,7 @@ DB_NAME = os.getenv("MYSQL_DB", "glens_data")
 DATABASE_URL = f"mysql+aiomysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 # Async engine
-engine = create_async_engine(DATABASE_URL, echo=False, future=True) # Use echo to start db level comments or disable them 
+engine = create_async_engine(DATABASE_URL, echo=False, future=True,pool_pre_ping=True,pool_recycle=3600) # Use echo to start db level comments or disable them 
 
 # Async session
 AsyncSessionLocal = sessionmaker(

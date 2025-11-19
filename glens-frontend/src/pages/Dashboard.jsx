@@ -7,6 +7,10 @@ import StatCard from "../components/StatCard";
 import ActivityCard from "../components/ActivityCard";
 import { useActivityLogs } from "../hooks/useActivityLogs";
 import formatUserName from "../utils/formatUserName";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const operations = [
   { 
@@ -55,6 +59,11 @@ const Dashboard = () => {
   const displayName = formatUserName(userId);
   console.log("Activity Logs →", logs, "Loading:", loading, "Error:", error);
 
+  // Menu State
+  const [menuAnchor, setMenuAnchor] = React.useState(null);
+  const openMenu = (e) => setMenuAnchor(e.currentTarget);
+  const closeMenu = () => setMenuAnchor(null);
+
   return (
     <>
       <Navbar />
@@ -88,23 +97,109 @@ const Dashboard = () => {
                 color="primary"
               />
             </Box>
-            <Button 
-              variant="outlined" 
-              size="small"
-              onClick={() => navigate('/documentation')}
+          <IconButton
+              onClick={openMenu}
               sx={{
+                border: "1px solid",
+                borderColor: "divider",
+                borderRadius: 2,
+                padding: "8px",
+                backgroundColor: "background.paper",
+                boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+                transition: "all 0.3s ease",
                 '&:hover': {
-                  backgroundColor: 'transparent',
-                  borderColor: '#2563eb',
-                  color: '#2563eb',
-                  transform: 'translateY(-1px)',
-                  boxShadow: '0 2px 8px rgba(37, 99, 235, 0.2)'
-                },
-                transition: 'all 0.2s ease'
+                  backgroundColor: '#b3d1eb',
+                  borderColor: '#0e2980',
+                  transform: 'translateY(-2px)',
+                  boxShadow: `
+                    0 4px 12px rgba(0, 0, 0, 0.1),
+                    0 0 0 1px rgba(14, 41, 128, 0.1)
+                  `
+                }
               }}
             >
-              View Guide
-            </Button>
+              <MenuIcon 
+                sx={{ 
+                  color: "#0e2980",
+                  fontSize: "1.25rem",
+                  transition: "transform 0.3s ease"
+                }} 
+              />
+            </IconButton>
+
+            <Menu
+              anchorEl={menuAnchor}
+              open={Boolean(menuAnchor)}
+              onClose={closeMenu}
+              sx={{
+                '& .MuiPaper-root': {
+                  borderRadius: "12px",
+                  marginTop: "8px",
+                  boxShadow: "0 10px 30px rgba(0, 0, 0, 0.15)",
+                  border: "1px solid",
+                  borderColor: "rgba(14, 41, 128, 0.1)",
+                  minWidth: 200,
+                  overflow: 'visible',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: -8,
+                    right: 14,
+                    width: 16,
+                    height: 16,
+                    backgroundColor: 'background.paper',
+                    borderLeft: '1px solid',
+                    borderTop: '1px solid',
+                    borderColor: "rgba(14, 41, 128, 0.1)",
+                    transform: 'rotate(45deg)'
+                  }
+                }
+              }}
+              transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            >
+              <MenuItem
+                onClick={() => {
+                  closeMenu();
+                  navigate('/documentation');
+                }}
+                sx={{
+                  padding: "12px 16px",
+                  transition: "all 0.2s ease",
+                  '&:hover': {
+                    backgroundColor: "rgba(179, 209, 235, 0.3)",
+                    transform: "translateX(4px)",
+                  },
+                  '&:first-of-type': {
+                    borderTopLeftRadius: 8,
+                    borderTopRightRadius: 8
+                  }
+                }}
+              >
+                📚 View Guide
+              </MenuItem>
+
+              <MenuItem
+                onClick={() => {
+                  closeMenu();
+                  navigate('/pdf-splitter');
+                }}
+                sx={{
+                  padding: "12px 16px",
+                  transition: "all 0.2s ease",
+                  '&:hover': {
+                    backgroundColor: "rgba(179, 209, 235, 0.3)",
+                    transform: "translateX(4px)",
+                  },
+                  '&:last-of-type': {
+                    borderBottomLeftRadius: 8,
+                    borderBottomRightRadius: 8
+                  }
+                }}
+              >
+                ✂️ PDF Splitter Tool
+              </MenuItem>
+            </Menu>
           </Box>
         </Paper>
 
