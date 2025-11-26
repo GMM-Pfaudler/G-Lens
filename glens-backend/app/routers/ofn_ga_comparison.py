@@ -335,12 +335,12 @@ async def get_comparison_history(
     q = select(ComparisonResult).order_by(ComparisonResult.created_at.desc())
 
     # Apply role-based filter
-    # if current_user["role"] != "admin":
-    #     q = q.where(ComparisonResult.user_id == current_user["user_id"])
-    # elif user_id:
-    #     q = q.where(ComparisonResult.user_id == user_id)
+    if current_user["role"] != "admin":
+        q = q.where(ComparisonResult.user_id == current_user["user_id"])
+    elif user_id:
+        q = q.where(ComparisonResult.user_id == user_id)
 
-    q = q.where(ComparisonResult.user_id == current_user["user_id"])
+    # q = q.where(ComparisonResult.user_id == current_user["user_id"])
 
     if status:
         q = q.where(ComparisonResult.status == status)

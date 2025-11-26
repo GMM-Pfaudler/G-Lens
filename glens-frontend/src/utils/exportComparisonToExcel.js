@@ -41,6 +41,7 @@ export const exportComparisonToExcel = (comparisonResult) => {
       const headers = [
         "Keywords / Part No.",
         "Comparison Status",
+        "Mismatched Fields",
         ...fields.flatMap((f) => [
           `${f} (Model BOM)`,
           `${f} (Ref BOM)`
@@ -54,6 +55,9 @@ export const exportComparisonToExcel = (comparisonResult) => {
         const row = [
           item["KEYWORDS"] ?? "-",
           item["Comparison Status"] ?? "-",
+           Array.isArray(item["Mismatched Fields"]) && item["Mismatched Fields"].length
+            ? item["Mismatched Fields"].join(", ")   // ✅ JOIN FIELD NAMES
+            : "-",
           ...Object.keys(details).flatMap((f) => [
             details[f]?.["Model BOM"] ?? "-",
             details[f]?.["Ref BOM"] ?? "-"

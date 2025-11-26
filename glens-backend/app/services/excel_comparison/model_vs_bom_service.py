@@ -133,10 +133,16 @@ class ModelVsBomService:
                     "Match": None
                 }
 
+                mismatched_fields = [
+                    field for field, values in field_comparison.items()
+                    if values.get("Match") is False
+                ]
+
                 matched.append({
                     "KEYWORDS": keyword,
                     "Comparison Status": "Match" if match else "Mismatch",
-                    "Comparison Details": field_comparison
+                    "Comparison Details": field_comparison,
+                    "Mismatched Fields": mismatched_fields   # ✅ NEW FIELD
                 })
             else:
                 missing.append({

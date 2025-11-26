@@ -2,7 +2,8 @@ from openai import AsyncOpenAI
 
 vllm_client = AsyncOpenAI(
     api_key="gmmgpt",
-    base_url="http://192.168.104.253:8000/v1"
+    # base_url="http://192.168.104.253:8000/v1"
+    base_url="http://192.168.104.253:8011/v1"
 )
 
 async def ask_vllm(model, prompt):

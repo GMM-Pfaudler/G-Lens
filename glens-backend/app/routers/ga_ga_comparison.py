@@ -337,12 +337,12 @@ async def get_ga_ga_comparison_history(
     q = select(GAGaComparisonResult).order_by(GAGaComparisonResult.created_at.desc())
 
     # Role-based filtering
-    # if current_user["role"] != "admin":
-    #     q = q.where(GAGaComparisonResult.user_id == current_user["user_id"])
-    # elif user_id:
-    #     q = q.where(GAGaComparisonResult.user_id == user_id)
+    if current_user["role"] != "admin":
+        q = q.where(GAGaComparisonResult.user_id == current_user["user_id"])
+    elif user_id:
+        q = q.where(GAGaComparisonResult.user_id == user_id)
 
-    q = q.where(GAGaComparisonResult.user_id == current_user["user_id"])
+    # q = q.where(GAGaComparisonResult.user_id == current_user["user_id"])
 
     # Optional status filter
     if status:
