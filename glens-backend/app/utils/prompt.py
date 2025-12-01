@@ -1,109 +1,3 @@
-def build_section_prompt(section:str,question:str,context:str) -> str:
-    if section == "part_list":
-            return(
-                f"You are a smart assistant helping to verify if a component or its type is present in the following Bill of Materials (BoM) section:\n\n"
-                f"Your job is to decide if the item or design described in the question is already written in the context.\n"
-                f"- Only use component names and descriptions from the context. Do not copy from the question unless it also appears in the context.\n"
-                f"{context}\n\n"
-                f"Here is the question:\n"
-                f"{question}\n\n"
-                f"- You can say YES if the **primary component type or design** in the question is clearly present in the context (e.g., 'Spring Balance Assembly' matches 'SPRING BALANCE ASSEMBLY').\n"
-                f"- Do NOT say YES if only a generic material (like 'MS') matches — the full part or function must match.\n"
-                f"- Look for matches in structure, type, and function — even if phrasing or order of words differs.\n"
-                f"- If it’s not an exact match, try to return the closest functional or naming equivalent.\n\n"
-                f"- Only return the **description** from the context as your matched or closest value. Do not include part numbers, quantities, or drawing numbers.\n"
-                f"- Ignore drawing numbers, even if they're on the same line. Match only the component description exactly.\n"
-                f"- Think carefully through the whole context before deciding.\n\n"
-                f"If it's a match, reply like this:\n"
-                f'{{"matched": "Yes", "section": "{section}", "matched_value": "<copy full matching part description from the context>"}}\n\n'
-                f"If not a match, reply like this:\n"
-                f'{{"matched": "No", "section": "{section}", "closest_match": "<copy the closest part description from the context>"}}\n\n'
-                f"⚠️ Rules:\n"
-                f"- Only return a valid JSON. No comments, no explanations, no markdown."
-            )
-
-    elif section == "lining_and_notes":
-         return(
-            f"You are a smart assistant tasked with checking whether a value from the question exists in the provided context from the '{section}' section.\n\n"
-            f"Rules:\n"
-            f"- Use only information explicitly present in the context. Do NOT copy or infer anything from the question unless the exact value appears in the context.\n"
-            f"- A match can still be valid if there's a minor variation in wording, symbols, or formatting.\n"
-            f"- For abbreviations or codes in the question (e.g., 'UT'), match them to their full form in the context (e.g., 'Ultrasonically Tested'). Return the form from the context.\n"
-            f"- Take your time, think carefully, and check the entire context before answering.\n"
-            f"- If no exact match is found, return the closest relevant value or phrase.\n\n"
-            f"Context:\n{context}\n\n"
-            f"Question:\n{question}\n\n"
-            f"Output Format:\n"
-            f'If matched, respond ONLY with JSON:\n'
-            f'{{"matched": "Yes", "section": "{section}", "matched_value": "<exact value from context>"}}\n\n'
-            f'If no match, respond ONLY with JSON:\n'
-            f'{{"matched": "No", "section": "{section}", "closest_match": "<closest value from context>"}}\n\n'
-            f"⚠️ Important: Return ONLY valid JSON without any additional text or comments."
-        )
-
-    elif section == "design_data":
-        return(
-            f"You are a smart assistant tasked with checking whether a specific value mentioned in a question exists in the following context from the '{section}' section.\n\n"
-            f"--- CONTEXT ---\n{context}\n\n"
-            f"--- QUESTION ---\n{question}\n\n"
-            f"Instructions:\n"
-            f"1. Carefully read the context.\n"
-            f"2. Check if the value from the question is explicitly or logically present in the context.\n"
-            f"   - Logical match means same meaning using different words, units, symbols, or abbreviations (e.g., 'F.V.', '≤', etc.)\n"
-            f"3. ✅ If a match is found, return the **entire matching value exactly as it appears in the context** — including full phrases, numbers, symbols, and units.\n"
-            f"   - Do not return a partial value (e.g., just '6 bar') if the context has more (e.g., 'F. V. 6 bar(g)')\n"
-            f"   - Do not use or copy the value from the question — always extract directly from the context\n"
-            f"4. ❌ If there's no match, find and return the **closest related value or phrase** from the context.\n\n"
-            f"⚠️ Output Format:\n"
-            f"- Return strictly valid JSON. No other text.\n"
-            f"If matched:\n"
-            f'{{"matched": "Yes", "section": "{section}", "matched_value": "<copy the full matching value exactly as written in the context>"}}\n\n'
-            f"If not matched:\n"
-            f'{{"matched": "No", "section": "{section}", "closest_match": "<copy the closest related value or phrase from the context>"}}\n\n'
-            f"💡 Think carefully. Be precise. Never return partial or rephrased answers — only extract complete values from the context."
-        )
-    
-    elif section == "material_of_construction":
-        return(
-            f"You are a smart assistant helping to verify if a specific material or standard appears in the 'Materials of Construction' section below:\n\n"
-            f"Your job is to check if the material or standard in the question is already present in the context.\n"
-            f"- Only match based on the actual context. Do not copy from the question unless it also appears in the context.\n"
-            f"{context}\n\n"
-            f"Here is the question:\n"
-            f"{question}\n\n"
-            f"- You can say YES if the material or standard in the context logically matches or closely relates to the one in the question (e.g., same grade, standard, or acceptable variant).\n"
-            f"- Minor formatting differences (e.g., 'SA 105' vs 'ASTM A105') are acceptable as long as the meaning is the same.\n"
-            f"- If it does not match, try to find and return the closest relevant material or part name from the context.\n\n"
-            f"- **Always return the full matching or closest value as it appears in the context — prioritize detail and completeness.**\n"
-            f"- Take your time, think carefully, and examine the entire context before answering.\n\n"
-            f"If it’s a match, reply in this exact JSON format:\n"
-            f'{{"matched": "Yes", "section": "{section}", "matched_value": "<copy the logically matching value from the context>"}}\n\n'
-            f"If it’s not a match, reply in this format:\n"
-            f'{{"matched": "No", "section": "{section}", "closest_match": "<copy the closest value from the context>"}}\n\n'
-            f"⚠️ Rules:\n"
-            f"- Only return a valid JSON. No extra explanation, no comments, no markdown."
-        )
-
-    else:
-        return(
-            f"You are a smart assistant helping to check if a value exists in the following context from the '{section}' section:\n\n"
-            f"Your job is to decide if the value in the question is already written in the context.\n"
-            f"- Only use values from the context. Do not copy from the question unless it also appears in the context.\n"
-            f"{context}\n\n"
-            f"Here is the question:\n"
-            f"{question}\n\n"
-            f"- You can say YES if the value in the context means the same thing, even if the words are a little different and some symbols are missing.\n"
-            f"- You can say NO if the value is missing or very different, but try to find the closest line in the context.\n\n"
-            f"- Take your time, Think Carefully and check whole context before answering."
-            f"- **Try to return full values or more detailed in both cases match or closest to reduce the confusion and choose only from context.**"
-            f"If it’s a match, reply like this:\n"
-            f'{{"matched": "Yes", "section": "{section}", "matched_value": "<copy the logically matching value from the context>"}}\n\n'
-            f"If not a match, reply like this:\n"
-            f'{{"matched": "No", "section": "{section}", "closest_match": "<copy the closest value from the context>"}}\n\n'
-            f"⚠️ Rules:\n"
-            f"- Only return a valid JSON. No extra explanation, no comments."
-        )
-
 def build_payload(model_name: str,prompt: str) -> dict:
     """
     Build a standardized payload for the Ollama API.
@@ -114,14 +8,167 @@ def build_payload(model_name: str,prompt: str) -> dict:
         "prompt": prompt,
         "stream": False,
         "temperature": 0.0,
-        "format": {
-            "type": "object",
-            "properties": {
-                "matched": {"type": "string"},
-                "section": {"type": "string"},
-                "matched_value": {"type": "string"},
-                "closest_match": {"type": "string"},
-            },
-            "required": ["matched", "section"]
-        }
     }
+  
+def build_section_prompt(section: str, question: str, context: str) -> str:
+    COMMON_EQUIVALENCE_RULES = """
+EQUIVALENCE RULES (APPLY STRICTLY):
+1. Literal Equivalence — exact word/symbol matches.
+2. Semantic Equivalence — same meaning with different wording. also Fabricated is the same as/equivalent to Plain.
+3. Numeric Equivalence:
+   - Extract all numbers from question and context.
+   - Normalize formats (05 → 5, 1.0 → 1, 12.50 → 12.5).
+   - Compare numbers numerically, not textually.
+4. Unit Equivalence — equivalent units match (10 mm == 1 cm). also treat CPS same as CP
+5. Abbreviation / Full Form Equivalence — UT == Ultrasonically Tested, SA 105 == ASTM A105,etc. also a few reference abbreviations are [ULGL is Ultra Glass, WGL is White Glass, ARGL is ARG Glass, SSGL is Blue Glass, PPGL is Pharma Glass]
+6. Case / Punctuation / Whitespace Equivalence — ignore differences (SA-105 == sa 105).
+7. Word Order Equivalence — Flow Control Valve == Valve for Flow Control.
+8. Material / Standard Equivalence — SA 105 == ASTM A105; SS316 == Stainless Steel 316, etc. also MSGL is the same as/equivalent to [GL ,UGL,9100 Glass, Pharma Glass, Ultra Glass, White Glass, Nano Glass, ARG Glass, PPGL] only. Also note that Ultra Glass 6500 (Dark Blue) is equivalent to Ultra Glass 6500. Also Pfaudler World Wide is equivalent to Pfaudler.
+9. Range / Tolerance Equivalence — numbers close within tolerance may match (5.0 bar == 5.05 bar).
+10. Implicit/Optional Information Equivalence — known abbreviations or contextual meanings match (CR == Corrosion Resistant).
+11. Singular/Plural Equivalence — Valve == Valves.
+12. Partial Phrase Equivalence — partial numeric/descriptor matches must return the full context phrase.
+13. Symbol/Notation Equivalence — ≤ == <= ; °C == Celsius.
+14. Functional/Contextual Equivalence — match components performing the same function.
+CLOSEST MATCH RULE:
+- If no match, return the closest semantic/functional value from the context.
+OUTPUT RULES:
+- Return STRICT JSON ONLY.
+- No comments, no markdown, no explanations.
+THINKING RULES:
+- Carefully compare entire context before deciding.
+- Use only values that appear exactly in the context.
+- Return full phrases from context for all matches.
+"""
+
+    if section == "part_list":
+        return f"""
+You are a smart assistant verifying whether a component or its type from the question is present in the Bill of Materials (BoM) section.
+
+Your task:
+- Determine if the primary component type or design in the question is already present in the context.
+- Use only component names/descriptions from the context.
+- Do NOT copy anything from the question unless it also appears in the context.
+
+Context:
+{context}
+
+Question:
+{question}
+
+Matching rules:
+- YES if the component type/design clearly appears (even if word order or phrasing differs).
+- Do NOT match based only on generic materials unless that is the only value specified in the question.
+- If matched, return the full description exactly as written in the context.
+- Ignore drawing numbers, quantities, page numbers and part numbers.
+- If no exact or equivalent match, return the closest functional/naming equivalent.
+
+{COMMON_EQUIVALENCE_RULES}
+
+Return formats:
+If matched:
+{{"matched": "Yes", "section": "part_list", "matched_value": "<copy full matching description from context>"}}
+If not matched:
+{{"matched": "No", "section": "part_list", "closest_match": "<copy closest description from context>"}}
+""".strip()
+
+    elif section == "lining_and_notes":
+        return f"""
+You are a smart assistant determining whether a value from the question exists in the 'lining_and_notes' context.
+
+Rules:
+- Only use values explicitly present in the context.
+- Abbreviations in question must match their full forms in context and vice versa.
+- Minor formatting or symbol variations still count as matches.
+- If matched, return the full value as written in the context.
+- If unmatched, return the closest value in the context.
+
+Context:
+{context}
+
+Question:
+{question}
+
+{COMMON_EQUIVALENCE_RULES}
+
+Return formats:
+If matched:
+{{"matched": "Yes", "section": "lining_and_notes", "matched_value": "<exact value from context>"}}
+If not:
+{{"matched": "No", "section": "lining_and_notes", "closest_match": "<closest value from context>"}}
+""".strip()
+
+    elif section == "design_data":
+        return f"""
+You are a smart assistant verifying whether a specific value from the question exists in the 'design_data' context.
+
+Context:
+{context}
+
+Question:
+{question}
+
+Rules:
+- Identify whether the value (numeric, symbolic, descriptive) exists explicitly or logically.
+- Logical = semantic wording, numeric equivalence, unit conversion, symbol equivalence.
+- If matched, return the entire matching phrase exactly as in the context. if essential, concatenate upto two phrases, only and only if deemed necessary.
+- Never return partial values.
+- If unmatched, return the closest related value.
+
+{COMMON_EQUIVALENCE_RULES}
+
+Return formats:
+If matched:
+{{"matched": "Yes", "section": "design_data", "matched_value": "<full phrase exactly from context>"}}
+If not:
+{{"matched": "No", "section": "design_data", "closest_match": "<closest phrase from context>"}}
+""".strip()
+
+    elif section == "material_of_construction":
+        return f"""
+You are a smart assistant verifying whether a material or standard from the question appears in the 'material_of_construction' context.
+
+Context:
+{context}
+
+Question:
+{question}
+
+Rules:
+- Match based on equivalent grades, standards, materials, or acceptable variants.
+- Accept minor formatting differences (e.g., SA-105 vs ASTM A105).
+- Always return the full context phrase.
+- If unmatched, return the closest relevant material/standard.
+
+{COMMON_EQUIVALENCE_RULES}
+
+Return formats:
+If matched:
+{{"matched": "Yes", "section": "material_of_construction", "matched_value": "<value from context>"}}
+If not:
+{{"matched": "No", "section": "material_of_construction", "closest_match": "<closest value from context>"}}
+""".strip()
+
+    else:
+        return f"""
+You are a smart assistant checking whether a value from the question exists in the '{section}' context.
+
+Context:
+{context}
+
+Question:
+{question}
+
+Rules:
+- Match logically equivalent meanings, symbols, numbers, or descriptions.
+- Always return full context phrases.
+- If unmatched, provide the closest meaningful value.
+
+{COMMON_EQUIVALENCE_RULES}
+
+Return formats:
+If matched:
+{{"matched": "Yes", "section": "{section}", "matched_value": "<value from context>"}}
+If not:
+{{"matched": "No", "section": "{section}", "closest_match": "<closest value from context>"}}
+""".strip()

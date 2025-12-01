@@ -543,7 +543,7 @@ class ComparisonService: #------- real One
             # Step 5: Process Questions Async (Batch-based)
             # -------------------------
             results = []
-            batch_size = 15  # tune depending on Ollama’s load tolerance
+            batch_size = 5  # tune depending on Ollama’s load tolerance
 
             async def process_question(idx, q):
                 try:
@@ -572,15 +572,15 @@ class ComparisonService: #------- real One
                     return {"question": q["question"], "section": q["section"], "error": str(e)}
 
             # Run in controlled batches to avoid overload
-            # for i in range(0, total_questions, batch_size):
-            #     batch = questions[i:i + batch_size]
-            #     batch_results = await asyncio.gather(*[process_question(i + j, q) for j, q in enumerate(batch)])
-            #     results.extend(batch_results)
-            #     await asyncio.sleep(0.5)  # short gap to reduce load
+            for i in range(0, total_questions, batch_size):
+                batch = questions[i:i + batch_size]
+                batch_results = await asyncio.gather(*[process_question(i + j, q) for j, q in enumerate(batch)])
+                results.extend(batch_results)
+                await asyncio.sleep(0.5)  # short gap to reduce load
 
-            tasks = [process_question(idx, q) for idx, q in enumerate(questions)]
+            # tasks = [process_question(idx, q) for idx, q in enumerate(questions)]
 
-            results = await asyncio.gather(*tasks)
+            # results = await asyncio.gather(*tasks)
 
             # -------------------------
             # Step 6: Completion

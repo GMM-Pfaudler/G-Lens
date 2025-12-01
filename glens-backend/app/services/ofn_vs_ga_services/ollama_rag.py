@@ -15,14 +15,16 @@ import asyncio
 from langchain_core.documents import Document
 from app.core.ws_manager import send_ws_message
 from app.utils.vllm_client import ask_vllm
+from app.utils.vllm_embedder import VLLMEmbeddingWrapper
+from pathlib import Path
 
 # OLLAMA_BASE_URL = "http://192.168.157.82:11434"
-OLLAMA_BASE_URL = "http://ko-gmmpfw0078:11434"
+OLLAMA_BASE_URL = "http://172.30.0.20:11434"
 # MODEL_NAME = "gemma3n:latest"
 # MODEL_NAME = "llama3.2:latest"
-# MODEL_NAME = "gpt-oss:20b"
+MODEL_NAME = "gpt-oss:20b"
 # MODEL_NAME = "gpt-oss:120b-cloud"
-MODEL_NAME = "openai/gpt-oss-20b"
+# MODEL_NAME = "openai/gpt-oss-20b" #vllm
 
 class OllamaEmbeddingWrapper(Embeddings):
     def __init__(self, model="nomic-embed-text:latest"):
@@ -724,112 +726,6 @@ class Check:
     #         print(f"❌ [REPORT] Ollama error: {e}")
     #         return {"matched": "Error", "section": section, "error": str(e), "raw_response": raw_text if 'raw_text' in locals() else ""}
 
-    # async def report_over_context_async(self, question, section, vectorstore=None, job_id=None):
-    #     print(f"\n🧭 [REPORT] question={question[:80]}... section={section}")
-    #     embeddings = OllamaEmbeddingWrapper(model="nomic-embed-text:latest")
-    #     collection = vectorstore._collection
-
-    #     # --- Build Chroma query ---
-    #     nozzle_no = self.extract_nozzle_number_from_question(question)
-    #     query_embedding = embeddings.embed_query(question)
-    #     where_document = {"$contains": f"Nozzle: Ref.: {nozzle_no},"} if nozzle_no not in ("", "N/A") else None
-    #     print(f"🔍 [REPORT] Document filter: {where_document}")
-
-    #     # --- Run Chroma query off-thread ---
-    #     try:
-    #         print("⏳ [REPORT] Running Chroma query in thread...")
-    #         results = await asyncio.to_thread(
-    #             collection.query,
-    #             query_embeddings=[query_embedding],
-    #             n_results=5,
-    #             where={"section": section},
-    #             where_document=where_document,
-    #             include=["documents", "metadatas"]
-    #         )
-    #         print("✅ [REPORT] Chroma query completed.")
-    #     except Exception as e:
-    #         print(f"❌ [REPORT] Chroma query failed: {e}")
-    #         return {"matched": "Error", "section": section, "error": f"Chroma query failed: {e}"}
-
-    #     # --- Build docs and prompt ---
-    #     docs = [
-    #         Document(page_content=doc, metadata=meta)
-    #         for doc, meta in zip(results["documents"][0], results["metadatas"][0])
-    #     ]
-    #     print(f"📄 [REPORT] Retrieved {len(docs)} docs")
-
-    #     context = "\n".join([doc.page_content for doc in docs])
-    #     prompt_report = build_section_prompt(section=section, question=question, context=context)
-    #     payload = build_payload(model_name=MODEL_NAME, prompt=prompt_report)
-    #     url = f"{OLLAMA_BASE_URL}/api/generate"
-
-    #     # --- Direct Ollama request (no semaphore) ---
-    #     try:
-    #         async with asyncio.timeout(60):  # overall timeout for Ollama call
-    #             timeout = aiohttp.ClientTimeout(total=40, connect=10, sock_connect=10, sock_read=20)
-    #             print(f"🌐 [REPORT] Sending Ollama request (model={payload.get('model')})")
-
-    #             async with aiohttp.ClientSession(timeout=timeout) as session:
-    #                 async with session.post(url, json=payload) as response:
-    #                     print(f"🌐 [REPORT] Ollama HTTP status: {response.status}")
-    #                     raw_text = await response.text()
-    #                     print(f"🧾 [REPORT] Raw Ollama text length: {len(raw_text)}")
-
-    #                     # Try parsing JSON response
-    #                     try:
-    #                         result = json.loads(raw_text)
-    #                     except json.JSONDecodeError:
-    #                         print("⚠️ [REPORT] Response not valid JSON, wrapping as raw text.")
-    #                         result = {"response": raw_text}
-
-    #     except asyncio.TimeoutError:
-    #         print(f"⏰ [REPORT] Ollama request timed out for section {section}")
-    #         return {"matched": "Error", "section": section, "error": "Ollama request timed out"}
-    #     except Exception as e:
-    #         print(f"❌ [REPORT] Ollama request failed: {e}")
-    #         return {"matched": "Error", "section": section, "error": str(e)}
-
-    #     # --- Parse the model output ---
-    #     content = result.get("response", "")
-    #     print(f"🧾 [REPORT] Model 'response' length: {len(content)}")
-
-    #     try:
-    #         final_result = json.loads(content)
-    #     except Exception:
-    #         match = re.search(r"\{[\s\S]*\}", content)
-    #         if match:
-    #             try:
-    #                 final_result = json.loads(match.group(0))
-    #             except Exception as e:
-    #                 print(f"⚠️ [REPORT] Extracted JSON parse error: {e}")
-    #                 final_result = {
-    #                     "matched": "Error",
-    #                     "section": section,
-    #                     "error": "Invalid extracted JSON",
-    #                     "raw_response": content,
-    #                 }
-    #         else:
-    #             final_result = {
-    #                 "matched": "Error",
-    #                 "section": section,
-    #                 "error": "No JSON detected",
-    #                 "raw_response": content,
-    #             }
-
-    #     # --- Send incremental WebSocket update ---
-    #     if job_id:
-    #         try:
-    #             asyncio.create_task(
-    #                 send_ws_message(
-    #                     job_id,
-    #                     {"status": "running", "message": f"Processed question: {question[:50]}..."},
-    #                 )
-    #             )
-    #         except Exception as e:
-    #             print(f"⚠️ [REPORT] WS send failed: {e}")
-
-    #     return final_result
-
     async def report_over_context_async(self, question, section, vectorstore=None, job_id=None):
         print(f"\n🧭 [REPORT] question={question[:80]}... section={section}")
         embeddings = OllamaEmbeddingWrapper(model="nomic-embed-text:latest")
@@ -841,7 +737,7 @@ class Check:
         where_document = {"$contains": f"Nozzle: Ref.: {nozzle_no},"} if nozzle_no not in ("", "N/A") else None
         print(f"🔍 [REPORT] Document filter: {where_document}")
 
-        # --- Run Chroma query ---
+        # --- Run Chroma query off-thread ---
         try:
             print("⏳ [REPORT] Running Chroma query in thread...")
             results = await asyncio.to_thread(
@@ -857,7 +753,7 @@ class Check:
             print(f"❌ [REPORT] Chroma query failed: {e}")
             return {"matched": "Error", "section": section, "error": f"Chroma query failed: {e}"}
 
-        # --- Build docs ---
+        # --- Build docs and prompt ---
         docs = [
             Document(page_content=doc, metadata=meta)
             for doc, meta in zip(results["documents"][0], results["metadatas"][0])
@@ -866,29 +762,54 @@ class Check:
 
         context = "\n".join([doc.page_content for doc in docs])
         prompt_report = build_section_prompt(section=section, question=question, context=context)
+        payload = build_payload(model_name=MODEL_NAME, prompt=prompt_report)
+        url = f"{OLLAMA_BASE_URL}/api/generate"
 
-        # --- Call vLLM instead of Ollama ---
+        # --- Direct Ollama request (no semaphore) ---
         try:
-            print(f"🤖 [REPORT] Sending request to vLLM model={MODEL_NAME}")
-            content = await ask_vllm(MODEL_NAME, prompt_report)
-            print(f"📨 [REPORT] Received {len(content)} characters from vLLM")
-        except Exception as e:
-            print(f"❌ [REPORT] vLLM request failed: {e}")
-            return {"matched": "Error", "section": section, "error": f"vLLM error: {e}"}
+            async with asyncio.timeout(120):  # overall timeout for Ollama call
+                timeout = aiohttp.ClientTimeout(total=80, connect=20, sock_connect=20, sock_read=40)
+                print(f"🌐 [REPORT] Sending Ollama request (model={payload.get('model')})")
 
-        # --- Parse model output into JSON (robust) ---
-        final_result = None
-        # First try direct JSON parse
+                async with aiohttp.ClientSession(timeout=timeout) as session:
+                    async with session.post(url, json=payload) as response:
+                        print(f"🌐 [REPORT] Ollama HTTP status: {response.status}")
+                        raw_text = await response.text()
+                        print(f"🧾 [REPORT] Raw Ollama text length: {len(raw_text)}")
+                        # print(f"r{raw_text}\n")
+
+                        # Try parsing JSON response
+                        try:
+                            result = json.loads(raw_text)
+                            # print(result)
+                        except json.JSONDecodeError:
+                            print("⚠️ [REPORT] Response not valid JSON, wrapping as raw text.")
+                            result = {"response": raw_text}
+                        
+                        result_for_file = dict(result)  # shallow copy
+                        result_for_file.pop("context", None)
+                        with Path("ollama_results.log").open("a", encoding="utf-8") as f:
+                            f.write(json.dumps(result_for_file, ensure_ascii=False, indent=2))
+                            f.write("\n" + "-" * 60 + "\n")
+        except asyncio.TimeoutError:
+            print(f"⏰ [REPORT] Ollama request timed out for section {section}")
+            return {"matched": "Error", "section": section, "error": "Ollama request timed out"}
+        except Exception as e:
+            print(f"❌ [REPORT] Ollama request failed: {e}")
+            return {"matched": "Error", "section": section, "error": str(e)}
+
+        # --- Parse the model output ---
+        content = result.get("response", "")
+        print(f"🧾 [REPORT] Model 'response' length: {len(content)}")
+
         try:
             final_result = json.loads(content)
-        except json.JSONDecodeError:
-            # Try to extract the first JSON object-like substring and parse it
+        except Exception:
             match = re.search(r"\{[\s\S]*\}", content)
             if match:
-                json_text = match.group(0)
                 try:
-                    final_result = json.loads(json_text)
-                except json.JSONDecodeError as e:
+                    final_result = json.loads(match.group(0))
+                except Exception as e:
                     print(f"⚠️ [REPORT] Extracted JSON parse error: {e}")
                     final_result = {
                         "matched": "Error",
@@ -903,15 +824,6 @@ class Check:
                     "error": "No JSON detected",
                     "raw_response": content,
                 }
-        except Exception as e:
-            # Any other unexpected error during parsing
-            print(f"⚠️ [REPORT] Unexpected parsing error: {e}")
-            final_result = {
-                "matched": "Error",
-                "section": section,
-                "error": f"Unexpected parsing error: {e}",
-                "raw_response": content,
-            }
 
         # --- Send incremental WebSocket update ---
         if job_id:
@@ -926,3 +838,102 @@ class Check:
                 print(f"⚠️ [REPORT] WS send failed: {e}")
 
         return final_result
+
+    # async def report_over_context_async(self, question, section, vectorstore=None, job_id=None):
+    #     print(f"\n🧭 [REPORT] question={question[:80]}... section={section}")
+    #     embeddings = OllamaEmbeddingWrapper(model="nomic-embed-text:latest")
+    #     # embeddings = VLLMEmbeddingWrapper(model="nomic-ai/nomic-embed-text-v1")
+    #     collection = vectorstore._collection
+
+    #     # --- Build Chroma query ---
+    #     nozzle_no = self.extract_nozzle_number_from_question(question)
+    #     query_embedding = embeddings.embed_query(question)
+    #     # query_embedding = await embeddings.embed_query(question)
+    #     where_document = {"$contains": f"Nozzle: Ref.: {nozzle_no},"} if nozzle_no not in ("", "N/A") else None
+    #     print(f"🔍 [REPORT] Document filter: {where_document}")
+
+    #     # --- Run Chroma query ---
+    #     try:
+    #         print("⏳ [REPORT] Running Chroma query in thread...")
+    #         results = await asyncio.to_thread(
+    #             collection.query,
+    #             query_embeddings=[query_embedding],
+    #             n_results=5,
+    #             where={"section": section},
+    #             where_document=where_document,
+    #             include=["documents", "metadatas"]
+    #         )
+    #         print("✅ [REPORT] Chroma query completed.")
+    #     except Exception as e:
+    #         print(f"❌ [REPORT] Chroma query failed: {e}")
+    #         return {"matched": "Error", "section": section, "error": f"Chroma query failed: {e}"}
+
+    #     # --- Build docs ---
+    #     docs = [
+    #         Document(page_content=doc, metadata=meta)
+    #         for doc, meta in zip(results["documents"][0], results["metadatas"][0])
+    #     ]
+    #     print(f"📄 [REPORT] Retrieved {len(docs)} docs")
+
+    #     context = "\n".join([doc.page_content for doc in docs])
+    #     prompt_report = build_section_prompt(section=section, question=question, context=context)
+
+    #     # --- Call vLLM instead of Ollama ---
+    #     try:
+    #         print(f"🤖 [REPORT] Sending request to vLLM model={MODEL_NAME}")
+    #         content = await ask_vllm(MODEL_NAME, prompt_report)
+    #         print(f"📨 [REPORT] Received {content} characters from vLLM")
+    #     except Exception as e:
+    #         print(f"❌ [REPORT] vLLM request failed: {e}")
+    #         return {"matched": "Error", "section": section, "error": f"vLLM error: {e}"}
+
+    #     # --- Parse model output into JSON (robust) ---
+    #     final_result = None
+    #     # First try direct JSON parse
+    #     try:
+    #         final_result = json.loads(content)
+    #     except json.JSONDecodeError:
+    #         # Try to extract the first JSON object-like substring and parse it
+    #         match = re.search(r"\{[\s\S]*\}", content)
+    #         if match:
+    #             json_text = match.group(0)
+    #             try:
+    #                 final_result = json.loads(json_text)
+    #             except json.JSONDecodeError as e:
+    #                 print(f"⚠️ [REPORT] Extracted JSON parse error: {e}")
+    #                 final_result = {
+    #                     "matched": "Error",
+    #                     "section": section,
+    #                     "error": "Invalid extracted JSON",
+    #                     "raw_response": content,
+    #                 }
+    #         else:
+    #             final_result = {
+    #                 "matched": "Error",
+    #                 "section": section,
+    #                 "error": "No JSON detected",
+    #                 "raw_response": content,
+    #             }
+    #     except Exception as e:
+    #         # Any other unexpected error during parsing
+    #         print(f"⚠️ [REPORT] Unexpected parsing error: {e}")
+    #         final_result = {
+    #             "matched": "Error",
+    #             "section": section,
+    #             "error": f"Unexpected parsing error: {e}",
+    #             "raw_response": content,
+    #         }
+
+    #     # --- Send incremental WebSocket update ---
+    #     if job_id:
+    #         try:
+    #             asyncio.create_task(
+    #                 send_ws_message(
+    #                     job_id,
+    #                     {"status": "running", "message": f"Processed question: {question[:50]}..."},
+    #                 )
+    #             )
+    #         except Exception as e:
+    #             print(f"⚠️ [REPORT] WS send failed: {e}")
+
+    #     return final_result

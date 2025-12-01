@@ -220,7 +220,7 @@ def generate_comparison_questions_with_keys(ofn_data: dict, key_section_map: dic
                 display_value = value
             
             elif key_path == "Support":
-                question = f"Does the part description for the Support match or closely relate to '{value}'?"
+                question = f"Does a value in context match or closely relate to '{value}', and can '{value}' be used for Support?"
                 display_key = "Support"
                 display_value = value
             
@@ -255,7 +255,7 @@ def generate_comparison_questions_with_keys(ofn_data: dict, key_section_map: dic
                 display_value = value
 
             elif key_path == "Drive -> Gear Box":
-                question = f"Is Drive for Gear Box match or closesly relate to '{value}'?"
+                question = f"Is Drive Gear Box match or closesly relate to '{value}' or is there an exact match to '{value}'??"
                 display_key = "Gear Box (Drive)"
                 display_value = value
             
@@ -265,17 +265,17 @@ def generate_comparison_questions_with_keys(ofn_data: dict, key_section_map: dic
                 display_value = value
             
             elif key_path == "Drive -> Shaft Closure -> Type":
-                question = f"Is Drive Shaft Closure Type a match or closely related to '{value}'?"
+                question = f"Is the Shaft Closure Type in context, a match or closely related to '{value}' or is there an exact or very close match to '{value}'?"
                 display_key = "Shaft Closure Type (Drive)"
                 display_value = value
             
             elif key_path == "Drive -> Thermosyphon System Make":
-                question = f"Is Drive Thermosyphon System Make is a match or closely relate to '{value}'?"
+                question = f"Is Thermosyphon System Make is a match or closely relate to '{value}'?"
                 display_key = "Thermosyphon System Make (Drive)"
                 display_value = value
             
             elif key_path == "Drive -> Thermosyphon System Material":
-                question = f"Is Drive Thermosyphon System Material is a match or closely relate to '{value}'?"
+                question = f"Is Thermosyphon System Material is a match or closely relate to '{value}'?"
                 display_key = "Thermosyphon System Material (Drive)"
                 display_value = value
             
@@ -347,7 +347,7 @@ def generate_nozzle_questions(ofn_data: dict) -> list[dict]:
                 field = "Service"
                 value = nozzle["Service"]
                 if value:  # Check if value exists
-                    question = f"In the 'Nozzles' section, does nozzle '{nozzle_no}' have {field} equal to or similar to '{value}'?"
+                    question = f"In the 'Nozzles' section, does nozzle '{nozzle_no}' have {field} equal to or similar to '{value}'? if the '{value}' has entry in it, even a partial match without 'entry' as a part of it, is a match."
                     key_path = f"Nozzles -> {nozzle_no} -> {field}"
                     questions.append({
                         "question": question,
