@@ -2698,3 +2698,903 @@
   "eval_duration": 11980140600
 }
 ------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:22:28.3846425Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\"}",
+  "thinking": "We need to answer: \"Is Agitatory Type's value is a match or closely relate to 'Impeller'?\"\n\nWe look at context parts descriptions: \"UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\" - this includes both AGITATOR and IMPELLER. So \"Agitatory Type\" matches \"AGITATOR\" in that description, and it also includes \"IMPELLER\" in same description. The question: \"Is Agitatory Type's value is a match or closely relate to 'Impeller'?\" So the answer: yes, because the description includes both. According to matching rules: component type/design clearly appears. So matched. We should return the full description exactly as written: \"UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\". Output JSON with matched Yes. Let's confirm: \"Agitatory Type\" maybe \"AGITATOR\" - yes. So we output.\n\nHence JSON: {\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 13519240300,
+  "load_duration": 6322575400,
+  "prompt_eval_count": 1047,
+  "prompt_eval_duration": 592797300,
+  "eval_count": 298,
+  "eval_duration": 6039290400
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:22:28.6323933Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Service: MANHOLE\"}",
+  "thinking": "We need to check if nozzle N1 service equals or similar to 'Manhole' in nozzle_data context.\n\nContext: Nozzle: Ref.: N1, Size (DN): 350 450, Rating: CLAMPED, Service: MANHOLE, Fittings: PTFE BUSH TYPE MANHOLE RING + ULGL MANHOLE COVER\n\nSo service is 'MANHOLE', question: does nozzle N1 have Service equal to or similar to 'Manhole'? It's exactly the same, case-insensitive. So matched yes. Need to return full context phrase for matched_value: likely \"Service: MANHOLE\" or maybe just \"MANHOLE\". But rules say return full context phrases. So we should include the full phrase that is the value from context, which is \"MANHOLE\" but maybe with preceding \"Service: \". They said \"Return full phrases from context\". So matched_value should be \"Service: MANHOLE\" because that's the phrase containing the value. Let's examine examples? None provided. But guidelines: \"Always return full context phrases.\" So we should output the entire phrase that matches from context, i.e., \"Service: MANHOLE\". That seems appropriate.\n\nThus JSON:\n\n{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Service: MANHOLE\"}\n\nNo trailing whitespace.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 13768531500,
+  "load_duration": 6322277100,
+  "prompt_eval_count": 815,
+  "prompt_eval_duration": 592797300,
+  "eval_count": 304,
+  "eval_duration": 6280323000
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:22:30.9672815Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"MS EARTHING BOSS, 40 DIAx50Lg (M16x2P. TAPPED HOLE)\"}",
+  "thinking": "We need to verify whether the part description for Earthing matches or closely relates to '01 No.- Earthing Boss (MS)'. The context contains part descriptions. Let's list:\n\n- Part: part_no: 4, description: MS EARTHING BOSS, 40 DIAx50Lg (M16x2P. TAPPED HOLE)\n- Part: part_no: 39, description: MS DRIVE BASE RING ASSEMBLY, ...\n- Part: part_no: 16, description: MS SPLIT LAPPED FLANGE...\n- Part: part_no: 10, description: MS JACKET NOZZLE WITH SORF FLANGE...\n- Part: part_no: 9, description: MS JACKET NOZZLE WITH SORF FLANGE...\n\nEarthing Boss description: \"MS EARTHING BOSS, 40 DIAx50Lg (M16x2P. TAPPED HOLE)\".\n\nQuestion: '01 No.- Earthing Boss (MS)' - is that the same? The description: 'Earthing Boss (MS)' presumably refers to a \"MS EARTHING BOSS\". Yes, that matches. According to rules: \"Literal Equivalence — exact word/symbol matches.\" We have \"EARTHING BOSS\" appears in description. Even though the question uses \"01 No.- Earthing Boss (MS)\", it includes \"Earthing Boss\" and \"(MS)\". The description includes \"MS EARTHING BOSS\". So yes. Should we return the full description from context: \"MS EARTHING BOSS, 40 DIAx50Lg (M16x2P. TAPPED HOLE)\". So matched.\n\nWe should follow output format: {\"matched\": \"Yes\", \"section\": \"part_list\", \"matched_value\": \"<description>\"}\n\nThus JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 16103363200,
+  "load_duration": 6321722200,
+  "prompt_eval_count": 1122,
+  "prompt_eval_duration": 459601000,
+  "eval_count": 417,
+  "eval_duration": 8616925100
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:22:31.4034422Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"design_data\",\"matched_value\":\"F.V. 6 bar(g)\"}",
+  "thinking": "We need to check if the Design Pressure for the Inner Vessel equal to F.V. / 6 bar(g)? The question: \"Is the Design Pressure for the Inner Vessel equal to F. V. / 6 bar(g)?\" In context: \"MAX. ALLOWABLE WORKING PRESSURE (DESIGN PRESSURE) - INNER VESSEL: F.V. 6 bar(g)\". So Design Pressure for Inner Vessel is F.V. 6 bar(g). The question says equal to F. V. / 6 bar(g). Actually the context says \"F.V. 6 bar(g)\" meaning \"F.V.\" is a code? Usually F.V. stands for Full Vessel? Actually \"F.V.\" stands for \"F.V.\" plus \"6 bar(g)\". So it's exactly \"F.V. 6 bar(g)\". So match? The question: \"equal to F. V. / 6 bar(g)?\" The context uses \"F.V. 6 bar(g)\" not \"F. V.\" So punctuation difference. Equivalent? \"F.V.\" vs \"F. V.\" They are same characters but with a dot after each letter. The context has \"F.V.\" (dot after F, dot after V). The question says \"F. V.\" (dot after F, dot after V). They are equivalent under case/punctuation equivalence. Also \"6 bar(g)\" same. So the phrase \"F.V. 6 bar(g)\" exists. So matched. Return matched value phrase exactly from context. It should be \"F.V. 6 bar(g)\". Confirm that the phrase includes colon? In context: \"MAX. ALLOWABLE WORKING PRESSURE (DESIGN PRESSURE) - INNER VESSEL: F.V. 6 bar(g)\". The matched phrase is \"F.V. 6 bar(g)\". The context phrase is \"F.V. 6 bar(g)\" after colon. So we return that. Provide JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 16539513400,
+  "load_duration": 6322277100,
+  "prompt_eval_count": 909,
+  "prompt_eval_duration": 456486400,
+  "eval_count": 440,
+  "eval_duration": 9036306500
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:22:32.675598Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"material_of_construction\",\"matched_value\":\"PTFE ENVELOPED NON ASBESTOS WITH S.S. CORRUGATED RING INSERT\"}",
+  "thinking": "We need to determine if the Material of Construction for the Gasket matches or closely relates to 'PTFE Enveloped NON ASBESTOS'. The context includes:\n\n- \"INNERVESSEL - GASKET FOR BODY FLANGE & NOZZLES: PTFE ENVELOPED NON ASBESTOS WITH S.S. CORRUGATED RING INSERT\"\n\nThe question: \"Does the Material of Construction for the Gasket match or closely relate to 'PTFE Enveloped NON ASBESTOS'?\"\n\nWe have a direct match: \"PTFE ENVELOPED NON ASBESTOS\" appears exactly in context. The context phrase is \"PTFE ENVELOPED NON ASBESTOS WITH S.S. CORRUGATED RING INSERT\". The question is about whether the material matches or closely relates. Since it matches exactly, answer Yes. matched_value should be the full phrase from context: \"PTFE ENVELOPED NON ASBESTOS WITH S.S. CORRUGATED RING INSERT\".\n\nReturn JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 17811638400,
+  "load_duration": 6324709400,
+  "prompt_eval_count": 905,
+  "prompt_eval_duration": 170370900,
+  "eval_count": 251,
+  "eval_duration": 3847548200
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:22:40.686287Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"material_of_construction\",\"matched_value\":\"SA 181 CL. 60 SA 836 ENAMEL QUALITY\"}",
+  "thinking": "We need to determine if the material of construction for the Nozzle Necks & Body Flange matches or closely relates to 'SA 181 Gr. 60 / SA 836'. The context has material lines.\n\nThe question: \"Does the Material of Construction for the Nozzle Necks & Body Flange match or closely relate to 'SA 181 Gr. 60 / SA 836'?\" The context: \"INNERVESSEL - WELDING NECKS FOR BODY FLANGE & NOZZLES: SA 181 CL. 60 SA 836 ENAMEL QUALITY\". That is exactly 'SA 181 CL. 60 SA 836 ENAMEL QUALITY'. The question phrase: 'SA 181 Gr. 60 / SA 836'. Note 'Gr.' vs 'CL.' but that matches equivalence rule 6 and 7. So yes, it's a match. We must return the full context phrase: \"SA 181 CL. 60 SA 836 ENAMEL QUALITY\". Must output JSON with matched \"Yes\".\n\nThus JSON: {\"matched\": \"Yes\", \"section\": \"material_of_construction\", \"matched_value\": \"SA 181 CL. 60 SA 836 ENAMEL QUALITY\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 7396831600,
+  "load_duration": 246044900,
+  "prompt_eval_count": 916,
+  "prompt_eval_duration": 530155700,
+  "eval_count": 295,
+  "eval_duration": 6085230900
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:22:42.9633008Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"MS, THERMOSYPHON SYSTEM, LEAK-PROOF MAKE\"}",
+  "thinking": "We need to determine if \"Thermosyphon System Material\" matches or closely relates to 'MS' in the question. The question: \"Is Thermosyphon System Material is a match or closely relate to 'MS'?\" They want to know if the component type/design is present.\n\nIn context, we have parts with description containing \"MS\" for material type. For example: Part 56: \"MS, THERMOSYPHON SYSTEM, LEAK-PROOF MAKE\". That contains MS. The question asks if Thermosyphon System Material is a match or closely relate to 'MS'. The phrase \"Thermosyphon System Material\" presumably refers to the material of the thermosyphon system. The context has \"MS, THERMOSYPHON SYSTEM, LEAK-PROOF MAKE\". So yes, there is a component with description containing \"MS\" and \"THERMOSYPHON SYSTEM\". So we match.\n\nWe need to return the full description from context exactly: \"MS, THERMOSYPHON SYSTEM, LEAK-PROOF MAKE\".\n\nBut we need to consider if we need to include drawing number? The instruction says ignore drawing numbers, quantities, page numbers and part numbers. So matched_value should be just the description: \"MS, THERMOSYPHON SYSTEM, LEAK-PROOF MAKE\".\n\nWe must output JSON: matched Yes, section part_list, matched_value accordingly.\n\nCheck for any other matches: There's also part 58: \"MS CLEAT FOR THERMOSYPHON\". That's also MS. But the question specifically \"Thermosyphon System Material\" matches to \"MS\" as a type. The best match is part 56's description. We return that.\n\nThus final output.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 9674315300,
+  "load_duration": 236215300,
+  "prompt_eval_count": 1074,
+  "prompt_eval_duration": 142085700,
+  "eval_count": 391,
+  "eval_duration": 8602058800
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:22:46.1562788Z",
+  "response": "{\"matched\":\"No\",\"section\":\"part_list\",\"closest_match\":\"UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\"}",
+  "thinking": "We need to answer: \"Is Agitator Flight value is match or closerly realted to Single?\" The question is asking whether the Agitator Flight value matches or is closely related to \"Single\". We need to check if the component type/design \"Agitator Flight\" appears in the context. The context includes parts:\n\n- AGITATOR & GEAR COUPLING ASSEMBLY\n- UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\n- MS JACKET NOZZLE...\n- SPRING BALANCE ASSEMBLY\n- MS CLEAT FOR THERMOSYPHON\n\nSo there is \"AGITATOR & GEAR COUPLING ASSEMBLY\" and \"UGL AGITATOR...\". \"Agitator Flight\" presumably refers to the flight of an agitator. There is no direct mention of \"Flight\" or \"Single\". The question: \"Is Agitator Flight value is match or closerly realted to Single?\" We need to determine if component type/design \"Agitator Flight\" appears. It does not. We need to find closest functional/naming equivalent. Among the context, the only agitator component is the \"UGL AGITATOR\". The question is about flight value relative to Single. There's no mention of Single in the context either. So no match. But we need to return the closest match. Which is probably the \"UGL AGITATOR\" or the \"AGITATOR & GEAR COUPLING ASSEMBLY\". Which is closer? The question specifically \"Agitator Flight value\" refers to the shape of the agitator blades/flight. The part \"UGL AGITATOR, IMPELLER\" is probably the agitator. So closest match is that. So we return matched: No, section part_list, closest_match: \"UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\". We need to copy exactly as in context. That phrase appears exactly in the part: \"UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\". That is the full description.\n\nThus output JSON: {\"matched\":\"No\",\"section\":\"part_list\",\"closest_match\":\"UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 12866691100,
+  "load_duration": 248863800,
+  "prompt_eval_count": 1076,
+  "prompt_eval_duration": 580998100,
+  "eval_count": 543,
+  "eval_duration": 11153651400
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:22:48.3239027Z",
+  "response": "{\"matched\":\"No\",\"section\":\"part_list\",\"closest_match\":\"MS WIRE MESH TYPE LANTERN GUARD, AE CE-1.6KL TO 3KL & CE-4KL\"}",
+  "thinking": "We need to see question: \"Does the part description for 'Lantern Guard' match or closely relate to 'SS304' in the context?\"\n\nWe need to see if part description for 'Lantern Guard' matches or closely relates to 'SS304'. Actually we need to determine if the primary component type or design in question is present in BoM.\n\nWe must use only component names/descriptions from context. Do not copy from question unless appears in context.\n\nWe have parts list. The description for Lantern Guard is \"MS WIRE MESH TYPE LANTERN GUARD, AE CE-1.6KL TO 3KL & CE-4KL\". Contains \"LANTERN GUARD\".\n\nThe question asks about 'Lantern Guard' match to 'SS304'. We have no mention of SS304 in context. There's no SS304.\n\nThus we check if the description matches 'SS304'. Not present. No match.\n\nBut need to find closest functional/naming equivalent. The closest match might be the part with Lantern Guard. The description: \"MS WIRE MESH TYPE LANTERN GUARD, AE CE-1.6KL TO 3KL & CE-4KL\".\n\nWe should return that as closest match.\n\nBut check if any part has 'SS304'? No. So matched \"No\".\n\nThus return: {\"matched\":\"No\",\"section\":\"part_list\",\"closest_match\":\"MS WIRE MESH TYPE LANTERN GUARD, AE CE-1.6KL TO 3KL & CE-4KL\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 15034262500,
+  "load_duration": 248863800,
+  "prompt_eval_count": 1129,
+  "prompt_eval_duration": 219620600,
+  "eval_count": 365,
+  "eval_duration": 6937049400
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:22:50.5489565Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"design_data\",\"matched_value\":\"MAX. DESIGN TEMPERATURE - INNER VESSEL: 250° C (REFER NOTE-9)\\nMIN. DESIGN TEMPERATURE - INNER VESSEL: -28.8° C\"}",
+  "thinking": "We need to check if the Inner Vessel's Design Temperature is in range -28.8°C to 250°C. The context lists: MAX. DESIGN TEMPERATURE - INNER VESSEL: 250° C (REFER NOTE-9), MIN. DESIGN TEMPERATURE - INNER VESSEL: -28.8° C, OPERATING TEMPERATURE - INNER VESSEL: ----. So question: \"Is the Inner Vessel's Design Temperature in the range -28.8°C to 250°C?\" Yes, the design temperature range is exactly those values. The question likely expects \"Yes\" and the matched phrase should be the phrase that indicates the range: We need to return the entire matching phrase exactly as in the context. Which phrase? We can concatenate up to two phrases if necessary. The relevant phrases are \"MAX. DESIGN TEMPERATURE - INNER VESSEL: 250° C (REFER NOTE-9)\" and \"MIN. DESIGN TEMPERATURE - INNER VESSEL: -28.8° C\". We could return one phrase? The rules: If matched, return the entire matching phrase exactly as in the context. If essential, concatenate upto two phrases, only and only if deemed necessary. The match is that the design temperature falls within that range, which is confirmed by the context. But which phrase matches? The context has two separate lines. We could return both. But do we need to? The question is about whether the design temperature is in range; the existence of min and max indicates that. It would be best to include both. The rule says concatenate up to two phrases if essential. In this case, we need to show both min and max? The question is yes or no; matched. For matched, we need to return the entire matching phrase(s). The entire matching phrase: Could we return \"MAX. DESIGN TEMPERATURE - INNER VESSEL: 250° C (REFER NOTE-9)\"? That covers the upper bound. But we also have lower bound. I think we should return both to fully cover the range. So \"matched_value\" should be concatenated phrase: maybe separate by semicolon or newline? The rules: only concatenate up to two phrases, only if necessary. The phrase must be exactly as in context. So we can return: \"MAX. DESIGN TEMPERATURE - INNER VESSEL: 250° C (REFER NOTE-9); MIN. DESIGN TEMPERATURE - INNER VESSEL: -28.8° C\". But must preserve exactly as context: The context lines are separate. We need to include exact punctuation: \"MAX. DESIGN TEMPERATURE - INNER VESSEL: 250° C (REFER NOTE-9)\" and \"MIN. DESIGN TEMPERATURE - INNER VESSEL: -28.8° C\". The concatenated string could be with a newline or semicolon. Probably newline? But not sure. We need to return JSON with matched_value string. The concatenation maybe using newline character. But not sure. The rule: \"return the entire matching phrase exactly as in the context. if essential, concatenate upto two phrases, only and only if deemed necessary.\" So we can use a newline or space? Usually better to use a comma or semicolon. I'll use a newline for clarity. But JSON string can contain newline. I'll use \"\\n\". So:\n\n\"MAX. DESIGN TEMPERATURE - INNER VESSEL: 250° C (REFER NOTE-9)\\nMIN. DESIGN TEMPERATURE - INNER VESSEL: -28.8° C\"\n\nCheck for exact match: the context lines have \"250° C\" and \" -28.8° C\". Should match. Let's produce JSON accordingly.\n\nReturn:\n\n{\"matched\":\"Yes\",\"section\":\"design_data\",\"matched_value\":\"MAX. DESIGN TEMPERATURE - INNER VESSEL: 250° C (REFER NOTE-9)\\nMIN. DESIGN TEMPERATURE - INNER VESSEL: -28.8° C\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 17259787500,
+  "load_duration": 242140100,
+  "prompt_eval_count": 877,
+  "prompt_eval_duration": 438897700,
+  "eval_count": 869,
+  "eval_duration": 15512945500
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:22:57.0568909Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 100\"}",
+  "thinking": "We need to check whether nozzle 'N6' has Size equal to or similar to '100'. Context: \"Nozzle: Ref.: N6, Size (DN): 100, Rating: PN-10 DIN 2673, Service: LIGHT GLASS, Fittings: LIGHT GLASS ASSEMBLY\"\n\nQuestion: \"In the 'Nozzles' section, does nozzle 'N6' have Size equal to or similar to '100'?\"\n\nWe must evaluate numeric equivalence: size 100 DN matches question 100. So matched Yes. matched_value should be \"Size (DN): 100\" or just \"100\"? They say full context phrase. Provide full phrase from context. The matched_value: likely \"Size (DN): 100\". The context phrase includes \"Size (DN): 100\". Return JSON.\n\nThus output: {\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 100\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 5874933300,
+  "load_duration": 229480800,
+  "prompt_eval_count": 777,
+  "prompt_eval_duration": 451246400,
+  "eval_count": 225,
+  "eval_duration": 4788510900
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:22:57.6939584Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"lining_and_notes\",\"matched_value\":\"ULTRASONICALLY TESTED\"}",
+  "thinking": "We need to see question: \"Is the Inner Vessel's NDT equal to Ultrasonically Tested?\" We need to check if value exists in context.\n\nContext includes: \"N.D.T. :-MAIN WELD SEAMS OF INNER VESSEL TO BE 100 ULTRASONICALLY TESTED FOR INTERNAL QUALITY ASSURANCE ONLY.\" So NDT refers to Ultrasonically Tested. The question: \"Is the Inner Vessel's NDT equal to Ultrasonically Tested?\" They want to know if inner vessel's NDT equals Ultrasonically Tested. In context, NDT is given: Ultrasonically Tested. So yes, match. They want \"matched\" yes and provide the exact value: \"ULTRASONICALLY TESTED\" (capital). The phrase includes preceding context: \"100 ULTRASONICALLY TESTED\". But matched value should be the exact value from context. The question is about equal to Ultrasonically Tested. So matched value is \"ULTRASONICALLY TESTED\". Provide section \"lining_and_notes\". Output JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 6511465000,
+  "load_duration": 219576900,
+  "prompt_eval_count": 1248,
+  "prompt_eval_duration": 241199900,
+  "eval_count": 248,
+  "eval_duration": 5618003500
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:01.7405518Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"MS SIDE BRACKET, 1.6KL-2KL, STANDARD\"}",
+  "thinking": "We need to parse question: \"Does a value in context match or closely relate to 'Side Bracket', and can 'Side Bracket' be used for Support?\" We check context parts: part_no: 3 description: MS SIDE BRACKET, 1.6KL-2KL, STANDARD; part_no: 5 description: MS, NAME PLATE BRACKET; part 32 spring balance assembly; 45 clip; 39 drive base ring assembly.\n\nSo 'Side Bracket' appears exactly as part 3 description: MS SIDE BRACKET, 1.6KL-2KL, STANDARD. So matched. Output matched: Yes, section part_list, matched_value: \"MS SIDE BRACKET, 1.6KL-2KL, STANDARD\".\n\nAlso question asks if can be used for Support? but we only need to output match status. Provide matched.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 10557960500,
+  "load_duration": 241573800,
+  "prompt_eval_count": 1051,
+  "prompt_eval_duration": 191156900,
+  "eval_count": 218,
+  "eval_duration": 4209696500
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:01.8865873Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"MS SIGHT LIGHT GLASS FLANGE, 100NB, FLANGE DRILLING : PN10 DIN EN 1092-1\"}",
+  "thinking": "We need to see if the part description for the Sight/Light Glass Flanges match or closely relate to 'MS'. The question: \"Does the part description for the Sight/Light Glass Flanges match or closely relate to 'MS'?\"\n\nWe have context: Several parts. Let's examine each description:\n\n1. part_no: 29, qty: 2, description: MS SIGHT LIGHT GLASS FLANGE, 100NB, FLANGE DRILLING : PN10 DIN EN 1092-1\n2. part_no: 16, qty: 3, description: MS SPLIT LAPPED FLANGE, DN100, DIN EN 1092-1 TYPE-2\n3. part_no: 15, qty: 1, description: MS SPLIT LAPPED FLANGE, DN200, ASA 150\n4. part_no: 14, qty: 1, description: MS SPLIT LAPPED FLANGE, DN100, ASA 150\n5. part_no: 17, qty: 1, description: MS SPLIT LAPPED FLANGE, DN200, DIN EN 1092-1 TYPE-2\n\nSo the Sight/Light Glass Flange part description is \"MS SIGHT LIGHT GLASS FLANGE, 100NB, FLANGE DRILLING : PN10 DIN EN 1092-1\". Does this match or closely relate to 'MS'? The description already begins with 'MS'. So the answer is Yes. We must return the full description exactly as written in the context: \"MS SIGHT LIGHT GLASS FLANGE, 100NB, FLANGE DRILLING : PN10 DIN EN 1092-1\". Use JSON format.\n\nThus output: {\"matched\": \"Yes\", \"section\": \"part_list\", \"matched_value\": \"MS SIGHT LIGHT GLASS FLANGE, 100NB, FLANGE DRILLING : PN10 DIN EN 1092-1\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 10704512800,
+  "load_duration": 240449900,
+  "prompt_eval_count": 1097,
+  "prompt_eval_duration": 536067400,
+  "eval_count": 453,
+  "eval_duration": 9263477600
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:04.2950097Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"UGL MANHOLE COVER, 350X450 NB, WITH DN100 NOZZLE, SPRING BALANCE, UT\"}",
+  "thinking": "We need to verify if part description for Hand/Manhole Cover matches or closely relates to 'MSGL'. Question: \"Does the part description for the Hand/Manhole Cover match or closely relate to 'MSGL'?\"\n\nWe need to look at context for Hand/Manhole Cover description. In context we have parts:\n\nPart: part_no: 31, qty: 1, description: UGL MANHOLE COVER, 350X450 NB, WITH DN100 NOZZLE, SPRING BALANCE, UT, drawing_no: GMHC-CS-350-25-01-00\n\nPart: part_no: 25, qty: 1, description: ULGL BLIND COVER, 200NB, ASA, drawing_no: 88-EP-5000\n\nPart: part_no: 29, qty: 2, description: MS SIGHT LIGHT GLASS FLANGE, 100NB, FLANGE DRILLING : PN10 DIN EN 1092-1, drawing_no: 99-GPF-9373-MS-100-00\n\nPart: part_no: 24, qty: 1, description: ULGL BLIND COVER, 100NB, ASA, drawing_no: 88-EP-5000\n\nPart: part_no: 9, qty: 2, description: MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG, ASME CLASS 150, drawing_no: JNSMS1-050160-160-00\n\nThe question: \"Does the part description for the Hand/Manhole Cover match or closely relate to 'MSGL'?\" So we need to see if the description for Hand/Manhole Cover (which appears as \"UGL MANHOLE COVER, 350X450 NB, WITH DN100 NOZZLE, SPRING BALANCE, UT\") matches or closely relates to MSGL. We need to interpret equivalence rules: MSGL is the same as/equivalent to [GL ,UGL,9100 Glass, Pharma Glass, Ultra Glass, White Glass, Nano Glass, ARG Glass, PPGL] only. So UGL (Ultra Glass) is in the list of equivalents of MSGL. So the description has \"UGL MANHOLE COVER\" which includes UGL. Since UGL is equivalent to MSGL, the description matches or closely relates. The question: \"Does the part description for the Hand/Manhole Cover match or closely relate to 'MSGL'?\" We should say matched Yes, matched_value is the description \"UGL MANHOLE COVER, 350X450 NB, WITH DN100 NOZZLE, SPRING BALANCE, UT\". According to the rule: If matched, return the full description exactly as written in the context.\n\nThus answer:\n\n{\"matched\": \"Yes\", \"section\": \"part_list\", \"matched_value\": \"UGL MANHOLE COVER, 350X450 NB, WITH DN100 NOZZLE, SPRING BALANCE, UT\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 13112876900,
+  "load_duration": 232794400,
+  "prompt_eval_count": 1096,
+  "prompt_eval_duration": 590715200,
+  "eval_count": 677,
+  "eval_duration": 11529110400
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:11.5710781Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"material_of_construction\",\"matched_value\":\"REFER TABLE SA 516 Gr. 70 SA 105\"}",
+  "thinking": "We need to check: \"Does the Material of Construction for the Split Flanges match or closely relate to 'SA 516 Gr. 70 (CS)'?\" The context includes \"INNERVESSEL - SPLIT FLANGES: REFER TABLE SA 516 Gr. 70 SA 105\". So the context phrase for split flanges is \"REFER TABLE SA 516 Gr. 70 SA 105\". The question asks if the material matches or closely relates to SA 516 Gr. 70 (CS). The context lists SA 516 Gr. 70. That matches literally. So matched: Yes. matched_value should be the value from context: \"REFER TABLE SA 516 Gr. 70 SA 105\". Wait they want full context phrase. The rule: Always return the full context phrase. So matched_value should be the entire phrase: \"REFER TABLE SA 516 Gr. 70 SA 105\". The section is material_of_construction. So output JSON: {\"matched\":\"Yes\",\"section\":\"material_of_construction\",\"matched_value\":\"REFER TABLE SA 516 Gr. 70 SA 105\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 6651356700,
+  "load_duration": 217156800,
+  "prompt_eval_count": 907,
+  "prompt_eval_duration": 152162100,
+  "eval_count": 266,
+  "eval_duration": 5798467500
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:17.155295Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"LIGHT GLASS ASSEMBLY\"}",
+  "thinking": "We need to check if nozzle N6 has Service equal to or similar to 'Light Glass'. Context: Nozzle: Ref.: N6, Size (DN): 100, Rating: PN-10 DIN 2673, Service: LIGHT GLASS ASSEMBLY, Fittings: LIGHT GLASS ASSEMBLY\n\nQuestion: \"In the 'Nozzles' section, does nozzle 'N6' have Service equal to or similar to 'Light Glass'?\" They say: if the 'Light Glass' has entry in it, even a partial match without 'entry' as a part of it, is a match.\n\nContext service: LIGHT GLASS ASSEMBLY. That contains \"LIGHT GLASS\" substring. So it's a match. Return full context phrase: \"LIGHT GLASS ASSEMBLY\". So matched: Yes.\n\nReturn JSON: {\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"LIGHT GLASS ASSEMBLY\"}\n\nWe should ensure case insensitive. Output JSON only. No markdown.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 12235438500,
+  "load_duration": 245491400,
+  "prompt_eval_count": 806,
+  "prompt_eval_duration": 168672200,
+  "eval_count": 237,
+  "eval_duration": 4947601700
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:18.8253271Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"design_data\",\"matched_value\":\"MIN. DESIGN TEMPERATURE - JACKET: -28.8° C MAX. DESIGN TEMPERATURE - JACKET: 250° C\"}",
+  "thinking": "We need to determine whether the Jacket's Design Temperature is in the range -28.8°C to 250°C. Context:\n\nMIN. DESIGN TEMPERATURE - JACKET: -28.8° C\nMAX. DESIGN TEMPERATURE - JACKET: 250° C\nOPERATING TEMPERATURE - JACKET: -----\nMAX. DESIGN TEMPERATURE - INNER VESSEL: 250° C (REFER NOTE-9)\nMIN. DESIGN TEMPERATURE - INNER VESSEL: -28.8° C\n\nQuestion: \"Is the Jacket's Design Temperature in the range -28.8°C to 250°C?\"\n\nWe need to verify whether the Jacket's Design Temperature is within that range. In the context, the jacket has a min design temperature of -28.8°C and a max of 250°C. So yes, the jacket's design temperature range is exactly that. So matched.\n\nReturn matched phrase exactly from context: need to pick phrase that matches the question: \"MIN. DESIGN TEMPERATURE - JACKET: -28.8° C\" and \"MAX. DESIGN TEMPERATURE - JACKET: 250° C\". But we only need one phrase? The rule: If matched, return the entire matching phrase exactly as in the context. if essential, concatenate up to two phrases, only and only if deemed necessary. For the range, maybe we need both min and max? The question is about the Jacket's Design Temperature in the range -28.8°C to 250°C. We can match both phrases. But is that considered necessary? The question is whether it's within the range. We can provide both min and max phrases. They say if essential, concatenate up to two phrases. I'd say both are essential because they define the range. So include both? The matched_value would then be a concatenated string. We need to include both phrases exactly as in context: \"MIN. DESIGN TEMPERATURE - JACKET: -28.8° C\" and \"MAX. DESIGN TEMPERATURE - JACKET: 250° C\". Concatenate with a space? The rule: \"if essential, concatenate up to two phrases, only and only if deemed necessary.\" So we can combine them with a space: \"MIN. DESIGN TEMPERATURE - JACKET: -28.8° C MAX. DESIGN TEMPERATURE - JACKET: 250° C\". That seems okay.\n\nLet's produce JSON:\n\n{\"matched\":\"Yes\",\"section\":\"design_data\",\"matched_value\":\"MIN. DESIGN TEMPERATURE - JACKET: -28.8° C MAX. DESIGN TEMPERATURE - JACKET: 250° C\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 13905953000,
+  "load_duration": 242094900,
+  "prompt_eval_count": 858,
+  "prompt_eval_duration": 444786900,
+  "eval_count": 584,
+  "eval_duration": 12192546700
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:20.9651608Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"lining_and_notes\",\"matched_value\":\"SA 2 ½ SHOT BLASTING. APPLY BY AIR SPRAY TWO FULL COATS OF AIR DRYING, GLASS REINFORCED, RUST TOLERANT COATING : COLOUR - RAL 5015 (SKY BLUE)\"}",
+  "thinking": "We need to determine if the paint description in the question matches or closely relates to a description in context.\n\nQuestion: \"Does the Paint description match or closely relate to 'Pre-Treatment Removal by blasting. 2 Coats of RAL 5015 (Sky Blue)'?\"\n\nSo they ask if paint description matches or closely relates to that phrase. We need to check the context. In context, there's line 3: \"EXTERNAL SURFACE PREP. : - SA 2 ½ SHOT BLASTING. APPLY BY AIR SPRAY TWO FULL COATS OF AIR DRYING, GLASS REINFORCED, RUST TOLERANT COATING : COLOUR - RAL 5015 (SKY BLUE)\". That is the paint description. The question: 'Pre-Treatment Removal by blasting. 2 Coats of RAL 5015 (Sky Blue)'.\n\nDoes this match? Let's parse. The context says \"SA 2 ½ SHOT BLASTING. APPLY BY AIR SPRAY TWO FULL COATS OF AIR DRYING, GLASS REINFORCED, RUST TOLERANT COATING : COLOUR - RAL 5015 (SKY BLUE)\". That is similar: Pre-treatment removal by blasting (shot blasting) + 2 coats of RAL 5015 Sky Blue. So matches. The phrase in the question is: \"Pre-Treatment Removal by blasting. 2 Coats of RAL 5015 (Sky Blue)\". That is essentially same. So matched yes.\n\nWe must output JSON: {\"matched\": \"Yes\", \"section\": \"lining_and_notes\", \"matched_value\": \"<exact value from context>\"}. But we must choose the exact value from context that matches. Which phrase in context matches? We should provide the exact phrase that is the paint description. The exact context phrase: \"SA 2 ½ SHOT BLASTING. APPLY BY AIR SPRAY TWO FULL COATS OF AIR DRYING, GLASS REINFORCED, RUST TOLERANT COATING : COLOUR - RAL 5015 (SKY BLUE)\". But maybe we need to pick the entire section that describes paint. The \"Pre-Treatment Removal by blasting\" part corresponds to \"SA 2 ½ SHOT BLASTING.\" We can include that phrase. But question: \"Does the Paint description match or closely relate to 'Pre-Treatment Removal by blasting. 2 Coats of RAL 5015 (Sky Blue)'?\" We can answer yes, matched to \"SA 2 ½ SHOT BLASTING. APPLY BY AIR SPRAY TWO FULL COATS OF AIR DRYING, GLASS REINFORCED, RUST TOLERANT COATING : COLOUR - RAL 5015 (SKY BLUE)\". We can output that exact phrase. The rule: return the full value from context for matched. So we include the entire phrase. But ensure we don't add extra commentary. Provide JSON.\n\nThus final.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 16045734900,
+  "load_duration": 238313800,
+  "prompt_eval_count": 1266,
+  "prompt_eval_duration": 444786900,
+  "eval_count": 703,
+  "eval_duration": 14224477000
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:23.3860445Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"ROLON MAKE DOUBLE M SEAL, 80 DIA\"}",
+  "thinking": "We need to check if the primary component type or design in the question (Shaft Closure Type) matches or is closely related to 'Rolon Make Double Mechanical Seal' or is there an exact or very close match to 'Rolon Make Double Mechanical Seal'. We have context lines:\n\n- Part 48: ROLON MAKE DOUBLE M SEAL, 80 DIA, drawing_no: LATER ON\n- Part 47: OIL SEAL\n- Others are clamps.\n\nThe question: \"Is the Shaft Closure Type in context, a match or closely related to 'Rolon Make Double Mechanical Seal' or is there an exact or very close match to 'Rolon Make Double Mechanical Seal'?\"\n\nWe need to see if \"Rolon Make Double Mechanical Seal\" appears exactly or equivalent. The context has \"ROLON MAKE DOUBLE M SEAL\" which is the same but with M instead of MECHANICAL? The description is \"ROLON MAKE DOUBLE M SEAL, 80 DIA\". The phrase \"M SEAL\" could stand for mechanical seal? M might be abbreviation. But is that considered equivalence? Under equivalence rule 6, case/punctuation. Under rule 2 semantic equivalence: same meaning with different wording. They say also Fabricated is the same as/equivalent to Plain. But \"M SEAL\" and \"MECHANICAL SEAL\" - is \"M\" abbreviation for mechanical? It could be. But not explicit. Under rule 1 literal equivalence: exact word/symbol matches. The phrase in question: \"Rolon Make Double Mechanical Seal\". Context: \"ROLON MAKE DOUBLE M SEAL\". Not exact. But could be considered semantic equivalence because M stands for Mechanical. They did not explicitly define abbreviation M for mechanical. But maybe in industrial context, \"M\" could stand for \"mechanical\"? There's no rule that M is abbreviation for Mechanical. The equivalence rules mention some abbreviations like UT == Ultrasonically Tested, but M for mechanical isn't listed. But we could interpret \"M SEAL\" as \"Mechanical Seal\". But is that within the scope? It's not explicitly defined but could be considered common. The equivalence rules are strict. They don't mention M to mechanical. So likely we cannot match exactly. But maybe \"Rolon Make Double M Seal\" is close. The question: \"Is the Shaft Closure Type in context, a match or closely related to 'Rolon Make Double Mechanical Seal'?\" They want us to find if there's an exact or very close match. The context has \"ROLON MAKE DOUBLE M SEAL\". That is very close to \"Rolon Make Double Mechanical Seal\" with just M vs Mechanical. According to rule 12 partial phrase equivalence: partial numeric/descriptor matches must return the full context phrase. But that's for partial phrase matches within the same phrase? We need to see if we should treat it as a match. The question says: \"Is the Shaft Closure Type in context, a match or closely related to 'Rolon Make Double Mechanical Seal' or is there an exact or very close match to 'Rolon Make Double Mechanical Seal'?\" So we need to see if there is a component in the context that matches that description. I think we can say Yes, we have a match: \"ROLON MAKE DOUBLE M SEAL, 80 DIA\". We might need to return the full description: \"ROLON MAKE DOUBLE M SEAL, 80 DIA\". The question's component type: \"Shaft Closure Type\" but that's not in the context. But we just check if that type is present. The context has \"ROLON MAKE DOUBLE M SEAL\". So we can match. According to rules: If matched, return the full description exactly as written in the context. That includes \"ROLON MAKE DOUBLE M SEAL, 80 DIA\". So we should output Yes. Use JSON format.\n\nThus output:\n\n{\"matched\": \"Yes\", \"section\": \"part_list\", \"matched_value\": \"ROLON MAKE DOUBLE M SEAL, 80 DIA\"}\n\nBut check: We need to return the description exactly as in context. The context string: \"ROLON MAKE DOUBLE M SEAL, 80 DIA\". Yes.\n\nWe need to include the entire part description, not just the portion. So that is correct.\n\nNo mention of drawing number etc. Only part description. So final answer.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 18466560000,
+  "load_duration": 238845700,
+  "prompt_eval_count": 1105,
+  "prompt_eval_duration": 509114800,
+  "eval_count": 928,
+  "eval_duration": 16501267600
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:29.6243137Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 150\"}",
+  "thinking": "We need to determine if nozzle 'M' has size equal to or similar to '150' in the context.\n\nContext: Nozzle: Ref.: M, Size (DN): 150, Rating: -, Service: AGITATOR, Fittings: MECHANICAL SEAL\n\nQuestion: \"In the 'Nozzles' section, does nozzle 'M' have Size equal to or similar to '150'?\"\n\nWe need to compare size 150 in context vs question's 150. Should match exactly. It's same numeric value. So match.\n\nReturn JSON: matched: Yes, section: nozzle_data, matched_value: <value from context>.\n\nBut \"matched_value\" should be the full phrase from context that matches? \"Size (DN): 150\" is the context phrase. Use full phrase.\n\nHence JSON: {\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 150\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 5634369700,
+  "load_duration": 227953800,
+  "prompt_eval_count": 767,
+  "prompt_eval_duration": 466178800,
+  "eval_count": 220,
+  "eval_duration": 4533232100
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:30.1972013Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"MS, THERMOSYPHON SYSTEM, LEAK-PROOF MAKE\"}",
+  "thinking": "We need to see if \"Thermosyphon System Make\" matches 'Leakproof' from question. The question: \"Is Thermosyphon System Make is a match or closely relate to 'Leakproof'?\" So they ask if Thermosyphon System Make matches or closely relates to 'Leakproof'. In the context, there's a part: \"MS, THERMOSYPHON SYSTEM, LEAK-PROOF MAKE\". That description includes both Thermosyphon System and Leak-proof Make. So yes, they are in same part. The question is asking if Thermosyphon System Make is a match or closely relate to 'Leakproof'. They want to know if Thermosyphon System Make matches Leakproof. The context has \"MS, THERMOSYPHON SYSTEM, LEAK-PROOF MAKE\". So the answer should be Yes, and matched_value: the full description exactly from context: \"MS, THERMOSYPHON SYSTEM, LEAK-PROOF MAKE\". So output JSON accordingly.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 6206640600,
+  "load_duration": 223409100,
+  "prompt_eval_count": 1060,
+  "prompt_eval_duration": 240611000,
+  "eval_count": 242,
+  "eval_duration": 5304545900
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:31.6687774Z",
+  "response": "{\"matched\":\"No\",\"section\":\"nozzle_data\",\"closest_match\":\"DIP PIPE\"}",
+  "thinking": "We need to check if nozzle N3 has Service equal to or similar to 'Spare'. The context nozzle data: \"Nozzle: Ref.: N3, Size (DN): 100 80 50, Rating: DIN TO ASA, Service: DIP PIPE, Fittings: ULGL REDUCING FLANGE + CS PTFE LINED DIP PIPE\".\n\nSo Service is \"DIP PIPE\". The question: In the 'Nozzles' section, does nozzle 'N3' have Service equal to or similar to 'Spare'? If the 'Spare' has entry in it, even a partial match without 'entry' as a part of it, is a match.\n\nWe need to check equivalence: does \"DIP PIPE\" equal or similar to \"Spare\"? No. \"Spare\" means something else. No match.\n\nWe need to output JSON with matched: \"No\", section: \"nozzle_data\", closest_match: \"<closest value from the context>\" i.e., we should provide the closest semantic/functional value from the context. Which is Service: DIP PIPE. The closest value from the context? I think \"DIP PIPE\" is the Service field value. So the closest_match would be \"DIP PIPE\".\n\nHence output: {\"matched\":\"No\",\"section\":\"nozzle_data\",\"closest_match\":\"DIP PIPE\"}\n\nWe must return strict JSON only.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 7678784000,
+  "load_duration": 237902300,
+  "prompt_eval_count": 814,
+  "prompt_eval_duration": 453254300,
+  "eval_count": 312,
+  "eval_duration": 6456835700
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:38.418834Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"AGITATOR\"}",
+  "thinking": "We need to check whether nozzle 'M' has Service equal to or similar to 'Agitator Entry'. In context, we have: Nozzle: Ref.: M, Size (DN): 150, Rating: -, Service: AGITATOR, Fittings: MECHANICAL SEAL\n\nSo Service is \"AGITATOR\". The question: \"In the 'Nozzles' section, does nozzle 'M' have Service equal to or similar to 'Agitator Entry'? if the 'Agitator Entry' has entry in it, even a partial match without 'entry' as a part of it, is a match.\"\n\nWe need to interpret equivalence: \"Agitator Entry\" includes \"Agitator\" plus \"Entry\". The service value \"AGITATOR\" is part of \"Agitator Entry\" (partial match). They said if the 'Agitator Entry' has entry in it, even a partial match without 'entry' as a part of it, is a match. This suggests that \"AGITATOR\" qualifies as similar to \"Agitator Entry\" because it contains \"Agitator\" which is part of the phrase. So we can consider matched.\n\nWe must output JSON: matched Yes, section: nozzle_data, matched_value: \"<value from context>\" . The matched_value is the value from context that matched: \"AGITATOR\". The context phrase \"Service: AGITATOR\". We should return full context phrase: \"AGITATOR\" or maybe \"Service: AGITATOR\"? They said return full context phrases. For matched_value, they say \"<value from context>\" presumably the value like \"AGITATOR\". It might be full phrase \"AGITATOR\" is enough. But they say \"Always return full context phrases.\" That might mean if the context phrase is \"AGITATOR\" that is the full context phrase. Or \"Service: AGITATOR\". But context phrase might be considered just the value. But for clarity, we return the value as appears. I'll use \"AGITATOR\".\n\nThus JSON:\n\n{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"AGITATOR\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 14428074300,
+  "load_duration": 243352400,
+  "prompt_eval_count": 800,
+  "prompt_eval_duration": 159825100,
+  "eval_count": 470,
+  "eval_duration": 8138618000
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:38.9384706Z",
+  "response": "{\"matched\": \"Yes\", \"section\": \"part_list\", \"matched_value\": \"ULGL BELLOW TYPE UPPER TO OPEN BOV, 100x80NB\"}",
+  "thinking": "We need to see if the part description for the Bottom Outlet Valve matches or similar to 'Bellow MSGL Bellow Type Upper To Open BOV 100x80 (GPF 301)'. The context list includes:\n\nPart: part_no: 59, qty: 1, description: ULGL BELLOW TYPE UPPER TO OPEN BOV, 100x80NB, drawing_no: 98-GPF-8075\n\nSo we have description: ULGL BELLOW TYPE UPPER TO OPEN BOV, 100x80NB.\n\nQuestion part description: 'Bellow MSGL Bellow Type Upper To Open BOV 100x80 (GPF 301)'\n\nWe have ULGL vs MSGL. According to equivalence: \"MSGL is the same as/equivalent to [GL ,UGL,9100 Glass, Pharma Glass, Ultra Glass, White Glass, Nano Glass, ARG Glass, PPGL] only.\" Wait earlier: \"MSGL is the same as/equivalent to [GL ,UGL,9100 Glass, Pharma Glass, Ultra Glass, White Glass, Nano Glass, ARG Glass, PPGL] only.\" Actually statement: \"Also MSGL is the same as/equivalent to [GL ,UGL,9100 Glass, Pharma Glass, Ultra Glass, White Glass, Nano Glass, ARG Glass, PPGL] only.\" Means MSGL is equivalent to these glass types. ULGL is Ultra Glass. ULGL is not in the list? ULGL is Ultra Glass? There's abbreviation: ULGL is Ultra Glass. The equivalence rule: \"Also MSGL is the same as/equivalent to [GL ,UGL,9100 Glass, Pharma Glass, Ultra Glass, White Glass, Nano Glass, ARG Glass, PPGL] only.\" So ULGL (Ultra Glass) is part of that equivalence. The context description has ULGL BELLOW TYPE UPPER TO OPEN BOV, 100x80NB.\n\nQuestion description: Bellow MSGL Bellow Type Upper To Open BOV 100x80 (GPF 301). Equivalent to Bellow GL? But we have ULGL. But \"MSGL is equivalent to Ultra Glass\" (since Ultra Glass is one of list). So \"MSGL\" in question is same as \"Ultra Glass\". So the context description has ULGL. So they match. The numbers: 100x80 vs 100x80. That's matching.\n\nAlso drawing numbers differ but not relevant. The description part \"Bellow\" appears twice, but \"ULGL BELLOW TYPE UPPER TO OPEN BOV\". The question \"Bellow MSGL Bellow Type Upper To Open BOV\". So it's similar. We must decide if it matches. The rules: \"YES if the component type/design clearly appears (even if word order or phrasing differs).\" So it's a match. The matched description to return is full context phrase: \"ULGL BELLOW TYPE UPPER TO OPEN BOV, 100x80NB\"\n\nNote that we need to copy full description exactly as written. That includes \"ULGL BELLOW TYPE UPPER TO OPEN BOV, 100x80NB\". Yes. No extra comma? context says \"ULGL BELLOW TYPE UPPER TO OPEN BOV, 100x80NB\". We must copy that exactly.\n\nThus matched yes.\n\nReturn JSON accordingly.\n\n",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 14947698300,
+  "load_duration": 237843800,
+  "prompt_eval_count": 1107,
+  "prompt_eval_duration": 520286000,
+  "eval_count": 739,
+  "eval_duration": 13292470900
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:45.3225729Z",
+  "response": "{\"matched\": \"Yes\", \"section\": \"nozzle_data\", \"matched_value\": \"PTFE BUSH TYPE MANHOLE RING\"}",
+  "thinking": "Question: \"Is the Hand/Manhole Protection Ring described as 'PTFE BUSH TYPE' or something similar?\"\n\nWe look at nozzle data. We see entries:\n\n- Ref.: N1: Fittings: PTFE BUSH TYPE MANHOLE RING + ULGL MANHOLE COVER\n- Ref.: N7: PTFE BUSH + ULGL BLIND COVER\n- Ref.: N9: PTFE BUSH + ULGL BLIND COVER\n- Ref.: N5: THERMOMETER\n\nThe question refers to \"Hand/Manhole Protection Ring\". That ring is likely the \"Manhole Ring\". They ask: described as 'PTFE BUSH TYPE' or something similar. We have \"PTFE BUSH TYPE MANHOLE RING\" exactly. That matches. So matched: Yes.\n\nReturn matched_value: \"PTFE BUSH TYPE MANHOLE RING\".\n\nThus JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 5753333800,
+  "load_duration": 237383800,
+  "prompt_eval_count": 932,
+  "prompt_eval_duration": 532579200,
+  "eval_count": 227,
+  "eval_duration": 4570369200
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:46.1278931Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 100\"}",
+  "thinking": "We need to check if nozzle 'L' has Size equal to or similar to '100' in the nozzle_data context.\n\nContext: \"Nozzle: Ref.: L, Size (DN): 100, Rating: ASA 150, Service: OUTLET, Fittings: 100 x 80NB MS ULGL BOV\"\n\nQuestion: In the 'Nozzles' section, does nozzle 'L' have Size equal to or similar to '100'?\n\nWe have to match logically equivalently. The size in context: \"Size (DN): 100\". The question: 'Size equal to or similar to '100''. So it's a match. We should return matched: Yes, section: nozzle_data, matched_value: \"Size (DN): 100\" or \"Size (DN): 100\" is the phrase. The rule: Return full context phrase. So matched_value should be the phrase containing the size. The phrase is \"Size (DN): 100\". Yes.\n\nSo final output: {\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 100\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 6558634500,
+  "load_duration": 229849500,
+  "prompt_eval_count": 775,
+  "prompt_eval_duration": 318936000,
+  "eval_count": 258,
+  "eval_duration": 5548226700
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:52.8570156Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"design_data\",\"matched_value\":\"SP. GRAVITY ≤ 1.6\"}",
+  "thinking": "We need to determine if the question: \"Is Inner Vessel Specific Gravity value match or closely relate to ≤ 1.6?\" The question asks: is the inner vessel specific gravity value match or closely relate to ≤ 1.6?\n\nThe context: \"FLUID - INNER VESSEL: NON LETHAL WITH SP. GRAVITY ≤ 1.6 VISCOSITY : 10 cP ...\". So there is phrase \"SP. GRAVITY ≤ 1.6\". That matches. The question: \"Is Inner Vessel Specific Gravity value match or closely relate to ≤ 1.6?\" It asks to verify whether a specific value from the question exists in design_data context. The question value: \"≤ 1.6\". That matches exactly phrase \"SP. GRAVITY ≤ 1.6\" in context.\n\nSo matched. We must return the entire matching phrase exactly as in context. The phrase: \"SP. GRAVITY ≤ 1.6\". Confirm that context includes that phrase exactly? The context says: \"SP. GRAVITY ≤ 1.6\". Yes.\n\nThus output JSON: {\"matched\": \"Yes\", \"section\": \"design_data\", \"matched_value\": \"SP. GRAVITY ≤ 1.6\"}\n\nCheck: \"matched_value\" should be full phrase exactly from context. That is \"SP. GRAVITY ≤ 1.6\". Should we include \"SP. GRAVITY ≤ 1.6\"? Yes.\n\nReturn only that.\n\nNo other instructions. Ensure strict JSON.\n\nLet's output.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 13286861000,
+  "load_duration": 251077900,
+  "prompt_eval_count": 900,
+  "prompt_eval_duration": 174932900,
+  "eval_count": 356,
+  "eval_duration": 6881219600
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:53.4856313Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"design_data\",\"matched_value\":\"F.V. 6 bar(g)\"}",
+  "thinking": "We need to see if Design Pressure for the Jacket equals F.V. / 6 bar(g). The context lines: \"MAX. ALLOWABLE WORKING PRESSURE (DESIGN PRESSURE) - JACKET: F.V. 6 bar(g)\" Actually the context: \"MAX. ALLOWABLE WORKING PRESSURE (DESIGN PRESSURE) - JACKET: F.V. 6 bar(g)\". That phrase includes \"F.V. 6 bar(g)\". The question: \"Is the Design Pressure for the Jacket equal to F. V. / 6 bar(g)?\" They ask if design pressure for jacket equals F.V. / 6 bar(g). They mention F.V. / 6 bar(g). But the context uses \"F.V. 6 bar(g)\" with a space. That might be equivalent: \"F.V. 6 bar(g)\" vs \"F.V. / 6 bar(g)\"? The slash could be part of formatting? The phrase \"F.V. 6 bar(g)\" indicates F.V. is the value 6 bar(g). The question uses \"F. V. / 6 bar(g)\" with slash. It's ambiguous. According to Equivalence rule 1, literal equivalence requires exact match. Not matched. Semantic equivalence: \"F.V. 6 bar(g)\" meaning the design pressure is 6 bar(g). The question: \"equal to F. V. / 6 bar(g)?\" They might be asking if the design pressure equals 6 bar(g). Yes. So we need to decide if matched. The value \"F.V. 6 bar(g)\" appears. The question uses \"F. V. / 6 bar(g)\". We might interpret that as same numeric value. The equivalence includes symbol notation equivalence: slash? But slash is not in context. The rule 13 says ≤ == <= ; °C == Celsius. No rule for slash. But the question has slash after F. V. maybe to separate. It's ambiguous. I'd lean that it's not exact match. But is it considered logically equivalent? They ask if design pressure equals F.V. / 6 bar(g). The context says \"F.V. 6 bar(g)\". The phrase \"F.V. 6 bar(g)\" is the design pressure value. So we can say matched: the value is \"F.V. 6 bar(g)\". They might accept that as answer. According to rules: \"If matched, return the entire matching phrase exactly as in the context.\" So \"F.V. 6 bar(g)\" is the phrase. The question: \"Is the Design Pressure for the Jacket equal to F. V. / 6 bar(g)?\" We can answer yes. So JSON: matched Yes, section design_data, matched_value \"F.V. 6 bar(g)\".\n\nThus final.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 13915461500,
+  "load_duration": 232433500,
+  "prompt_eval_count": 897,
+  "prompt_eval_duration": 390245100,
+  "eval_count": 622,
+  "eval_duration": 12391106700
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:23:56.5482552Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG\"}",
+  "thinking": "We need to determine if part description for the Jacket Nozzle matches or closely relates to '04 Nos. DN50 Jacket Nozzle'.\n\nWe have context parts:\n\npart_no 9: MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG, ASME CLASS 150\npart_no 10: MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x195LG, ASME CLASS 150\npart_no 11: IMPINGEMENT PLATE FOR 50NB JACKET NOZZLE\npart_no 6: DIAPHRAGM RING, 100NB NOZZLE\npart_no 31: UGL MANHOLE COVER\n\nQuestion: '04 Nos. DN50 Jacket Nozzle'. They ask if the part description for the Jacket Nozzle matches or closely relates to '04 Nos. DN50 Jacket Nozzle'.\n\nWe need to see if the context includes a description that matches DN50 Jacket Nozzle.\n\nThe context has 'MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG' etc. '50 NB' indicates nominal bore 50? They mention '50 NBxSCH' which is 50 nominal bore with schedule. That is DN50? DN50 corresponds to nominal diameter 50 mm (but could be 50mm nominal bore). '50 NB' presumably nominal bore 50? In pipe terms, 'DN50' is nominal diameter 50 mm. The part description includes '50 NB', not 'DN50', but 50 NB is similar.\n\nThey also have 'IMPINGEMENT PLATE FOR 50NB JACKET NOZZLE'.\n\nBut the question is about '04 Nos. DN50 Jacket Nozzle' meaning 4 units. The context has qty: 2 each for part_no 9 and 10. So they have 4 units total: 2 of part 9 and 2 of part 10. So that matches '04 Nos.' as quantity. But the description 'MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG' etc. Is that equivalent to 'DN50 Jacket Nozzle'? It seems yes.\n\nWe need to return matched: Yes, with matched_value: The full description from context. Which one? Which part matches? We might choose one that matches the description best: 'MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG' or 'MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x195LG'. Both are Jacket Nozzle with 50 NB, but the question didn't mention flange dimensions. So maybe the generic 'MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG' is the matched phrase. Should we combine? The rule: If matched, return the full description exactly as written in the context. Since there are two parts with similar description but different dimensions. Which one to choose? The question asks about part description for the Jacket Nozzle matching or closely relate to '04 Nos. DN50 Jacket Nozzle'. The part description we have: 'MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG' and 'MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x195LG'. Both include 50 NB. I'd choose one of them. But perhaps choose the one that matches the phrase 'DN50 Jacket Nozzle' more directly: The numeric part '50 NB' is equivalent to DN50. So yes.\n\nWe can return either description. But maybe better to choose the first part: 'MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG'. I'll return that.\n\nThus:\n\n{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 16978011300,
+  "load_duration": 229619500,
+  "prompt_eval_count": 1106,
+  "prompt_eval_duration": 532579200,
+  "eval_count": 905,
+  "eval_duration": 15204789000
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:03.6447188Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 200\"}",
+  "thinking": "We need to see context: \"Nozzle: Ref.: N5, Size (DN): 200, Rating: PN-10 DIN 2673, Service: BAFFLE, Fittings: THERMOMETER\"\n\nQuestion: In the 'Nozzles' section, does nozzle 'N5' have Size equal to or similar to '200'?\n\nWe check if Size equal or similar to 200. In context Size (DN): 200. Yes. So matched.\n\nWe return JSON: {\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 200\"}? They ask \"Return full context phrases\". The matched_value should be from context. Full context phrase: \"Size (DN): 200\". Or could be \"Size (DN): 200\" or \"Size (DN): 200\". We'll output that.\n\nCheck instructions: \"Return full context phrases.\" So matched_value should be that phrase.\n\nThus output:\n\n{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 200\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 6481712500,
+  "load_duration": 246324600,
+  "prompt_eval_count": 775,
+  "prompt_eval_duration": 448949600,
+  "eval_count": 249,
+  "eval_duration": 5331283400
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:04.6841889Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"design_data\",\"matched_value\":\"VOLUME (NOMINAL) - INNER VESSEL: 2000 LITER\"}",
+  "thinking": "We need to see if \"Volume (nominal) for Inner Vessel equals or similar to 2000L\" is present. Context has: \"VOLUME (NOMINAL) - INNER VESSEL: 2000 LITER\". That's a literal match, but the phrase includes \"2000 LITER\". The question: \"Is the Volume (nominal) for Inner Vessel equals or simillar to 2000L(Liter)?\" So yes, match exists: phrase \"VOLUME (NOMINAL) - INNER VESSEL: 2000 LITER\". Must return entire matching phrase exactly as in context. The phrase: \"VOLUME (NOMINAL) - INNER VESSEL: 2000 LITER\". The rules: \"If matched, return the entire matching phrase exactly as in the context. if essential, concatenate upto two phrases, only and only if deemed necessary.\" So we just return that phrase.\n\nReturn JSON: {\"matched\":\"Yes\",\"section\":\"design_data\",\"matched_value\":\"VOLUME (NOMINAL) - INNER VESSEL: 2000 LITER\"}\n\nCheck that we exactly match context string including case, punctuation. Yes.\n\nLet's produce JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 7521663500,
+  "load_duration": 250132800,
+  "prompt_eval_count": 898,
+  "prompt_eval_duration": 519788900,
+  "eval_count": 286,
+  "eval_duration": 6234481600
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:05.3225992Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"material_of_construction\",\"matched_value\":\"SA 516 Gr. 60 ENAMEL QUALITY\"}",
+  "thinking": "We need to determine if Material of Construction for Shell and Head matches or closely relates to 'SA 516 Gr.60(EQ)'. The context lists:\n\n\"INNERVESSEL - SHELL, HEADS AND BLIND COVER: SA 516 Gr. 60 ENAMEL QUALITY\"\n\nSo the shell and heads are SA 516 Gr. 60, enamel quality. The question refers to 'SA 516 Gr.60(EQ)'. They are same grade and 'EQ' presumably enamel quality. So it's a match.\n\nWe should output matched yes, with matched_value the full phrase from context: \"SA 516 Gr. 60 ENAMEL QUALITY\" or maybe \"SA 516 Gr. 60 ENAMEL QUALITY\" is the phrase from context. But we must check rule: \"Return the full context phrase.\" So yes. The phrase is \"SA 516 Gr. 60 ENAMEL QUALITY\" as part of \"INNERVESSEL - SHELL, HEADS AND BLIND COVER: SA 516 Gr. 60 ENAMEL QUALITY\". The matched_value should be the value from context that matches. So \"SA 516 Gr. 60 ENAMEL QUALITY\". Return JSON.\n\nThus:\n\n{\"matched\":\"Yes\",\"section\":\"material_of_construction\",\"matched_value\":\"SA 516 Gr. 60 ENAMEL QUALITY\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 8160058300,
+  "load_duration": 240497400,
+  "prompt_eval_count": 910,
+  "prompt_eval_duration": 136926900,
+  "eval_count": 318,
+  "eval_duration": 7230065800
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:12.640353Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"FABRICATED JACKET, 1500 OD, CE-2KL, NIL RT\"}",
+  "thinking": "We need to determine if the Jacket Type equals \"Plain Jacket with 1500 OD\". The question: \"Is the Jacket Type equal to Plain Jacket with 1500 OD?\" So we need to see if any part description matches that.\n\nContext parts:\n1. part_no: 2 description: FABRICATED JACKET, 1500 OD, CE-2KL, NIL RT\n2. part_no: 10 description: MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x195LG, ASME CLASS 150\n3. part_no: 9 description: MS JACKET NOZZLE WITH SORF FLANGE, 50 NBxSCH 160x160LG, ASME CLASS 150\n4. part_no: 11 description: IMPINGEMENT PLATE FOR 50NB JACKET NOZZLE\n5. part_no: 15 description: MS SPLIT LAPPED FLANGE, DN200\n\nThe question's phrase: \"Plain Jacket with 1500 OD\". In context we have \"FABRICATED JACKET, 1500 OD\" which is equivalent to \"Plain Jacket\". According to equivalence rules: Fabricated is same as/equivalent to Plain. So \"Fabricated Jacket, 1500 OD\" matches \"Plain Jacket with 1500 OD\" (Fabricated = Plain; 1500 OD same). So match exists.\n\nWe must return the full description exactly as written in the context: \"FABRICATED JACKET, 1500 OD, CE-2KL, NIL RT\". Wait, the description is \"FABRICATED JACKET, 1500 OD, CE-2KL, NIL RT\". Should we include the full description? The instructions: \"If matched, return the full description exactly as written in the context.\" Yes.\n\nThus output JSON: {\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"FABRICATED JACKET, 1500 OD, CE-2KL, NIL RT\"}\n\nWe must ensure JSON format.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 15477130200,
+  "load_duration": 250910200,
+  "prompt_eval_count": 1092,
+  "prompt_eval_duration": 240342300,
+  "eval_count": 462,
+  "eval_duration": 8301762500
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:13.4171804Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"drive_data\",\"matched_value\":\"BBL MAKE FLAMEPROOF(TEFC IS IEC 60079-1) EFFICIENCY CLASS IE27.5HP(5.5KW)\"}",
+  "thinking": "We need to see if Drive for Motor match or closely relate to 'BBL Make 7.5 (5.5 KW) HP IE2 Flameproof Motor Page 3 of 4'? The question says: \"Is Drive for Motor match or closely relate to 'BBL Make 7.5 (5.5 KW) HP IE2 Flameproof Motor Page 3 of 4'?\" The context: DRIVE MOTOR: BBL MAKE FLAMEPROOF(TEFC IS IEC 60079-1) EFFICIENCY CLASS IE27.5HP(5.5KW) FLANGE MOUNTED ELECTRIC MOTOR, FRAME SIZE = 132S, SPEED = 1450 RPM, VOLTAGE = 415±10 V, FREQUENCY = 50±5 HZ, 3 PHASE,HAZARDOUS AREA ZONE 1, GAS GROUP IIA & IIB, DEGREE OF PROTECTION = IP-55,TEMPERATURE CLASS = T5, AMBIANT TEMPERATURE = 45° C,TEMPERATURE RISE UP TO CLASS B, INSULATION CLASS F. 59 1 ULGL BELLOW TYPE UPPER TO OPEN BOV, 100X80NB 98-GPF-8075\n\nWe check if the phrase matches. The question refers to 'BBL Make 7.5 (5.5 KW) HP IE2 Flameproof Motor Page 3 of 4'. The context phrase: 'BBL MAKE FLAMEPROOF ... EFFICIENCY CLASS IE27.5HP(5.5KW)'.\n\nDoes it contain 'BBL Make' and '7.5 (5.5 KW) HP IE2 Flameproof Motor'? The context has 'BBL MAKE' and '5.5KW', but the question says '7.5', which might be 7.5 horsepower. The context says 'IE27.5HP' maybe IE27.5HP? Actually the context: 'EFFICIENCY CLASS IE27.5HP(5.5KW)'. That likely means 7.5 horsepower? Wait 5.5 kW is about 7.4 hp. So 7.5 HP approx. The context says IE2 Flameproof. The question says IE2 Flameproof Motor. The context says 'FLAMEPROOF(TEFC IS IEC 60079-1) EFFICIENCY CLASS IE27.5HP(5.5KW)'. That matches.\n\nSo we need to find if the question matches or closely relates. Likely matched. We need to provide matched_value: full phrase from context that matches. Which phrase? We must return the full context phrase for the match. The matching part: 'BBL MAKE FLAMEPROOF' maybe, but also includes IE2? The context says 'FLAMEPROOF(TEFC IS IEC 60079-1) EFFICIENCY CLASS IE27.5HP(5.5KW)'. The question includes 'IE2 Flameproof Motor'.\n\nSo best match phrase: 'BBL MAKE FLAMEPROOF(TEFC IS IEC 60079-1) EFFICIENCY CLASS IE27.5HP(5.5KW)'.\n\nThus output: {\"matched\": \"Yes\", \"section\": \"drive_data\", \"matched_value\": \"BBL MAKE FLAMEPROOF(TEFC IS IEC 60079-1) EFFICIENCY CLASS IE27.5HP(5.5KW)\"}.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 16255399500,
+  "load_duration": 248514500,
+  "prompt_eval_count": 969,
+  "prompt_eval_duration": 519788900,
+  "eval_count": 781,
+  "eval_duration": 14572718200
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:17.3318971Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"key_value_pairs\",\"matched_value\":\"102\"}",
+  "thinking": "We need to check if RPM equals 102. Context shows \"CALCULATED RPM: 102\". The question asks \"Is RPM equals to 102?\" That matches numeric equivalence: 102 present. So matched. Return matched value \"102\". Provide JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 2482239200,
+  "load_duration": 241544700,
+  "prompt_eval_count": 791,
+  "prompt_eval_duration": 467783100,
+  "eval_count": 80,
+  "eval_duration": 1613217400
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:21.4349588Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"200\"}",
+  "thinking": "We need to check whether nozzle 'N7' has Size equal or similar to '200' in the context.\n\nContext: \"Nozzle: Ref.: N7, Size (DN): 200, Rating: ASA 150, Service: SPARE, Fittings: PTFE BUSH + ULGL BLIND COVER\"\n\nQuestion: \"In the 'Nozzles' section, does nozzle 'N7' have Size equal to or similar to '200'?\"\n\nWe compare size. In context, Size (DN): 200. That's exactly 200. So matched.\n\nWe need to output JSON: matched: \"Yes\", section: \"nozzle_data\", matched_value: \"<value from context>\" The value from context should be \"200\" or the phrase? The instruction says \"Return full context phrases.\" For matched_value, likely the value from context: \"200\". Or maybe \"Size (DN): 200\"? The matched_value is the value from context that matches. The value is 200.\n\nThus: {\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"200\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 6585709100,
+  "load_duration": 238313600,
+  "prompt_eval_count": 776,
+  "prompt_eval_duration": 467783100,
+  "eval_count": 249,
+  "eval_duration": 5408665600
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:24.1777177Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"material_of_construction\",\"matched_value\":\"CARBON STEEL IS:1363 1367 CL 4.6 4\"}",
+  "thinking": "We need to determine whether the Material of Construction for the Fasteners Non-Pressure Part matches or closely relates to 'MS - IS : 1363 / 1367 CL. 4.6 / 4'. The context given: \n\"INNERVESSEL - FASTENERS: CARBON STEEL IS:1363 1367 CL 4.6 4\". \nThus the context phrase \"CARBON STEEL IS:1363 1367 CL 4.6 4\" appears. The question: Does the Material of Construction for the Fasteners Non-Pressure Part match or closely relate to 'MS - IS : 1363 / 1367 CL. 4.6 / 4'?\n\nYes, it's the same. According to equivalence rules, MS - IS: 1363/1367 CL. 4.6/4 is equivalent to IS 1363 1367 CL 4.6 4. The context uses \"IS:1363 1367 CL 4.6 4\" (with colon after IS, missing 'MS-'). It matches. We need to output the matched value from context: \"CARBON STEEL IS:1363 1367 CL 4.6 4\".\n\nThe output JSON: {\"matched\":\"Yes\",\"section\":\"material_of_construction\",\"matched_value\":\"CARBON STEEL IS:1363 1367 CL 4.6 4\"}\n\nMake sure no extra spaces, exactly as context phrase. The context phrase includes \"CARBON STEEL IS:1363 1367 CL 4.6 4\". Yes.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 9327898200,
+  "load_duration": 237282800,
+  "prompt_eval_count": 935,
+  "prompt_eval_duration": 473848900,
+  "eval_count": 380,
+  "eval_duration": 7989998000
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:24.7527669Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"lining_and_notes\",\"matched_value\":\"ULTRASONICALLY TESTED\"}",
+  "thinking": "We need to determine whether the question \"Is the NDT equal to Ultrasonically Tested?\" asks if NDT equals Ultrasonically Tested. The context has a line: \"N.D.T. :-MAIN WELD SEAMS OF INNER VESSEL TO BE 100 ULTRASONICALLY TESTED FOR INTERNAL QUALITY ASSURANCE ONLY.\" So \"N.D.T.\" refers to \"Ultrasonically Tested\". In question, NDT (no period) presumably stands for Non-Destructive Testing but context says N.D.T. equals Ultrasonically Tested. There's an abbreviation equivalence: UT == Ultrasonically Tested. Also \"NDT\" maybe same as \"N.D.T.\"? They didn't explicitly say but likely same abbreviation. The question: Is the NDT equal to Ultrasonically Tested? This is essentially yes: NDT equals Ultrasonically Tested. So matched. We return the full value from context. The full phrase: \"ULTRASONICALLY TESTED\". But the context phrase is \"100 ULTRASONICALLY TESTED\". The question refers to NDT equal to Ultrasonically Tested. The matching phrase in context is \"ULTRASONICALLY TESTED\". We should return that exact value. Ensure no extra spaces. The exact value appears as \"ULTRASONICALLY TESTED\". So output: {\"matched\":\"Yes\",\"section\":\"lining_and_notes\",\"matched_value\":\"ULTRASONICALLY TESTED\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 9903438900,
+  "load_duration": 245287500,
+  "prompt_eval_count": 1245,
+  "prompt_eval_duration": 249911000,
+  "eval_count": 328,
+  "eval_duration": 6657004300
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:26.0336267Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"350 450\"}",
+  "thinking": "We need to check if nozzle N1 has Size equal to or similar to 350/450. The context: \"Nozzle: Ref.: N1, Size (DN): 350 450, Rating: CLAMPED, Service: MANHOLE, Fittings: PTFE BUSH TYPE MANHOLE RING + ULGL MANHOLE COVER\"\n\nThe question: In the 'Nozzles' section, does nozzle 'N1' have Size equal to or similar to '350/450'? We must check for match.\n\nContext has \"Size (DN): 350 450\". That seems to represent a size of 350 and 450 maybe? The question has 350/450. Are they equivalent? Under numeric equivalence, numbers 350 and 450 are present. The question's numeric values: 350 and 450. They match exactly. Should we consider it a match? \"350 450\" vs \"350/450\" are same numbers. The context phrase is \"Size (DN): 350 450\". So matched. Return matched yes, matched_value should be the full context phrase? They say return full context phrases for all matches. The matched value: \"Size (DN): 350 450\". Or maybe just \"350 450\"? They said \"Return full context phrases for all matches.\" The context phrase is the phrase \"Size (DN): 350 450\" or maybe \"350 450\". The matched value should be the context value. Probably \"350 450\". But full context phrase may include \"Size (DN): 350 450\". Let's interpret \"value\" as the part that matches the query. The query refers to \"Size equal to or similar to 350/450\". So the matched value is \"350 450\" but they might want the whole phrase including context. Let's check instructions: In output, matched_value: \"<value from context>\" So that value should be from context. It might be \"350 450\". But also \"Size (DN): 350 450\" is context. The question: \"does nozzle 'N1' have Size equal to or similar to '350/450'?\" So they want to confirm that size matches. The matched_value should probably be the size string from context: \"350 450\". So produce JSON.\n\nReturn format:\n{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"350 450\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 11183763400,
+  "load_duration": 237808500,
+  "prompt_eval_count": 788,
+  "prompt_eval_duration": 399320100,
+  "eval_count": 524,
+  "eval_duration": 9855484900
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:37.5136412Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"material_of_construction\",\"matched_value\":\"JACKET - COUPLINGS & PLUGS: SA 105 3000\"}",
+  "thinking": "We need to verify if the material of construction for the Jacket Coupling+Plug matches or closely relates to 'SA 105'.\n\nContext line: \"JACKET - COUPLINGS & PLUGS: SA 105 3000\". So the material of construction for Jacket Couplings & Plugs is SA 105 3000. So yes, it matches SA 105 (there is \"SA 105\" part). According to rules: match based on equivalent grades, etc. \"SA 105 3000\" contains \"SA 105\". So matched. Output must be JSON with matched: Yes, section: material_of_construction, matched_value: the full context phrase. Full context phrase is \"JACKET - COUPLINGS & PLUGS: SA 105 3000\". Return that.\n\nThus answer: {\"matched\": \"Yes\", \"section\": \"material_of_construction\", \"matched_value\": \"JACKET - COUPLINGS & PLUGS: SA 105 3000\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 6781178300,
+  "load_duration": 218211400,
+  "prompt_eval_count": 874,
+  "prompt_eval_duration": 369406700,
+  "eval_count": 253,
+  "eval_duration": 5725853400
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:38.5264746Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"MS LANTERN SUPPORT, HDM-80, AS-55 & 60, AE CE-1.6 TO 3KL\"}",
+  "thinking": "We need to verify if part description for the Lantern Support matches or closely relates to 'MS'.\n\nThe question: \"Does the part description for the Lantern Support match or closely relate to 'MS'?\" They want to check if description for Lantern Support includes 'MS' or is related. The part list includes part_no 40: description \"MS LANTERN SUPPORT, HDM-80, AS-55 & 60, AE CE-1.6 TO 3KL\". So description contains \"MS LANTERN SUPPORT\". That clearly matches 'MS' because 'MS' is included in description.\n\nThe answer should be matched yes. And the matched_value should be full description from context: \"MS LANTERN SUPPORT, HDM-80, AS-55 & 60, AE CE-1.6 TO 3KL\". That is the exact phrase.\n\nWe must not include other parts. So output JSON:\n\n{\"matched\": \"Yes\", \"section\": \"part_list\", \"matched_value\": \"MS LANTERN SUPPORT, HDM-80, AS-55 & 60, AE CE-1.6 TO 3KL\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 7699722600,
+  "load_duration": 233587700,
+  "prompt_eval_count": 1110,
+  "prompt_eval_duration": 419478500,
+  "eval_count": 286,
+  "eval_duration": 6246199200
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:39.4588122Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"OUTLET\"}",
+  "thinking": "We need to check question: \"In the 'Nozzles' section, does nozzle 'L' have Service equal to or similar to 'Outlet'? if the 'Outlet' has entry in it, even a partial match without 'entry' as a part of it, is a match.\"\n\nWe have context: Nozzle: Ref.: L, Size (DN): 100, Rating: ASA 150, Service: OUTLET, Fittings: 100 x 80NB MS ULGL BOV\n\nSo we need to see if Service equals or similar to Outlet. Service: OUTLET. That's a match. Should return matched yes and matched_value should be the full phrase from context? They said \"Always return full context phrases.\" So matched_value should be the context phrase \"OUTLET\"? Or \"Service: OUTLET\"? The value from context. They want matched_value: \"<value from context>\" So the value is likely \"OUTLET\". But might need full context phrase? In earlier instructions: \"Always return full context phrases.\" So for match, we might return the entire context phrase \"OUTLET\". It's the value. Might also include the entire context: \"Service: OUTLET\"? But the value is the value. They say \"matched_value: \"<value from context>\"\". So value from context is \"OUTLET\". We'll use that.\n\nThus output:\n\n{\"matched\": \"Yes\", \"section\": \"nozzle_data\", \"matched_value\": \"OUTLET\"}\n\nLet's produce JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 8694662400,
+  "load_duration": 232464300,
+  "prompt_eval_count": 802,
+  "prompt_eval_duration": 339917900,
+  "eval_count": 330,
+  "eval_duration": 7198402300
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:39.5925878Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"BAFFLE\"}",
+  "thinking": "We need to check whether in 'nozzle_data' context (provided earlier) the nozzle N5 has Service equal to or similar to 'Baffle / Thermowell'. The context snippet:\n\n\"Nozzle: Ref.: N5, Size (DN): 200, Rating: PN-10 DIN 2673, Service: BAFFLE, Fittings: THERMOMETER\"\n\nQuestion: \"In the 'Nozzles' section, does nozzle 'N5' have Service equal to or similar to 'Baffle / Thermowell'? if the 'Baffle / Thermowell' has entry in it, even a partial match without 'entry' as a part of it, is a match.\"\n\nService in context: BAFFLE. They ask if Service equal to or similar to 'Baffle / Thermowell'. That phrase includes 'Baffle' and 'Thermowell'. The context has 'BAFFLE'. That is a partial match: 'Baffle' present. So we should say matched: Yes, section nozzle_data, matched_value: \"BAFFLE\". According to rules, \"Return full context phrases\". So matched_value: \"BAFFLE\".\n\nReturn JSON: {\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"BAFFLE\"}\n\nCheck that \"nozzle_data\" is correct section name. They said context: Nozzle: Ref.: N5 ... So maybe \"nozzle_data\" is the name of the context. That seems fine.\n\nThus produce JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 8813209300,
+  "load_duration": 219944400,
+  "prompt_eval_count": 814,
+  "prompt_eval_duration": 339917900,
+  "eval_count": 337,
+  "eval_duration": 7326228200
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:43.1876516Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"SPARE\"}",
+  "thinking": "We need to check if nozzle 'N7' has Service equal or similar to 'Spare'. Context: Nozzle: Ref.: N7, Size (DN): 200, Rating: ASA 150, Service: SPARE, Fittings: PTFE BUSH + ULGL BLIND COVER. The question: \"In the 'Nozzles' section, does nozzle 'N7' have Service equal to or similar to 'Spare'? if the 'Spare' has entry in it, even a partial match without 'entry' as a part of it, is a match.\"\n\nWe have 'Service: SPARE'. The word 'Spare' matches. It's uppercase but rule ignores case.\n\nThus matched. Provide matched_value from context: \"SPARE\". But rule: always return full context phrases. The matched_value should be the phrase from context: maybe \"Service: SPARE\" or \"SPARE\"? It says: \"Always return full context phrases.\" The context phrase that includes the value? We can return \"SPARE\" is the value. But phrase \"Service: SPARE\" includes more context. But typical matched_value is the value from context. I'd return \"SPARE\". But it's safe to include entire phrase \"Service: SPARE\"? The instructions: \"Always return full context phrases.\" Means if matched, return the matched phrase from context: maybe \"Service: SPARE\". But the example format: {\"matched\": \"Yes\", \"section\": \"nozzle_data\", \"matched_value\": \"<value from context>\"}. So matched_value should be the value that matches. In context, the value is \"SPARE\". But \"Service: SPARE\" is phrase. But value is \"SPARE\". I think return \"SPARE\". But maybe they expect \"SPARE\" only. Let's do that. Provide JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 12314824800,
+  "load_duration": 216047300,
+  "prompt_eval_count": 805,
+  "prompt_eval_duration": 160116800,
+  "eval_count": 403,
+  "eval_duration": 5239863600
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:51.5518035Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"key_value_pairs\",\"matched_value\":\"0\"}",
+  "thinking": "We need to check if the corrosion allowance for glassed surface equals 0.0. Context: \"CORROSION ALLOWANCE - GLASSED SURFACE: 0\". The question: \"Is the Corrosion Allowance for the Glassed Surface equal to 0.0?\" So numeric equivalence: 0.0 vs 0. They are equivalent (numeric equivalence). So matched. We should return the context phrase. So matched_value: \"0\". Return JSON: {\"matched\": \"Yes\", \"section\": \"key_value_pairs\", \"matched_value\": \"0\"}.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 4329156000,
+  "load_duration": 233469200,
+  "prompt_eval_count": 825,
+  "prompt_eval_duration": 393369200,
+  "eval_count": 148,
+  "eval_duration": 3436351600
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:56.0421073Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Service: SPARE\"}",
+  "thinking": "We need to parse the question: \"In the 'Nozzles' section, does nozzle 'N9' have Service equal to or similar to 'Spare'? if the 'Spare' has entry in it, even a partial match without 'entry' as a part of it, is a match.\"\n\nWe have context: \"Nozzle: Ref.: N9, Size (DN): 100, Rating: ASA 150, Service: SPARE, Fittings: PTFE BUSH + ULGL BLIND COVER\"\n\nWe need to check if nozzle 'N9' has Service equal or similar to 'Spare'. The Service in context is \"SPARE\". The question uses 'Spare'. We need to consider equivalence rules. Case / Punctuation / Whitespace equivalence applies. So \"SPARE\" equals \"Spare\" case-insensitive. So it's a match. So we output matched Yes.\n\nNeed to return full phrase from context for matched_value. The matched_value should be \"Service: SPARE\" or \"SPARE\"? The instructions: \"Always return full context phrases.\" That implies return the full phrase from context that matched. So matched_value: \"Service: SPARE\" (or maybe just \"SPARE\"). But \"full context phrase\" likely means the phrase that includes Service. So I'll output \"Service: SPARE\".\n\nReturn JSON: {\"matched\": \"Yes\", \"section\": \"nozzle_data\", \"matched_value\": \"Service: SPARE\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 8804841600,
+  "load_duration": 237852300,
+  "prompt_eval_count": 805,
+  "prompt_eval_duration": 332146400,
+  "eval_count": 333,
+  "eval_duration": 7241875700
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:58.3865684Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 100 80 50\"}",
+  "thinking": "We have to check whether the value from the question exists in the 'nozzle_data' context. Context: \n\"Nozzle: Ref.: N3, Size (DN): 100 80 50, Rating: DIN TO ASA, Service: DIP PIPE, Fittings: ULGL REDUCING FLANGE + CS PTFE LINED DIP PIPE\"\n\nQuestion: \"In the 'Nozzles' section, does nozzle 'N3' have Size equal to or similar to '100'?\"\n\nWe need to check if nozzle N3 has size equal to or similar to 100. In context: \"Size (DN): 100 80 50\". So the nozzle has size values: 100, 80, 50. The question: \"Size equal to or similar to '100'?\" That is yes, it has size 100. So matched. We should return: {\"matched\": \"Yes\", \"section\": \"nozzle_data\", \"matched_value\": \"100\"}\n\nWe must output full context phrase? The rule: \"If matched, return full context phrases.\" So matched_value should be the full context phrase? The matched_value field should contain the value from context. The context phrase is \"Size (DN): 100 80 50\". But we are only matching \"100\". The instructions: \"Return full phrases from context for all matches.\" So maybe we should return the whole phrase \"Size (DN): 100 80 50\". But matched_value might be the matched part or the full phrase. The rule 12: \"Partial Phrase Equivalence — partial numeric/descriptor matches must return the full context phrase.\" That implies if we matched part of the phrase (like \"100\" within \"100 80 50\"), we should return the full phrase. So matched_value should be \"Size (DN): 100 80 50\".\n\nThus output: {\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 100 80 50\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 11117943100,
+  "load_duration": 231540000,
+  "prompt_eval_count": 785,
+  "prompt_eval_duration": 332146400,
+  "eval_count": 444,
+  "eval_duration": 9435505400
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:24:58.7485275Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"drive_data\",\"matched_value\":\"BONFIGLIOLI MAKE INLINE HELICAL GEAR BOX\"}",
+  "thinking": "We need to check if the value from question exists in 'drive_data' context. The question: \"Is Drive Gear Box match or closely relate to 'Bonfiglioli Make In-Line Helical Gear Box' or is there an exact match to 'Bonfiglioli Make In-Line Helical Gear Box'??\"\n\nWe need to see if the context includes 'Bonfiglioli Make In-Line Helical Gear Box' or a close match. Context:\n\n\"DRIVE GEARBOX: \"BONFIGLIOLI\" MAKE INLINE HELICAL GEAR BOX, MODEL NO. AS55 F 14.13 P132 B5 V1, RATIO 14.13:1\"\n\nSo context phrase: \"BONFIGLIOLI MAKE INLINE HELICAL GEAR BOX\". This matches the question phrase: 'Bonfiglioli Make In-Line Helical Gear Box'.\n\nMatches with same words; difference in case. So match exists. We should return matched Yes, with matched_value the phrase from context: presumably \"BONFIGLIOLI MAKE INLINE HELICAL GEAR BOX\". The rules: Return full context phrase.\n\nThus JSON:\n\n{\"matched\":\"Yes\",\"section\":\"drive_data\",\"matched_value\":\"BONFIGLIOLI MAKE INLINE HELICAL GEAR BOX\"}\n\nDouble-check formatting: JSON with keys matched, section, matched_value. Ensure proper quoting.\n\nReturn only JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 11353896300,
+  "load_duration": 217704100,
+  "prompt_eval_count": 975,
+  "prompt_eval_duration": 172249400,
+  "eval_count": 315,
+  "eval_duration": 6490458100
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:25:01.3698083Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"material_of_construction\",\"matched_value\":\"JACKET - NOZZLE NECKS: SA 106 Gr. B; JACKET - SORF FLANGES: REFER TABLE SA 105\"}",
+  "thinking": "We need to determine if Material of Construction for Jacket Nozzle matches or closely relates to 'Nozzle Neck : SA 106 Gr. B & Flanges : SA 105'.\n\nWe have context: \"JACKET - NOZZLE NECKS: SA 106 Gr. B\nINNERVESSEL - WELDING NECKS FOR BODY FLANGE & NOZZLES: SA 181 CL. 60 SA 836 ENAMEL QUALITY\nJACKET - SORF FLANGES: REFER TABLE SA 105\nINNERVESSEL - GASKET FOR BODY FLANGE & NOZZLES: PTFE ENVELOPED NON ASBESTOS WITH S.S. CORRUGATED RING INSERT\nJACKET - SHELL, HEAD: SA 516 Gr. 60 70 WITH C = 0.21 MAX.\"\n\nThe question: \"Does the Material of Construction for the Jacket Nozzle match or closely relate to 'Nozzle Neck : SA 106 Gr. B & Flanges : SA 105'?\"\n\nSo we check if context includes Nozzle Neck: SA 106 Gr. B AND Flanges: SA 105. The context includes:\n\n- JACKET - NOZZLE NECKS: SA 106 Gr. B -> matches Nozzle Neck: SA 106 Gr. B.\n\n- JACKET - SORF FLANGES: REFER TABLE SA 105 -> Flanges: SA 105. So yes.\n\nThus matched: Yes, with value(s) from context. We need to provide the matched_value field. According to instruction: \"Always return the full context phrase.\" For matched, we return the context phrase that matches. Which phrase(s)? The question asks if match or closely relate. Both parts match separately. Possibly we need to return a combined phrase? The context has two separate lines: \"JACKET - NOZZLE NECKS: SA 106 Gr. B\" and \"JACKET - SORF FLANGES: REFER TABLE SA 105\". The matched_value should be the phrase(s) that match. We could provide both? The format expects a single string value? In examples earlier? Not provided. The instruction: \"Always return the full context phrase.\" So maybe return \"JACKET - NOZZLE NECKS: SA 106 Gr. B\" as the matched_value? But that covers Nozzle Neck only. For flanges, also match. Maybe we can combine? The rule: \"If matched: {\"matched\":\"Yes\", \"section\":\"material_of_construction\", \"matched_value\":\"<value from context>\"}\" So matched_value expects a value from context. In this case we could provide \"JACKET - NOZZLE NECKS: SA 106 Gr. B\" or \"JACKET - SORF FLANGES: REFER TABLE SA 105\". The question asks about both neck and flanges. We can return combined: \"JACKET - NOZZLE NECKS: SA 106 Gr. B; JACKET - SORF FLANGES: REFER TABLE SA 105\". That is full context phrases.\n\nLet's output JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 14022042600,
+  "load_duration": 237463400,
+  "prompt_eval_count": 906,
+  "prompt_eval_duration": 386894300,
+  "eval_count": 696,
+  "eval_duration": 12257468800
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:25:08.2442791Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"design_data\",\"matched_value\":\"VISCOSITY : 10 cP\"}",
+  "thinking": "We need to see if Viscosity equal or closely relate to 10 CPS? The context: \"VISCOSITY : 10 cP\". That phrase. CPS vs CP: unit equivalence rule says CPS same as CP. So 10 cP matches 10 CPS. So matched. Must return the phrase exactly from context: \"VISCOSITY : 10 cP\". Return JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 3743539600,
+  "load_duration": 255651000,
+  "prompt_eval_count": 931,
+  "prompt_eval_duration": 415480200,
+  "eval_count": 116,
+  "eval_duration": 2499390600
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:25:08.497815Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"key_value_pairs\",\"matched_value\":\"0.5\"}",
+  "thinking": "We need to check if Corrosion Allowance for Non Wetted Surface equals 0.5. Context shows \"CORROSION ALLOWANCE - NON WETTED SURFACE: 0.5\". So matches exactly. Output matched: Yes, matched_value: 0.5. Need to use full phrase? matched_value should be \"<value from context>\" meaning 0.5. The \"section\" is key_value_pairs. Output JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 3981562800,
+  "load_duration": 244921000,
+  "prompt_eval_count": 826,
+  "prompt_eval_duration": 476022200,
+  "eval_count": 120,
+  "eval_duration": 2681876100
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:25:14.5181248Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"key_value_pairs\",\"matched_value\":\"1\"}",
+  "thinking": "We need to see if the Corrosion Allowance for the Wetted With Jacket Fluid equal to 1.0. Context: \"CORROSION ALLOWANCE - WETTED WITH JKT FLUID: 1\". That is 1. So numeric equivalence: 1.0 matches 1. So matched. We need to return full context phrase for matched_value. Which phrase? The context phrase that contains the value: \"CORROSION ALLOWANCE - WETTED WITH JKT FLUID: 1\". So matched_value: \"1\". They say full context phrases for all matches. So \"1\" is value. But maybe they want the phrase: \"CORROSION ALLOWANCE - WETTED WITH JKT FLUID: 1\". Let's follow instruction: \"Return full phrases from context for all matches.\" So matched_value should be the value part? It says matched_value: \"<value from context>\". That suggests just the value. But rule says return full context phrases for all matches. Possibly they mean matched_value should be the phrase including the key. We'll interpret: matched_value should be \"1\". But might be ambiguous. However example: earlier tasks they had similar. Usually they expect matched_value: \"1\". Let's do that. Provide JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 9970587700,
+  "load_duration": 223171100,
+  "prompt_eval_count": 827,
+  "prompt_eval_duration": 175124800,
+  "eval_count": 288,
+  "eval_duration": 5720054300
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:25:18.1115969Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"UGL FLANGE TYPE BAFFLE BEAVERTAIL, 200NB NOZZLE DIN, CE-2KL, STD\"}",
+  "thinking": "We need to parse question: \"Is the Baffle value equals to '1 No. Beavertail type Baffle with Flange Design'?\" So question asks: is the Baffle value equals to that string. We need to determine if that component type/design already present in the context. We have context with parts: part 37 description: UGL FLANGE TYPE BAFFLE BEAVERTAIL, 200NB NOZZLE DIN, CE-2KL, STD. That includes \"BAFFLE BEAVERTAIL\" but not \"1 No. Beavertail type Baffle with Flange Design\". The question includes 'Beavertail type Baffle with Flange Design'. The context has \"UGL FLANGE TYPE BAFFLE BEAVERTAIL\". That's similar. We need to see if it matches. According to equivalence rules: We need literal or semantic equivalence. The question phrase: \"1 No. Beavertail type Baffle with Flange Design\". That implies count 1, type \"Beavertail type Baffle\" with flange design. The context part description: \"UGL FLANGE TYPE BAFFLE BEAVERTAIL\". This has \"FLANGE TYPE BAFFLE BEAVERTAIL\". This is close but the order differs: \"FLANGE TYPE BAFFLE BEAVERTAIL\" vs \"Beavertail type Baffle with Flange Design\". But we might consider that semantics: 'FLANGE TYPE BAFFLE BEAVERTAIL' is the same as 'Beavertail type Baffle with Flange Design' (just word order). Also includes \"UGL\" and \"FLANGE TYPE\" etc. The question's phrase includes \"1 No.\" but the context doesn't include quantity. But quantity not needed. So we can match? According to matching rules: - YES if the component type/design clearly appears (even if word order or phrasing differs). So yes. We should return the full description exactly as written in the context. Which part description? The part 37 description: \"UGL FLANGE TYPE BAFFLE BEAVERTAIL, 200NB NOZZLE DIN, CE-2KL, STD\". That is the full description. The question is about 'Baffle value equals to ...', so we should match. So we output matched: Yes, section: part_list, matched_value: \"UGL FLANGE TYPE BAFFLE BEAVERTAIL, 200NB NOZZLE DIN, CE-2KL, STD\". According to output format.\n\nCheck that no other part matches exactly. No other part includes 'BAFFLE BEAVERTAIL'. So we output matched.\n\nReturn JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 13656549400,
+  "load_duration": 232815600,
+  "prompt_eval_count": 1090,
+  "prompt_eval_duration": 417982900,
+  "eval_count": 605,
+  "eval_duration": 12261345300
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:25:18.2481105Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"lining_and_notes\",\"matched_value\":\"ULTRA GLASS 6500\"}",
+  "thinking": "We need to answer: Is the Glass type Ultra Glass 6500 (Dark Blue) or something similar? We have context: GLASS : - ULTRA GLASS 6500 (GLASS LINING MINIMUM THICKNESS IS 1 MM, EXCEPT FOR CONVEX SURFACES WHERE MINIMUM 0.8 mm IS ACCEPTABLE.THICKNESS TO BE FROM 1 TO 2.2 mm) IMP. NOTE : - ULTRA GLASS WILL NOT APPLIED TO BE ON C.I. G.L. FITTINGS LIKE TEE, REDUCING FLANGE, BOV BODY ETC. THE SAME TO BE SUPPLIED WITH PFAUDLER 9100 - DARK BLUE (DIN EN ISO 28721-1 : 2011-06)\n\nSo question: \"Is the Glass type Ultra Glass 6500 (Dark Blue) or something similar?\" According to context, Ultra Glass 6500 is mentioned, and there is a note: \"THE SAME TO BE SUPPLIED WITH PFAUDLER 9100 - DARK BLUE\". That indicates that Ultra Glass 6500 is supplied with Pfaudler 9100 - Dark Blue. So \"Ultra Glass 6500 (Dark Blue)\" appears as a description: maybe Ultra Glass 6500 and Dark Blue as separate descriptors. The context says \"PFAUDLER 9100 - DARK BLUE\". It's not explicitly saying \"Ultra Glass 6500 Dark Blue\". But the question: \"Is the Glass type Ultra Glass 6500 (Dark Blue) or something similar?\" The answer: Yes, Ultra Glass 6500 is used, with Pfaudler 9100 - Dark Blue. So it's present. The matched value: we need to output the full phrase from context. Which phrase matches? Likely \"ULTRA GLASS 6500\". Or \"PFAUDLER 9100 - DARK BLUE\". The question: is the glass type Ultra Glass 6500 (Dark Blue) or something similar? The correct answer: Yes, Ultra Glass 6500 (Dark Blue) is the glass type. But context: \"ULTRA GLASS 6500\" and \"PFAUDLER 9100 - DARK BLUE\". The phrase \"ULTRA GLASS 6500\" is present. Also \"DARK BLUE\" appears. Combined could be \"ULTRA GLASS 6500\" as the glass type, and \"DARK BLUE\" is color. So we should match \"ULTRA GLASS 6500\" maybe. Or maybe \"PFAUDLER 9100 - DARK BLUE\" but that is a fitting. But the question is about glass type. So match \"ULTRA GLASS 6500\". So return matched yes, section lining_and_notes, matched_value: \"ULTRA GLASS 6500\". Let's comply.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 13777753700,
+  "load_duration": 249063800,
+  "prompt_eval_count": 1251,
+  "prompt_eval_duration": 476022200,
+  "eval_count": 613,
+  "eval_duration": 11918878800
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:25:26.0653101Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"material_of_construction\",\"matched_value\":\"CARBON STEEL IS:1363 1367 CL 4.6 4\"}",
+  "thinking": "We need to check if the material of construction for the Fasteners Pressure Part matches or closely relates to 'MS - IS : 1363 / 1367 CL. 4.6 / 4'.\n\nWe have context: \"INNERVESSEL - FASTENERS: CARBON STEEL IS:1363 1367 CL 4.6 4\". That matches basically. The question: \"Does the Material of Construction for the Fasteners Pressure Part match or closely relate to 'MS - IS : 1363 / 1367 CL. 4.6 / 4'?\" That is the same phrase. So matched: Yes. matched_value: \"CARBON STEEL IS:1363 1367 CL 4.6 4\". Return JSON.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 5696478900,
+  "load_duration": 244637200,
+  "prompt_eval_count": 920,
+  "prompt_eval_duration": 750139500,
+  "eval_count": 204,
+  "eval_duration": 4312482300
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:25:26.1111531Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 100\"}",
+  "thinking": "We need to check if nozzle 'N9' has Size equal to or similar to '100' in context. Context: \"Nozzle: Ref.: N9, Size (DN): 100, Rating: ASA 150, Service: SPARE, Fittings: PTFE BUSH + ULGL BLIND COVER\". So Size (DN): 100. The question: In 'Nozzles' section, does nozzle 'N9' have Size equal to or similar to '100'? So yes, it matches 100 exactly. Return matched with matched_value as \"Size (DN): 100\"? The instruction: \"Return full context phrases.\" So we should return the full phrase from context: \"Size (DN): 100\". So JSON: {\"matched\":\"Yes\",\"section\":\"nozzle_data\",\"matched_value\":\"Size (DN): 100\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 5741237300,
+  "load_duration": 246833000,
+  "prompt_eval_count": 776,
+  "prompt_eval_duration": 750139500,
+  "eval_count": 206,
+  "eval_duration": 4354792900
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:25:28.2414258Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\"}",
+  "thinking": "We need to determine if the part Description for the Agitator's Shaft Diameter matches or closely relates to '80'.\n\nQuestion: \"Does the part Description for the Agitator's Shaft Diameter match or closely relate to '80'?\" So the question is about Agitator's Shaft Diameter. In context, we have a part with description: \"UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\". That contains \"80 DIA\" which is the shaft diameter? Probably 80 diameter of shaft. So description has \"80 DIA\". That matches numeric equivalence to 80. The question: \"Does the part Description for the Agitator's Shaft Diameter match or closely relate to '80'?\" Yes, it's exactly 80. So matched: Yes, part description is \"UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\".\n\nCheck rules: Should we return the full description as in context. Yes.\n\nReturn JSON: {\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"UGL AGITATOR, IMPELLER, M SEAL, 80 DIA, AE CE-2KL\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 7872543200,
+  "load_duration": 249556000,
+  "prompt_eval_count": 1106,
+  "prompt_eval_duration": 750139500,
+  "eval_count": 297,
+  "eval_duration": 6359204100
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:25:30.91378Z",
+  "response": "{\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"MS DRIVE BASE RING ASSEMBLY, CAPACITY : CE-1.6 TO 3KL & 4KL OLD DIN\"}",
+  "thinking": "We need to answer question: \"Does the part description for the Drive Base Ring match or closely relate to 'MS'?\" So question is asking: does the part description for the Drive Base Ring match or closely relate to 'MS'?\n\nWe have context: part descriptions: \n- \"MS DRIVE BASE RING ASSEMBLY, CAPACITY : CE-1.6 TO 3KL & 4KL OLD DIN\"\n- \"MS RING, drawing_no: 8 THK x 457 406 DIA\"\n- \"MS SPLIT LAPPED FLANGE, DN100, DIN EN 1092-1 TYPE-2, drawing_no: DF-DINS-100-20-MSH-00\"\n- \"MS RING, drawing_no: 6 THK x 432 381 DIA\"\n- \"MS SPLIT LAPPED FLANGE, DN200, DIN EN 1092-1 TYPE-2, drawing_no: DF-DINS-200-24-MSH-00\"\n\nQuestion: \"Does the part description for the Drive Base Ring match or closely relate to 'MS'?\" So they ask: is the part description for the Drive Base Ring matching or closely related to 'MS'? The description contains \"MS DRIVE BASE RING ASSEMBLY, ...\". The term 'MS' appears at start of description. They want to see if 'MS' matches or closely relates. The answer should be yes, because 'MS' is present. According to rules: The component type/design appears; return full description exactly as in context: \"MS DRIVE BASE RING ASSEMBLY, CAPACITY : CE-1.6 TO 3KL & 4KL OLD DIN\"\n\nThus output JSON: {\"matched\":\"Yes\",\"section\":\"part_list\",\"matched_value\":\"MS DRIVE BASE RING ASSEMBLY, CAPACITY : CE-1.6 TO 3KL & 4KL OLD DIN\"}",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 10544834300,
+  "load_duration": 244132200,
+  "prompt_eval_count": 1065,
+  "prompt_eval_duration": 433756100,
+  "eval_count": 441,
+  "eval_duration": 9234707500
+}
+------------------------------------------------------------
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2025-12-01T10:25:36.5202179Z",
+  "response": "{\"matched\":\"No\",\"section\":\"part_list\",\"closest_match\":\"MS DRIVE BASE RING ASSEMBLY, CAPACITY : CE-1.6 TO 3KL & 4KL OLD DIN\"}",
+  "thinking": "We need to answer: Does the part description for the Spring Balance Assembly match or closely relate to 'MS'?\n\nWe have context part descriptions: \n- \"SPRING BALANCE ASSEMBLY\"\n- \"MS SPLIT LAPPED FLANGE, DN100, ASA 150\"\n- \"MS DRIVE BASE RING ASSEMBLY, CAPACITY : CE-1.6 TO 3KL & 4KL OLD DIN\"\n- \"MS SPLIT LAPPED FLANGE, DN100, DIN EN 1092-1 TYPE-2\"\n- \"MS SPLIT LAPPED FLANGE, DN200, ASA 150\"\n\nThe question: \"Does the part description for the Spring Balance Assembly match or closely relate to 'MS'?\" We need to determine if the primary component type or design in the question is present in the context. So \"Spring Balance Assembly\" description is in context: \"SPRING BALANCE ASSEMBLY\". The question asks: Does the part description for the Spring Balance Assembly match or closely relate to 'MS'? So basically is \"Spring Balance Assembly\" described with 'MS'? It doesn't have 'MS' in its description. 'MS' stands for maybe \"MS\" prefix used in other parts: \"MS SPLIT LAPPED FLANGE\" etc. There's no 'MS' in the description for Spring Balance Assembly. According to rules: we need to check if the component type/design matches or closely relate to 'MS'. If not, then return closest functional/naming equivalent. The description \"SPRING BALANCE ASSEMBLY\" does not include 'MS'. But does it closely relate? The question might be: Does the part description match 'MS'? It's a mismatch. So we output matched \"No\" and provide the closest match from the context. The closest might be \"MS SPLIT LAPPED FLANGE, DN100, ASA 150\" or similar. Which is the closest? The description \"MS DRIVE BASE RING ASSEMBLY\" also has \"Assembly\" but not 'MS' exactly. \"Spring Balance Assembly\" is a type of assembly. The question is about 'MS', which appears in other parts. The question: Does the part description for the Spring Balance Assembly match or closely relate to 'MS'? No. The closest matching description maybe \"MS DRIVE BASE RING ASSEMBLY\" because it also has \"ASSEMBLY\" and 'MS'. Or could be any MS part. Which is closest? The question is about 'MS', not about assembly. So the presence of 'MS' is key. The part \"MS SPLIT LAPPED FLANGE, DN100, ASA 150\" has MS. There are many with MS. Which is the closest functional equivalent? The question is generic: \"Does the part description for the Spring Balance Assembly match or closely relate to 'MS'?\" So the answer is No. The closest match might be any of the MS parts. But maybe the \"MS DRIVE BASE RING ASSEMBLY\" is the closest because it also includes \"ASSEMBLY\". So I'd choose that.\n\nThus output:\n\n{\"matched\":\"No\",\"section\":\"part_list\",\"closest_match\":\"MS DRIVE BASE RING ASSEMBLY, CAPACITY : CE-1.6 TO 3KL & 4KL OLD DIN\"}\n\nWe need JSON. Use strict.",
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 16151139900,
+  "load_duration": 255209700,
+  "prompt_eval_count": 1071,
+  "prompt_eval_duration": 201409800,
+  "eval_count": 726,
+  "eval_duration": 9800552700
+}
+------------------------------------------------------------

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import auth,ofn_router,ga_router,test_router
-from app.routers import ofn_ga_comparison,ga_ga_comparison,full_bom_router,model_vs_bom_comparison,image_comparison_router,sse_router,activity_log_router,pdf_splitter_routes
+from app.routers import ofn_ga_comparison,ga_ga_comparison,full_bom_router,model_vs_bom_comparison,image_comparison_router,sse_router,activity_log_router,pdf_splitter_routes,model_vs_model_router
 import uvicorn
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -64,6 +64,8 @@ app.include_router(full_bom_router.router, prefix="/api/comparison", tags=["Full
 app.include_router(model_vs_bom_comparison.router, prefix="/api/comparison", tags=["Model vs BOM Comparison"])
 
 app.include_router(image_comparison_router.router,prefix="/api/comparison", tags=["File/Image Comparison"])
+
+app.include_router(model_vs_model_router.router,prefix="/api/comparison",tags=["3D BOM vs 3D BOM Comparison"])
 
 app.include_router(activity_log_router.router)
 
