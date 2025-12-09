@@ -28,15 +28,21 @@ const operations = [
   { 
     label: "BOM Comparison", 
     path: "/full-bom-comparison",
-    description: "Dual BOM analysis",
-    status: "beta",
-    isNew: true
+    description: "LN BOM vs LN BOM",
+    status: "active",
   },
   { 
     label: "Model BOM vs Ref. BOM", 
     path: "/model-bom-comparison",
-    description: "Cross-format check",
+    description: "3D Model BOM vs LN BOM",
     status: "active"
+  },
+  { 
+    label: "3D BOM Comparison", 
+    path: "/3d-bom-comparison",
+    description: "3D Model BOM vs 3D Model BOM",
+    status: "active",
+    isNew: true
   },
   { 
     label: "GA vs GA (Pixel)", 
@@ -266,7 +272,7 @@ const Dashboard = () => {
           </Grid>
 
           {/* Right Column - Recent Activity */}
-          <Grid item xs={12} lg={4} sx={{ maxWidth: 330 }}>
+          <Grid item xs={12} lg={4} sx={{ maxWidth: 430 }}>
             <Paper 
               variant="outlined"
               sx={{ 

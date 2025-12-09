@@ -10,6 +10,8 @@ import FullBomComparison from "./pages/FullBomComparison";
 import { FullBomComparisonProvider } from "./context/FullBomComparisonContext";
 import ModelBomComparison from "./pages/ModelBomComparison";
 import { ModelBomComparisonProvider } from "./context/ModelBomComparisonContext";
+import ModelModelComparison from "./pages/ModelModelComparison";
+import {ModelModelComparisonProvider} from "./context/ModelModelComparisonContext";
 import ImageComparison from "./pages/ImageComparison";
 import { ImageComparisonProvider } from "./context/ImageComparisonContext";
 import ComparisonResultPage from "./pages/history_pages/ComparisonResultPage";
@@ -70,6 +72,15 @@ function App() {
               <ModelBomComparisonProvider>
                 <ModelBomComparison />
               </ModelBomComparisonProvider>
+            }
+          />
+          {/*Model BOM vs Model BOM comparison*/}
+          <Route
+            path="/3d-bom-comparison"
+            element={
+              <ModelModelComparisonProvider>
+                <ModelModelComparison />
+              </ModelModelComparisonProvider>
             }
           />
 

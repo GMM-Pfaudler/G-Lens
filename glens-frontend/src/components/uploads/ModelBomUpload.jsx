@@ -70,6 +70,7 @@ const ModelBomUpload = () => {
                 accept=".xlsx,.xls"
                 onChange={handleModelFileChange}
                 className="hidden"
+                disabled={loading}
               />
               <div className="space-y-2">
                 <div className="text-gray-600">
@@ -124,6 +125,7 @@ const ModelBomUpload = () => {
                 accept=".xlsx,.xls"
                 onChange={handleRefFileChange}
                 className="hidden"
+                disabled={loading}
               />
               <div className="space-y-2">
                 <div className="text-gray-600">

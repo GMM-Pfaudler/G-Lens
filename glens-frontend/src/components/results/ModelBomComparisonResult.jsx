@@ -30,8 +30,8 @@ const ModelBomComparisonResult = ({ result }) => {
   const hasSubTabs = activeTab === "MATCHED";
 
   const renderContent = (tab) => {
-    if (tab === "NEWLY ADDED")
-      return <ModelBomNewlyAdded items={processedResults[tab]} />;
+    if (tab === "NEWLY ADDED" || tab === "UNMATCHED / MISSING")
+      return <ModelBomNewlyAdded items={processedResults[tab]} category={tab} />;
 
     if (tab === "TO CREATE NEW" || tab === "EMPTY OR DASHED")
       return <ModelBomToCreateNew items={processedResults[tab]} category={tab} />;

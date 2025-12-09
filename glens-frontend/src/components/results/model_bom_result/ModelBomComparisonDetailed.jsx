@@ -31,7 +31,7 @@ const ModelBomComparisonDetailed = ({ items = [], category }) => {
                 "Ref Qty",
                 "Model Revision",
                 "Ref Revision",
-                "Mismatch Fields",
+                category === "PARTIAL MISMATCH"?("Mismatch Fields"):null
               ].map((head) => (
                 <th key={head} className="px-4 py-3 text-left">
                   {head}
@@ -77,11 +77,11 @@ const ModelBomComparisonDetailed = ({ items = [], category }) => {
                   <td className="px-4 py-3">{details?.["REVISION NUMBER"]?.["Model BOM"] ?? "-"}</td>
                   <td className="px-4 py-3">{details?.["REVISION NUMBER"]?.["Ref BOM"] ?? "-"}</td>
                   <td className="px-4 py-3 text-xs">
-                    {mismatchedFields.length > 0 ? (
-                      <span className="text-red-600">{mismatchedFields.join(", ")}</span>
-                    ) : (
+                    {category === "PARTIAL MISMATCH"?(mismatchedFields.length === 0 ? (
                       <span className="text-green-600">All match</span>
-                    )}
+                    ) : (
+                      <span className="text-red-600">{mismatchedFields.join(", ")}</span>
+                    )): null}
                   </td>
                 </tr>
               );

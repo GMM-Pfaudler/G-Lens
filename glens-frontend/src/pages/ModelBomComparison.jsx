@@ -4,7 +4,7 @@ import ModelBomUpload from "../components/uploads/ModelBomUpload";
 import ModelBomComparisonResult from "../components/results/ModelBomComparisonResult";
 import MainLayout from "../layouts/MainLayout";
 import { uploadAndCompareModelBom } from "../services/modelBomService";
-import { exportComparisonToExcel } from "../utils/exportComparisonToExcel";
+import { exportModelBOMComparisonToExcel } from "../utils/exportComparisonToExcel";
 import { Button } from "@mui/material";
 
 const ModelBomComparison = () => {
@@ -77,7 +77,7 @@ const ModelBomComparison = () => {
 
         {/* Tab Content */}
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4">
-            <Button onClick={() => exportComparisonToExcel(comparisonResult.comparison_result)}>
+            <Button onClick={() => exportModelBOMComparisonToExcel(comparisonResult.comparison_result)}>
                 Export to Excel
             </Button>
           {activeTab === "upload" && (

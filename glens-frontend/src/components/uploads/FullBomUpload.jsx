@@ -3,7 +3,7 @@ import React from "react";
 import { useFullBomComparison } from "../../context/FullBomComparisonContext";
 
 const FullBomUpload = () => {
-  const { fileA, setFileA, fileB, setFileB, bomLevel, setBomLevel } = useFullBomComparison();
+  const { fileA, setFileA, fileB, setFileB, bomLevel, setBomLevel, loading, setLoading } = useFullBomComparison();
 
   const handleFileAChange = (e) => {
     const file = e.target.files[0];
@@ -63,6 +63,7 @@ const FullBomUpload = () => {
                 accept=".xlsx,.xls"
                 onChange={handleFileAChange}
                 className="hidden"
+                disabled = {loading}
               />
               <div className="space-y-2">
                 <div className="text-gray-600">
@@ -117,6 +118,7 @@ const FullBomUpload = () => {
                 accept=".xlsx,.xls"
                 onChange={handleFileBChange}
                 className="hidden"
+                disabled = {loading}
               />
               <div className="space-y-2">
                 <div className="text-gray-600">

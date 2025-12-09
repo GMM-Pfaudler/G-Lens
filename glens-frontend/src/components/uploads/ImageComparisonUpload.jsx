@@ -4,7 +4,7 @@ import { Upload } from "lucide-react";
 import { useImageComparison } from "../../context/ImageComparisonContext";
 
 const ImageComparisonUpload = ({ onCompare }) => {
-  const { pdf1, setPdf1, pdf2, setPdf2 } = useImageComparison();
+  const { pdf1, setPdf1, pdf2, setPdf2, loading} = useImageComparison();
 
   const handleFile1Change = (e) => {
     const file = e.target.files[0];
@@ -60,6 +60,7 @@ const ImageComparisonUpload = ({ onCompare }) => {
                 accept="application/pdf"
                 onChange={handleFile1Change}
                 className="hidden"
+                disabled={loading}
               />
               <div className="space-y-2">
                 <div className="text-gray-600">
@@ -114,6 +115,7 @@ const ImageComparisonUpload = ({ onCompare }) => {
                 accept="application/pdf"
                 onChange={handleFile2Change}
                 className="hidden"
+                disabled = {loading}
               />
               <div className="space-y-2">
                 <div className="text-gray-600">

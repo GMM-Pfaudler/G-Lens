@@ -15,6 +15,7 @@ const operationIcons = {
   "GA vs GA": "⚖️", 
   "BOM Comparison": "📋",
   "Model BOM vs Ref. BOM": "🔍",
+  "3D BOM Comparison": "🧊🔍",
   "GA vs GA (Pixel)": "🖼️",
 };
 
@@ -36,10 +37,10 @@ export default function OperationCard({
   };
 
   const getIconContent = () => {
-    if (Icon) return <Icon sx={{ fontSize: 48, color: "#2563eb", mb: 1 }} />;
+    if (Icon) return <Icon sx={{ fontSize: 36, color: "#2563eb", mb: 1 }} />;
     if (operationIcons[label]) {
       return (
-        <Box sx={{ fontSize: "3rem", mb: 1, lineHeight: 1 }}>
+        <Box sx={{ fontSize: "2.2rem", mb: 1, lineHeight: 1 }}>
           {operationIcons[label]}
         </Box>
       );
@@ -55,8 +56,8 @@ export default function OperationCard({
         borderRadius: 3,
         borderColor: "#e2e8f0",
         background: "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
-        width: { xs: "100%", sm: 200, md: 180 },
-        height: { xs: 140, sm: 200, md: 180 },
+        width: { xs: "48%", sm: 160, md: 150 },
+        height: { xs: 120, sm: 160, md: 150 },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -126,7 +127,7 @@ export default function OperationCard({
               variant="subtitle1" 
               sx={{ 
                 fontWeight: 600,
-                fontSize: { xs: '0.9rem', sm: '1rem' },
+                fontSize: { xs: '0.8rem', sm: '0.9rem' },
                 lineHeight: 1.2,
                 mb: 0.5
               }}

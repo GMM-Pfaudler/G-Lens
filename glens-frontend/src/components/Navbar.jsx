@@ -180,6 +180,7 @@ export default function Navbar() {
                 { path: "/ga-ga-comparison", label: "GA vs GA" },
                 { path: "/full-bom-comparison", label: "Excel BOM vs Excel BOM" },
                 { path: "/model-bom-comparison", label: "Excel BOM vs Model BOM" },
+                { path: "/3d-bom-comparison", label: "3D BOM vs 3D Model BOM" },
                 { path: "/image-comparison", label: "GA vs GA (Pixel)" },
               ].map((item) => (
                 <MenuItem 

@@ -40,7 +40,12 @@ const FileUploadCard = ({
     loading: { color: 'primary', icon: <CircularProgress size={16} />, text: 'Extracting...' },
     success: { color: 'success', icon: <SuccessIcon />, text: 'Extracted' },
     ready: { color: 'primary', icon: <UploadIcon />, text: 'Ready to extract' },
-    pending: { color: 'default', icon: <UploadIcon />, text: 'Upload file' }
+    pending: { color: 'default', icon: <UploadIcon />, text: 'Upload file' },
+    uploading: {
+          color: "primary",
+          icon: <CircularProgress size={16} />,
+          text: "Uploading...",
+        },
   };
 
   const config = statusConfig[status] || statusConfig.pending;
@@ -145,6 +150,7 @@ const GaVsGaComparisonModal = ({ open, onClose, onSuccess }) => {
   const canStartComparison = results.ga1 && results.ga2 && !loading.comparison;
 
   const getFileStatus = (type) => {
+    if (loading[type] === "uploading") return "uploading";
     if (loading[type]) return 'loading';
     if (results[type]) return 'success';
     if (files[type]) return 'ready';
@@ -155,17 +161,20 @@ const GaVsGaComparisonModal = ({ open, onClose, onSuccess }) => {
   const handleFileSelect = (type) => (event) => {
     const file = event.target.files[0];
     if (file) {
+      setLoading(prev => ({ ...prev, [type]: "uploading" }));
+      setMessage(`Uploading ${type.toUpperCase()} file...`);
       setFiles(prev => ({ ...prev, [type]: file }));
       setResults(prev => ({ ...prev, [type]: null }));
+      setLoading(prev => ({ ...prev, [type]: false}));
     }
+    
   };
 
   // GA Extraction handler (reusable for both instances)
   const handleExtractGa = async (type) => {
     if (!files[type]) return;
-    
-    setLoading(prev => ({ ...prev, [type]: true }));
-    setMessage(`Extracting ${type.toUpperCase()} file...`);
+    setLoading(prev => ({ ...prev, [type]: "uploading" }));
+    setMessage(`Uploading ${type.toUpperCase()} file...`);
     
     try {
       const formData = new FormData();
@@ -173,7 +182,13 @@ const GaVsGaComparisonModal = ({ open, onClose, onSuccess }) => {
       
       const res = await axios.post(`${API_URL}/api/ga/extract`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
+        onUploadProgress: (ev)=>{
+          const percent = Math.round((ev.loaded*100)/ev.total);
+          setMessage(`Uploading GA: ${percent}%`);
+        }
       });
+      setLoading(prev => ({ ...prev, [type]: true }));
+      setMessage(`Extracting ${type.toUpperCase()} file...`);
       
       const ws = new WebSocket(
         `${API_URL.replace(/^http/, "ws")}/api/ga/ws/ga/${res.data.job_id}`
@@ -291,7 +306,7 @@ const GaVsGaComparisonModal = ({ open, onClose, onSuccess }) => {
             status={getFileStatus('ga1')}
             onFileSelect={handleFileSelect('ga1')}
             onExtract={() => handleExtractGa('ga1')}
-            loading={loading.ga1}
+            loading={loading.ga1 !== false}
           />
 
           <FileUploadCard
@@ -300,7 +315,7 @@ const GaVsGaComparisonModal = ({ open, onClose, onSuccess }) => {
             status={getFileStatus('ga2')}
             onFileSelect={handleFileSelect('ga2')}
             onExtract={() => handleExtractGa('ga2')}
-            loading={loading.ga2}
+            loading={loading.ga2 !== false}
           />
 
           {message && (
