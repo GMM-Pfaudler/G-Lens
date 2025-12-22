@@ -539,8 +539,8 @@ class Check:
             "model": MODEL_NAME,
             "prompt": prompt_report,
             "stream": False,
-            "temperature": 0.0,
-            "format": format_schema
+            "temperature": 0.0
+            # "format": format_schema
         }
 
         try:

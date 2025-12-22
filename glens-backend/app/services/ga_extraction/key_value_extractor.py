@@ -1,16 +1,13 @@
 import json
 import re
 from app.utils.camelot_extractor import extract_table_data
-from app.services.ga_extraction.corrosion_and_rpm_helper import extract_corrosion_allowance,extract_gearbox_section_from_json,extract_motor_speed_from_json,extract_ratio,get_motor_speed_context_block
+from app.services.ga_extraction.corrosion_and_rpm_helper import extract_corrosion_allowance,extract_joint_efficiency,extract_gearbox_section_from_json,extract_motor_speed_from_json,extract_ratio,get_motor_speed_context_block
 
 def extract_key_value_pairs(file_path):
     raw_data = extract_table_data(file_path=file_path)
 
     TARGET_KEYS = [
-        "TAG NO", "VISCOSITY", "CAD FILE", "S.O. NO.","SO. NO.", "QNTY.", "PO NO.",
-        "NDT", "WIND LOAD", "SEISMIC LOADING", "HEAT TRANSFER AREA",
-        "TARE WEIGHT", "WEIGHT FULL OF WATER", "FASTENERS",
-        "FOR WELD DETAIL REFER DRAWING NO.", "CHECKED BY", "APPROVED BY", "PREPARED BY",
+        "TAG NO:", "VISCOSITY", "CAD FILE", "Dated","S.O. NO.","SO. NO.", "QNTY.", "PO NO.", "NDT", "WIND LOAD", "SEISMIC LOADING", "HEAT TRANSFER AREA", "TARE WEIGHT", "WEIGHT FULL OF WATER", "FASTENERS","TITLE:","CLIENT","ITEM CODE", "FOR WELD DETAIL REFER DRAWING NO.", "FOR WELD DETAIL REFER DRAWING NO.","CHECKED BY", "APPROVED BY", "PREPARED BY","JOINT EFFICIENCY"
     ]
 
     SECTION_HEADERS_TO_SKIP = [
@@ -101,7 +98,9 @@ def extract_key_value_pairs(file_path):
     corrosion_allowance = extract_corrosion_allowance(raw_data)
     if corrosion_allowance:
         key_value_pairs.update(corrosion_allowance)
-
+    joint_efficiency = extract_joint_efficiency(raw_data)
+    if joint_efficiency:
+        key_value_pairs.update(joint_efficiency)
     # Motor and gearbox logic
     motor_speed = extract_motor_speed_from_json(raw_data)
     gearbox_section = extract_gearbox_section_from_json(raw_data)

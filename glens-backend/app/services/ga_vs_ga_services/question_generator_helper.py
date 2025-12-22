@@ -132,7 +132,7 @@ def generate_comparison_questions_with_keys(ofn_data: dict, key_section_map: dic
                 display_value = value
             
             elif key_path == "Corrosion Allowance -> Glassed Surface":
-                question = f"Is the Corrosion Allowance for the Glassed Surface equal to {value}?"
+                question = f"Is the Corrosion Allowance for the Glassed Surface equal to {value}?."
                 display_key = "Corrosion Allowance (Glassed Surface)"
                 display_value = value
 

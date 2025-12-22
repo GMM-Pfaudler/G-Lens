@@ -7,7 +7,7 @@ def build_payload(model_name: str,prompt: str) -> dict:
         "model": model_name,
         "prompt": prompt,
         "stream": False,
-        "temperature": 0.0,
+        "temperature": 0.3,
     }
   
 def build_section_prompt(section: str, question: str, context: str) -> str:
@@ -32,6 +32,7 @@ EQUIVALENCE RULES (APPLY STRICTLY):
 14. Functional/Contextual Equivalence — match components performing the same function.
 CLOSEST MATCH RULE:
 - If no match, return the closest semantic/functional value from the context.
+- If the Parameter(key) does not found in the context return 'Value not found in GA.' in the 'closest_match' of the response.
 OUTPUT RULES:
 - Return STRICT JSON ONLY.
 - No comments, no markdown, no explanations.
@@ -39,12 +40,13 @@ THINKING RULES:
 - Carefully compare entire context before deciding.
 - Use only values that appear exactly in the context.
 - Return full phrases from context for all matches.
+- If the Parameter(key) does not found in the context return 'Value not found in GA.' in the 'closest_match' of the response.
 """
 
     if section == "part_list":
         return f"""
 You are a smart assistant verifying whether a component or its type from the question is present in the Bill of Materials (BoM) section.
-
+If the Parameter(key) does not found in the context return 'Value not found in GA.' in the 'closest_match' of the response.
 Your task:
 - Determine if the primary component type or design in the question is already present in the context.
 - Use only component names/descriptions from the context.
@@ -75,13 +77,13 @@ If not matched:
     elif section == "lining_and_notes":
         return f"""
 You are a smart assistant determining whether a value from the question exists in the 'lining_and_notes' context.
-
+If the Parameter(key) does not found in the context return 'Value not found in GA.' in the 'closest_match' of the response.
 Rules:
 - Only use values explicitly present in the context.
 - Abbreviations in question must match their full forms in context and vice versa.
 - Minor formatting or symbol variations still count as matches.
 - If matched, return the full value as written in the context.
-- If unmatched, return the closest value in the context.
+- If unmatched, return the closest value in the context or If the Parameter(key) does not found in the context return 'Value not found in GA.' in the 'closest_match' of the response.
 
 Context:
 {context}
@@ -98,10 +100,10 @@ If not:
 {{"matched": "No", "section": "lining_and_notes", "closest_match": "<closest value from context>"}}
 """.strip()
 
-    elif section == "design_data":
+    elif section == "design_data" or section == "agitator_data" or section == "insulation_data":
         return f"""
 You are a smart assistant verifying whether a specific value from the question exists in the 'design_data' context.
-
+If the Parameter(key) does not found in the context return 'Value not found in GA.' in the 'closest_match' of the response.
 Context:
 {context}
 
@@ -127,7 +129,7 @@ If not:
     elif section == "material_of_construction":
         return f"""
 You are a smart assistant verifying whether a material or standard from the question appears in the 'material_of_construction' context.
-
+If the Parameter(key) does not found in the context return 'Value not found in GA.' in the 'closest_match' of the response.
 Context:
 {context}
 
@@ -152,7 +154,7 @@ If not:
     else:
         return f"""
 You are a smart assistant checking whether a value from the question exists in the '{section}' context.
-
+If the Parameter(key) does not found in the context return 'Value not found in GA.' in the 'closest_match' of the response.
 Context:
 {context}
 

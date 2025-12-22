@@ -322,7 +322,7 @@ async def ga_to_ga_ws(websocket: WebSocket, job_id: str):
 # -------------------------
 @router.get("/history")
 async def get_ga_ga_comparison_history(
-    limit: int = Query(50, ge=1, le=500),
+    limit: int = Query(100, ge=1, le=500),
     offset: int = Query(0, ge=0),
     status: Optional[str] = Query(None),
     user_id: Optional[str] = Query(None),

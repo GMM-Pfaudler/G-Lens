@@ -73,7 +73,7 @@ async def start_comparison(
             raise HTTPException(status_code=400, detail=f"Invalid JSON: {e}")
 
         # 4️⃣ Build sanitized filenames
-        ofn_name = f"{ofn_data.get('GMM Pfaudler Quote No', 'Unknown')}_{ofn_data.get('Capacity', 'Unknown')}"
+        ofn_name = f"{ofn_data.get('header', 'Unknown').get('reactor_header','Unknown').get('quote_no','Unknown')}_{ofn_data.get('header', 'Unknown').get('reactor_header','Unknown').get('capacity','Unknown')}"
         ga_name = list(ga_data.keys())[0] if ga_data else "Unknown"
         sanitized_ofn_name = sanitize_filename(ofn_name)
         sanitized_ga_name = sanitize_filename(ga_name)
@@ -319,7 +319,7 @@ async def comparison_ws(websocket: WebSocket, job_id: str):
 # -------------------------
 @router.get("/history")
 async def get_comparison_history(
-    limit: int = Query(50, ge=1, le=500),
+    limit: int = Query(100, ge=1, le=500),
     offset: int = Query(0, ge=0),
     status: Optional[str] = Query(None),
     user_id: Optional[str] = Query(None),

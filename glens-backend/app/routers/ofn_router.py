@@ -2,7 +2,7 @@
 import os
 import json
 from fastapi import APIRouter, UploadFile, File, HTTPException, status, Depends
-from app.core.ofn_extractor import OFNPDFExtractor
+from app.core.ofn_extractor_new import OFNPDFExtractor
 from app.models.db_models import OFNFile
 from app.core.database import get_session
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -11,6 +11,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from pathlib import Path
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
+
 
 router = APIRouter(tags=["OFN"])
 
@@ -37,8 +38,8 @@ async def extract_ofn(file: UploadFile = File(...), db: AsyncSession = Depends(g
         # -------------------------
         # Save JSON result
         # -------------------------
-        quote_no = str(result.get("GMM Pfaudler Quote No", "UNKNOWN")).strip()
-        capacity = str(result.get("Capacity", "UNKNOWN")).strip().replace(" ", "_")
+        quote_no = str(result.get("header", {}).get("reactor_header", {}).get("quote_no", "")).strip()
+        capacity = quote_no = str(result.get("header", {}).get("reactor_header", {}).get("capacity", "")).strip().replace(" ", "_")
         filename = f"{quote_no}_{capacity}.json"
 
         save_dir = Path(r"D:\Glens_data\OFN")
@@ -85,7 +86,7 @@ async def extract_ofn(file: UploadFile = File(...), db: AsyncSession = Depends(g
             detail=f"Database Error: {str(db_err)}"
         )
     except Exception as e:
-        raise HTTPException(
+            raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Extraction Failed: {str(e)}"
         )

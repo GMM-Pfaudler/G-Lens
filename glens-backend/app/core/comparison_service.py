@@ -2,7 +2,8 @@ import asyncio
 import json,os
 from app.utils.ofn_vs_ga_utils.file_utils import sanitize_filename
 from typing import Dict
-from app.services.ofn_vs_ga_services.ofn_question_generator_service import generate_comparison_questions_with_keys,generate_nozzle_questions
+from app.services.ofn_vs_ga_services.ofn_question_generator_service import gen_comparison_questions
+# from app.services.ofn_vs_ga_services.ofn_question_generator_service import generate_comparison_questions_with_keys,generate_nozzle_questions, gen_comparison_questions
 from fastapi import HTTPException
 import random,time
 from app.services.ofn_vs_ga_services.ollama_rag import Check
@@ -131,134 +132,136 @@ class ComparisonService: #------- real One
     #         print(f"❌ Exception in process_comparison: {str(e)}")
     #         raise HTTPException(status_code=500, detail=f"Comparison failed: {str(e)}")
 
-    def process_comparison(self, ga_data: dict, ofn_data: dict, progress_callback=None) -> Dict:
-        try:
-            print("🔍 DEBUG -> Type GA:", type(ga_data), "Length:", len(ga_data))
-            print("🔍 DEBUG -> Type OFN:", type(ofn_data), "Length:", len(ofn_data))
 
-            os.makedirs(r"data\flattened_files", exist_ok=True)
+###old OFN
+    # def process_comparison(self, ga_data: dict, ofn_data: dict, progress_callback=None) -> Dict:
+    #     try:
+    #         print("🔍 DEBUG -> Type GA:", type(ga_data), "Length:", len(ga_data))
+    #         print("🔍 DEBUG -> Type OFN:", type(ofn_data), "Length:", len(ofn_data))
 
-            # Step 1: Save GA raw JSON
-            with open(r"data\flattened_files\ga_raw_data.json", "w", encoding="utf-8") as f:
-                json.dump(ga_data, f, indent=2)
+    #         os.makedirs(r"data\flattened_files", exist_ok=True)
 
-            if progress_callback:
-                progress_callback(5, "GA JSON saved and flattening started")
+    #         # Step 1: Save GA raw JSON
+    #         with open(r"data\flattened_files\ga_raw_data.json", "w", encoding="utf-8") as f:
+    #             json.dump(ga_data, f, indent=2)
 
-            # Step 2: Flatten GA
-            ga_documents = self.checker.flatten_json_new(ga_data)
-            doc_list = [{"page_content": doc.page_content, "metadata": doc.metadata} for doc in ga_documents]
+    #         if progress_callback:
+    #             progress_callback(5, "GA JSON saved and flattening started")
 
-            with open(r"data\flattened_files\flattened_ga_documents.json", "w", encoding="utf-8") as f:
-                json.dump(doc_list, f, indent=2, ensure_ascii=False)
+    #         # Step 2: Flatten GA
+    #         ga_documents = self.checker.flatten_json_new(ga_data)
+    #         doc_list = [{"page_content": doc.page_content, "metadata": doc.metadata} for doc in ga_documents]
 
-            if progress_callback:
-                progress_callback(10, "GA data flattened successfully")
+    #         with open(r"data\flattened_files\flattened_ga_documents.json", "w", encoding="utf-8") as f:
+    #             json.dump(doc_list, f, indent=2, ensure_ascii=False)
 
-            # Step 3: Create vectorstore
-            self.collection_name = sanitize_filename(list(ga_data.keys())[0])
-            vectorstore = self.checker.create_vectorstore_using_data(ga_documents, collection_name=self.collection_name)
+    #         if progress_callback:
+    #             progress_callback(10, "GA data flattened successfully")
 
-            if progress_callback:
-                progress_callback(15, "Vectorstore created")
+    #         # Step 3: Create vectorstore
+    #         self.collection_name = sanitize_filename(list(ga_data.keys())[0])
+    #         vectorstore = self.checker.create_vectorstore_using_data(ga_documents, collection_name=self.collection_name)
 
-            # Step 4: Generate questions
-            KEY_SECTION_MAPPING = {"Capacity": "design_data","Glass": "lining_and_notes",
-                "Jacket Type":"part_list",
-                "Design Pressure -> Inner Vessel": "design_data",
-                "Design Pressure -> Jacket": "design_data",
-                "Design Temperature -> Inner Vessel": "design_data",
-                "Design Temperature -> Jacket": "design_data",
-                "NDT -> Inner Vessel": "lining_and_notes",
-                "NDT -> Jacket": "lining_and_notes",
-                "Paint" : "lining_and_notes",
-                "Corrosion Allowance -> Glassed Surface":"key_value_pairs",
-                "Corrosion Allowance -> Wetted With Jacket Fluid":"key_value_pairs",
-                "Corrosion Allowance -> Non Wetted Surface":"key_value_pairs",
-                "Material of Construction -> Shell, Head":"material_of_construction",
-                "Material of Construction -> Nozzle Necks & Body Flange":"material_of_construction",
-                "Material of Construction -> Split Flanges":"material_of_construction",
-                "Material of Construction -> Body Flange C-Clamps":"part_list",
-                "Material of Construction -> Hand/Manhole C-Clamps":"part_list",
-                "Material of Construction -> Fasteners -> Pressure Part":"material_of_construction", 
-                "Material of Construction -> Fasteners -> Non-Pressure Part":"material_of_construction",
-                "Material of Construction -> Gasket":"material_of_construction",
-                "Material of Construction -> Hand/Manhole Cover":"part_list",
-                "Material of Construction -> Hand/Manhole Protection Ring":"nozzle_data",
-                "Material of Construction -> Spring Balance Assembly":"part_list",
-                "Material of Construction -> Sight/Light Glass Flanges":"part_list",
-                "Material of Construction -> Earthing":"part_list",
-                "Material of Construction -> Lantern Support":"part_list",
-                "Material of Construction -> Lantern Guard":"part_list",
-                "Material of Construction -> Drive Base Ring":"part_list",
-                "Material of Construction -> Drive Hood":"material_of_construction",
-                "Material of Construction -> Jacket (Shell, Head)":"material_of_construction",
-                "Material of Construction -> Jacket Nozzle":"material_of_construction",
-                "Material of Construction -> Jacket Coupling+Plug":"material_of_construction",
-                "Nozzles -> Bottom Outlet Valve":"part_list",
-                "Nozzles -> Jacket Nozzle":"part_list",
-                "Support": "part_list",
-                "Agitator -> Viscosity":"design_data",
-                "Agitator -> Specific Gravity":"design_data",
-                "Agitator -> Flight":"part_list",
-                "Agitator -> RPM":"key_value_pairs",
-                "Agitator -> Shaft Diameter":"part_list",
-                "tables -> agitator_details -> agitator_type": "part_list",
-                "Baffle": "part_list",
-                "Drive -> Gear Box":"drive_data",
-                "Drive -> Motor":"drive_data",
-                "Drive -> Shaft Closure -> Type":"part_list",
-                "Drive -> Thermosyphon System Make":"part_list",
-                "Drive -> Thermosyphon System Material":"part_list",
-                }
-            NOZZLE_KEY_SECTION_MAPPING = {"tables -> nozzles_details -> nozzle_no": "nozzle_data"}
+    #         if progress_callback:
+    #             progress_callback(15, "Vectorstore created")
 
-            questions = generate_comparison_questions_with_keys(ofn_data=ofn_data, key_section_map=KEY_SECTION_MAPPING)
-            q = generate_nozzle_questions(ofn_data=ofn_data)
-            questions.extend(q)
-            random.shuffle(questions)
+    #         # Step 4: Generate questions
+    #         KEY_SECTION_MAPPING = {"Capacity": "design_data","Glass": "lining_and_notes",
+    #             "Jacket Type":"part_list",
+    #             "Design Pressure -> Inner Vessel": "design_data",
+    #             "Design Pressure -> Jacket": "design_data",
+    #             "Design Temperature -> Inner Vessel": "design_data",
+    #             "Design Temperature -> Jacket": "design_data",
+    #             "NDT -> Inner Vessel": "lining_and_notes",
+    #             "NDT -> Jacket": "lining_and_notes",
+    #             "Paint" : "lining_and_notes",
+    #             "Corrosion Allowance -> Glassed Surface":"key_value_pairs",
+    #             "Corrosion Allowance -> Wetted With Jacket Fluid":"key_value_pairs",
+    #             "Corrosion Allowance -> Non Wetted Surface":"key_value_pairs",
+    #             "Material of Construction -> Shell, Head":"material_of_construction",
+    #             "Material of Construction -> Nozzle Necks & Body Flange":"material_of_construction",
+    #             "Material of Construction -> Split Flanges":"material_of_construction",
+    #             "Material of Construction -> Body Flange C-Clamps":"part_list",
+    #             "Material of Construction -> Hand/Manhole C-Clamps":"part_list",
+    #             "Material of Construction -> Fasteners -> Pressure Part":"material_of_construction", 
+    #             "Material of Construction -> Fasteners -> Non-Pressure Part":"material_of_construction",
+    #             "Material of Construction -> Gasket":"material_of_construction",
+    #             "Material of Construction -> Hand/Manhole Cover":"part_list",
+    #             "Material of Construction -> Hand/Manhole Protection Ring":"nozzle_data",
+    #             "Material of Construction -> Spring Balance Assembly":"part_list",
+    #             "Material of Construction -> Sight/Light Glass Flanges":"part_list",
+    #             "Material of Construction -> Earthing":"part_list",
+    #             "Material of Construction -> Lantern Support":"part_list",
+    #             "Material of Construction -> Lantern Guard":"part_list",
+    #             "Material of Construction -> Drive Base Ring":"part_list",
+    #             "Material of Construction -> Drive Hood":"material_of_construction",
+    #             "Material of Construction -> Jacket (Shell, Head)":"material_of_construction",
+    #             "Material of Construction -> Jacket Nozzle":"material_of_construction",
+    #             "Material of Construction -> Jacket Coupling+Plug":"material_of_construction",
+    #             "Nozzles -> Bottom Outlet Valve":"part_list",
+    #             "Nozzles -> Jacket Nozzle":"part_list",
+    #             "Support": "part_list",
+    #             "Agitator -> Viscosity":"design_data",
+    #             "Agitator -> Specific Gravity":"design_data",
+    #             "Agitator -> Flight":"part_list",
+    #             "Agitator -> RPM":"key_value_pairs",
+    #             "Agitator -> Shaft Diameter":"part_list",
+    #             "tables -> agitator_details -> agitator_type": "part_list",
+    #             "Baffle": "part_list",
+    #             "Drive -> Gear Box":"drive_data",
+    #             "Drive -> Motor":"drive_data",
+    #             "Drive -> Shaft Closure -> Type":"part_list",
+    #             "Drive -> Thermosyphon System Make":"part_list",
+    #             "Drive -> Thermosyphon System Material":"part_list",
+    #             }
+    #         NOZZLE_KEY_SECTION_MAPPING = {"tables -> nozzles_details -> nozzle_no": "nozzle_data"}
 
-            total = len(questions)
-            if progress_callback:
-                progress_callback(20, f"Generated {total} questions for comparison")
+    #         questions = generate_comparison_questions_with_keys(ofn_data=ofn_data, key_section_map=KEY_SECTION_MAPPING)
+    #         q = generate_nozzle_questions(ofn_data=ofn_data)
+    #         questions.extend(q)
+    #         random.shuffle(questions)
 
-            results = []
-            start_time = time.perf_counter()
+    #         total = len(questions)
+    #         if progress_callback:
+    #             progress_callback(20, f"Generated {total} questions for comparison")
 
-            # Step 5: Iterate through questions
-            for idx, q in enumerate(questions, start=1):
-                question = q["question"]
-                section = q["section"]
+    #         results = []
+    #         start_time = time.perf_counter()
 
-                answer = self.checker.report_over_context(question=question, section=section, vectorstore=vectorstore)
-                answer_str = answer.content if hasattr(answer, "content") else str(answer)
+    #         # Step 5: Iterate through questions
+    #         for idx, q in enumerate(questions, start=1):
+    #             question = q["question"]
+    #             section = q["section"]
 
-                results.append({
-                    "question": question,
-                    "section": section,
-                    "expected_value": q["expected_value"],
-                    "key": q["key"],
-                    "display_key": q.get("display_key", q["key"]),
-                    "display_value": q.get("display_value", q["expected_value"]),
-                    "answer": answer_str
-                })
+    #             answer = self.checker.report_over_context(question=question, section=section, vectorstore=vectorstore)
+    #             answer_str = answer.content if hasattr(answer, "content") else str(answer)
 
-                # 🔄 Progress update based on number processed
-                if progress_callback:
-                    pct = int(20 + (idx / total) * 80)  # map 20→100% dynamically
-                    progress_callback(pct, f"Processed {idx}/{total} questions")
+    #             results.append({
+    #                 "question": question,
+    #                 "section": section,
+    #                 "expected_value": q["expected_value"],
+    #                 "key": q["key"],
+    #                 "display_key": q.get("display_key", q["key"]),
+    #                 "display_value": q.get("display_value", q["expected_value"]),
+    #                 "answer": answer_str
+    #             })
 
-            end_time = time.perf_counter()
-            print(f"✅ Total time taken: {end_time - start_time:.2f}s")
+    #             # 🔄 Progress update based on number processed
+    #             if progress_callback:
+    #                 pct = int(20 + (idx / total) * 80)  # map 20→100% dynamically
+    #                 progress_callback(pct, f"Processed {idx}/{total} questions")
 
-            if progress_callback:
-                progress_callback(100, "Comparison completed successfully")
+    #         end_time = time.perf_counter()
+    #         print(f"✅ Total time taken: {end_time - start_time:.2f}s")
 
-            return {"success": True, "comparison_report": results}
+    #         if progress_callback:
+    #             progress_callback(100, "Comparison completed successfully")
 
-        except Exception as e:
-            print(f"❌ Exception in process_comparison: {str(e)}")
-            raise HTTPException(status_code=500, detail=f"Comparison failed: {str(e)}")
+    #         return {"success": True, "comparison_report": results}
+
+    #     except Exception as e:
+    #         print(f"❌ Exception in process_comparison: {str(e)}")
+    #         raise HTTPException(status_code=500, detail=f"Comparison failed: {str(e)}")
     
     # async def process_comparison_async(self, ga_data: dict, ofn_data: dict) -> Dict:
     #     try:
@@ -483,59 +486,60 @@ class ComparisonService: #------- real One
             # -------------------------
             # Step 4: Generate Questions
             # -------------------------
-            KEY_SECTION_MAPPING = {"Capacity": "design_data","Glass": "lining_and_notes",
-                "Jacket Type":"part_list",
-                "Design Pressure -> Inner Vessel": "design_data",
-                "Design Pressure -> Jacket": "design_data",
-                "Design Temperature -> Inner Vessel": "design_data",
-                "Design Temperature -> Jacket": "design_data",
-                "NDT -> Inner Vessel": "lining_and_notes",
-                "NDT -> Jacket": "lining_and_notes",
-                "Paint" : "lining_and_notes",
-                "Corrosion Allowance -> Glassed Surface":"key_value_pairs",
-                "Corrosion Allowance -> Wetted With Jacket Fluid":"key_value_pairs",
-                "Corrosion Allowance -> Non Wetted Surface":"key_value_pairs",
-                "Material of Construction -> Shell, Head":"material_of_construction",
-                "Material of Construction -> Nozzle Necks & Body Flange":"material_of_construction",
-                "Material of Construction -> Split Flanges":"material_of_construction",
-                "Material of Construction -> Body Flange C-Clamps":"part_list",
-                "Material of Construction -> Hand/Manhole C-Clamps":"part_list",
-                "Material of Construction -> Fasteners -> Pressure Part":"material_of_construction", 
-                "Material of Construction -> Fasteners -> Non-Pressure Part":"material_of_construction",
-                "Material of Construction -> Gasket":"material_of_construction",
-                "Material of Construction -> Hand/Manhole Cover":"part_list",
-                "Material of Construction -> Hand/Manhole Protection Ring":"nozzle_data",
-                "Material of Construction -> Spring Balance Assembly":"part_list",
-                "Material of Construction -> Sight/Light Glass Flanges":"part_list",
-                "Material of Construction -> Earthing":"part_list",
-                "Material of Construction -> Lantern Support":"part_list",
-                "Material of Construction -> Lantern Guard":"part_list",
-                "Material of Construction -> Drive Base Ring":"part_list",
-                "Material of Construction -> Drive Hood":"material_of_construction",
-                "Material of Construction -> Jacket (Shell, Head)":"material_of_construction",
-                "Material of Construction -> Jacket Nozzle":"material_of_construction",
-                "Material of Construction -> Jacket Coupling+Plug":"material_of_construction",
-                "Nozzles -> Bottom Outlet Valve":"part_list",
-                "Nozzles -> Jacket Nozzle":"part_list",
-                "Support": "part_list",
-                "Agitator -> Viscosity":"design_data",
-                "Agitator -> Specific Gravity":"design_data",
-                "Agitator -> Flight":"part_list",
-                "Agitator -> RPM":"key_value_pairs",
-                "Agitator -> Shaft Diameter":"part_list",
-                "tables -> agitator_details -> agitator_type": "part_list",
-                "Baffle": "part_list",
-                "Drive -> Gear Box":"drive_data",
-                "Drive -> Motor":"drive_data",
-                "Drive -> Shaft Closure -> Type":"part_list",
-                "Drive -> Thermosyphon System Make":"part_list",
-                "Drive -> Thermosyphon System Material":"part_list",
-                }
-            NOZZLE_KEY_SECTION_MAPPING = {"tables -> nozzles_details -> nozzle_no": "nozzle_data"}
+            # KEY_SECTION_MAPPING = {"Capacity": "design_data","Glass": "lining_and_notes",
+            #     "Jacket Type":"part_list",
+            #     "Design Pressure -> Inner Vessel": "design_data",
+            #     "Design Pressure -> Jacket": "design_data",
+            #     "Design Temperature -> Inner Vessel": "design_data",
+            #     "Design Temperature -> Jacket": "design_data",
+            #     "NDT -> Inner Vessel": "lining_and_notes",
+            #     "NDT -> Jacket": "lining_and_notes",
+            #     "Paint" : "lining_and_notes",
+            #     "Corrosion Allowance -> Glassed Surface":"key_value_pairs",
+            #     "Corrosion Allowance -> Wetted With Jacket Fluid":"key_value_pairs",
+            #     "Corrosion Allowance -> Non Wetted Surface":"key_value_pairs",
+            #     "Material of Construction -> Shell, Head":"material_of_construction",
+            #     "Material of Construction -> Nozzle Necks & Body Flange":"material_of_construction",
+            #     "Material of Construction -> Split Flanges":"material_of_construction",
+            #     "Material of Construction -> Body Flange C-Clamps":"part_list",
+            #     "Material of Construction -> Hand/Manhole C-Clamps":"part_list",
+            #     "Material of Construction -> Fasteners -> Pressure Part":"material_of_construction", 
+            #     "Material of Construction -> Fasteners -> Non-Pressure Part":"material_of_construction",
+            #     "Material of Construction -> Gasket":"material_of_construction",
+            #     "Material of Construction -> Hand/Manhole Cover":"part_list",
+            #     "Material of Construction -> Hand/Manhole Protection Ring":"nozzle_data",
+            #     "Material of Construction -> Spring Balance Assembly":"part_list",
+            #     "Material of Construction -> Sight/Light Glass Flanges":"part_list",
+            #     "Material of Construction -> Earthing":"part_list",
+            #     "Material of Construction -> Lantern Support":"part_list",
+            #     "Material of Construction -> Lantern Guard":"part_list",
+            #     "Material of Construction -> Drive Base Ring":"part_list",
+            #     "Material of Construction -> Drive Hood":"material_of_construction",
+            #     "Material of Construction -> Jacket (Shell, Head)":"material_of_construction",
+            #     "Material of Construction -> Jacket Nozzle":"material_of_construction",
+            #     "Material of Construction -> Jacket Coupling+Plug":"material_of_construction",
+            #     "Nozzles -> Bottom Outlet Valve":"part_list",
+            #     "Nozzles -> Jacket Nozzle":"part_list",
+            #     "Support": "part_list",
+            #     "Agitator -> Viscosity":"design_data",
+            #     "Agitator -> Specific Gravity":"design_data",
+            #     "Agitator -> Flight":"part_list",
+            #     "Agitator -> RPM":"key_value_pairs",
+            #     "Agitator -> Shaft Diameter":"part_list",
+            #     "tables -> agitator_details -> agitator_type": "part_list",
+            #     "Baffle": "part_list",
+            #     "Drive -> Gear Box":"drive_data",
+            #     "Drive -> Motor":"drive_data",
+            #     "Drive -> Shaft Closure -> Type":"part_list",
+            #     "Drive -> Thermosyphon System Make":"part_list",
+            #     "Drive -> Thermosyphon System Material":"part_list",
+            #     }
+            # NOZZLE_KEY_SECTION_MAPPING = {"tables -> nozzles_details -> nozzle_no": "nozzle_data"}
 
-            questions = generate_comparison_questions_with_keys(ofn_data=ofn_data, key_section_map=KEY_SECTION_MAPPING)
-            questions.extend(generate_nozzle_questions(ofn_data=ofn_data))
-            random.shuffle(questions)
+            # questions = generate_comparison_questions_with_keys(ofn_data=ofn_data)
+            # questions.extend(generate_nozzle_questions(ofn_data=ofn_data))
+            questions = gen_comparison_questions(ofn_data=ofn_data)
+            # random.shuffle(questions)
             total_questions = len(questions)
             await send_ws_message(job_id, {"status": "running", "progress": 25, "message": f"Generated {total_questions} questions"})
 

@@ -31,6 +31,10 @@ def extract_material_of_construction(file_path):
             "SUPPORT SHELL / SIDE SUPPORT",
             "SUPPORT SEALER RING",
             "LIMPET ON BTM HEAD AND LIMPET ON SHELL"
+        ],
+        "INSULATION":[
+            "INSULATION",
+            "CLADDING"
         ]
     }
 

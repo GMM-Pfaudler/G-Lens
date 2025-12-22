@@ -98,6 +98,58 @@ def calculate_output_rpm(data: List[dict]) -> Optional[float]:
         return int(motor_speed / gear_ratio)
     
     return None
+def extract_joint_efficiency(data):
+    keyword = "joint_efficiency"
+    keys = []
+    values = []
+
+    for row in data:
+        for key, value in row.items():
+            if keyword.lower() in str(value).lower():
+                raw_text = value
+                labels = raw_text.split("\n")
+
+                # Extract label keys except 'CORROSION' and 'ALLOWANCE'
+                filtered_labels = [label.strip().upper() for label in labels]
+                keys = [label for label in filtered_labels if label not in ['JOINT', 'EFFICIENCY','%']]
+
+                try:
+                    key_index = int(key)
+                except ValueError:
+                    continue  # Skip non-numeric keys
+
+                # Sort all row keys numerically
+                sorted_keys = sorted(
+                    [k for k in row.keys() if k.isdigit()],
+                    key=lambda x: int(x)
+                )
+
+                # Start from key_index + 1 till the end
+                started = False
+                for k in sorted_keys:
+                    if int(k) > key_index:
+                        started = True
+                        value_field = row.get(k, "")
+                        if value_field:
+                            numerical_values = value_field.split("\n")
+                            for num_val in numerical_values:
+                                try:
+                                    val = float(num_val.strip())
+                                    values.append(val)
+                                except ValueError:
+                                    continue
+                        if len(values) >= len(keys):
+                            values = values[:len(keys)]
+                            break
+
+                break  # Found joint_efficiency, stop processing this row
+
+    if keys and values and len(keys) == len(values):
+        return {
+            "JOINT EFFICIENCY": dict(zip(keys, values))
+        }
+    else:
+        return {}
 
 def extract_corrosion_allowance(data):
     keyword = "corrosion"
